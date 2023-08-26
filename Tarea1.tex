@@ -1,0 +1,56 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\input{compaq.tex}
+
+\title{Cómputo científico para probabilidad y estadística. Tarea 1.\\
+Descomposición LU y Cholesky.}
+\author{Juan Esaul González Rangel}
+\date{Septiembre 2023}
+
+
+
+\begin{document}
+
+\maketitle
+
+
+\begin{enumerate}
+
+    \item Implementar los algoritmos de \textit{Backward} y \textit{Forward substitution}.
+
+    \item Implementar el algoritmo de eliminación gaussiana con pivotteo parcial LUP, 21.1 del Trefethen (p. 160).
+
+    \item Dar la descomposición LUP para una matriz aleatoria de entradas $U (0, 1)$ de tamaño $5 \times 5$, y para la matriz
+
+    \begin{equation}
+        A = \begin{pmatrix}
+            1 & 0 & 0 & 0 & 1 \\
+            -1 & 1 & 0 & 0 & 1 \\
+            -1 & -1 & 1 & 0 & 1 \\
+            -1 & -1 & -1 & 1 & 1 \\
+            -1 & -1 & -1 & -1 & 1
+        \end{pmatrix}
+    \end{equation}
+
+    \item Usando la descomposición LUP anterior, resolver el sistema de la forma
+
+\begin{equation}
+    Dx = b
+\end{equation}
+
+donde $D$ son las matrices del problema 3, para 5 diferentes $b$ aleatorios con entradas $U (0, 1)$. Verificando si es o no posible resolver el sistema.
+
+    \item  Implementar el algoritmo de descomposición de Cholesky 23.1 del Trefethen (p. 175).
+
+    \item Comparar la complejidad de su implementación de los algoritmos de
+factorización de Cholesky y LUP mediante la medición de los tiempos
+que tardan con respecto a la descomposición de una matriz aleatoria
+hermitiana definida positiva. Graficar la comparación.
+   
+\end{enumerate}
+
+
+
+
+ \end{document}
