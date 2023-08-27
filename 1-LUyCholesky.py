@@ -55,13 +55,17 @@ def forsubs(L,v):
 
 
 
+
+
 # Examples of use
 if __name__ == "__main__":
     import numpy as np
-    A = np.matrix('1,2,3; 0,1,2; 0,0,1')
+    U = np.matrix('1,2,3; 0,1,2; 0,0,1')
     L = np.matrix('1,0,0; 1,2,0; 1,2,3')
     v = np.array([1,5,0])
 
     x = forsubs(L,v)
+    y = backsubs(U,v)
 
-    print(x)
+    print("La solución a Lx = v es ",x, "\n",
+          "La solución a Uy = v es ", y)
