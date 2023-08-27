@@ -20,7 +20,7 @@ def backsubs(U,v):
     assert 0 not in np.diag(U), "Error: La matriz no es compatible"
     assert U.shape[0] == U.shape[1], "Error: La matriz no es cuadrada"
     assert U.shape[0] == v.shape[0], "Error: las dimensiones del sistema son incompatibles"
-    x = v.copy()
+    x = v.astype(float)
     n = len(v)
     x[n-1] = v[n-1] / U[n-1,n-1]
     for i in range(len(v)-2, -1, -1):
@@ -46,7 +46,7 @@ def forsubs(L,v):
     assert 0 not in np.diag(L), "Error: La matriz no es compatible"
     assert L.shape[0] == L.shape[1], "Error: La matriz no es cuadrada"
     assert L.shape[0] == v.shape[0], "Error: las dimensiones del sistema son incompatibles"
-    x = v.copy()
+    x = v.astype(float)
     n = len(v)
     x[0] = v[0] / L[0,0]
     for i in range(len(v)-1):
