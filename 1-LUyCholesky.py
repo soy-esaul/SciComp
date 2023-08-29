@@ -75,7 +75,7 @@ def LUdec(A):
     U = A.astype(float)
     L = np.identity(n)
     P = np.identity(n)
-    for k in range(n-1):
+    for k in range(n):
         i = np.argmax(np.abs(U[k:,k])) + k 
         U[[i,k]] = U[[k,i]]
         L[[i,k]] = L[[k,i]]
