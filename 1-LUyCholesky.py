@@ -53,6 +53,38 @@ def forsubs(L,v):
         x[i+1] = ( v[i+1] - np.sum(np.multiply(x,L[i,:])) ) / L[i+1,i+1]
     return x
 
+# LUP
+def LUdec(A):
+    '''Implementation of the LU decomposition algorithm with partial pivoting
+    as shown in "Trefethen and Bau, Numerical linear algebra. (1997)"
+    
+    Arguments:
+    - A: A squared matrix (numpy array of shape (n,n))
+    
+    Returns:
+    A tuple (L,U,P) with:
+    - L: A lower triangular matrix (numpy array of shape (n,n))
+    - U: An upper triangular matrix (numpy array of shape (n,n))
+    - P: 
+
+    Requires:
+    import numpy as np
+    '''
+    assert A.shape[0] == A.shape[1], "Error: La matriz no es cuadrada"
+    n = A.shape[0]
+    U = A.astype(float)
+    L = np.identity(n)
+    P = np.identity(n)
+    for k in range(n-1):
+        i = np.argmax(np.abs(U[k:,k])) + k 
+        U[[i,k]] = U[[k,i]]
+        L[[i,k]] = L[[k,i]]
+        P[[i,k]] = P[[k,i]]
+        for j in range(k+1,n):
+            L[j,k] = U[j,k] / U[k,k]
+            U[j,k:n] = U[j,k:n] - L[j,k]*U[k,k:n]
+    return L, U, P
+
 
 
 
@@ -69,3 +101,9 @@ if __name__ == "__main__":
 
     print("La solución a Lx = v es ",x, "\n",
           "La solución a Uy = v es ", y)
+    
+    # Example of LU decomposition
+    A = np.matrix('1,1,1; 4,3,-1; 3,5,3')
+    I, S, P = LUdec(A)
+
+    print("L:", I, '\n', "U:", S, "\n", "P:", P)
