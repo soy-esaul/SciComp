@@ -110,6 +110,6 @@ if __name__ == "__main__":
     
     # Example of LU decomposition
     A = np.matrix('1,1,1; 4,3,-1; 3,5,3')
-    I, S, P = LUdec(A)
+    I, S, P = LUP(A)
 
     print("L:", I, '\n', "U:", S, "\n", "P:", P)
