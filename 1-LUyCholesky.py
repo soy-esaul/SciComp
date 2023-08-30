@@ -54,7 +54,7 @@ def forsubs(L,v):
     return x
 
 # LUP
-def LUdec(A):
+def LUP(A, copy=True):
     '''Implementation of the LU decomposition algorithm with partial pivoting
     as shown in "Trefethen and Bau, Numerical linear algebra. (1997)"
     
@@ -70,20 +70,26 @@ def LUdec(A):
     Requires:
     import numpy as np
     '''
+    # Evaluate if teh given matrix is squared
     assert A.shape[0] == A.shape[1], "Error: La matriz no es cuadrada"
-    n = A.shape[0]
-    U = A.astype(float)
-    L = np.identity(n)
-    P = np.identity(n)
-    for k in range(n):
-        i = np.argmax(np.abs(U[k:,k])) + k 
-        U[[i,k]] = U[[k,i]]
-        L[[i,k]] = L[[k,i]]
-        P[[i,k]] = P[[k,i]]
-        for j in range(k+1,n):
-            L[j,k] = U[j,k] / U[k,k]
-            U[j,k:n] = U[j,k:n] - L[j,k]*U[k,k:n]
-    return L, U, P
+    # Modify the original matrix or copy it
+    if copy:
+        n = A.shape[0]
+        U = A.astype(float)
+        L = np.identity(n)
+        P = np.identity(n)
+        for k in range(n):
+            i = np.argmax(np.abs(U[k:,k])) + k 
+            U[[i,k]] = U[[k,i]]
+            L[[i,k]] = L[[k,i]]
+            P[[i,k]] = P[[k,i]]
+            for j in range(k+1,n):
+                L[j,k] = U[j,k] / U[k,k]
+                U[j,k:n] = U[j,k:n] - L[j,k]*U[k,k:n]
+        return L, U, P
+    else:
+        n = A.shape[0]
+        A = A.astype(float)
 
 
 
