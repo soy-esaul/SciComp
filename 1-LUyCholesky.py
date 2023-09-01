@@ -20,7 +20,7 @@ def backsubs(U,v):
     assert 0 not in np.diag(U), "Error: La matriz no es compatible"
     assert U.shape[0] == U.shape[1], "Error: La matriz no es cuadrada"
     assert U.shape[0] == v.shape[0], "Error: las dimensiones del sistema son incompatibles"
-    x = v.astype(float)
+    x = v
     n = len(v)
     x[n-1] = v[n-1] / U[n-1,n-1]
     for i in range(len(v)-2, -1, -1):
@@ -54,7 +54,7 @@ def forsubs(L,v):
     return x
 
 # LUP
-def LUP(A, copy=True):
+def LUP(A, out='copy'):
     '''Implementation of the LU decomposition algorithm with partial pivoting
     as shown in "Trefethen and Bau, Numerical linear algebra. (1997)"
     
@@ -70,36 +70,83 @@ def LUP(A, copy=True):
     Requires:
     import numpy as np
     '''
-    # Evaluate if teh given matrix is squared
-    assert A.shape[0] == A.shape[1], "Error: La matriz no es cuadrada"
+    # Evaluate if the given matrix is squared
+    assert A.shape[0] == A.shape[1], "Error: Matrix must be squared"
+    assert out in {"compact","double","copy"}, "Error: Out value must be either 'compact', 'double' or 'copy'"
     # Modify the original matrix or copy it
-    if copy:
+    if out == "compact":
         n = A.shape[0]
         U = A.astype(float)
         P = np.identity(n)
-        for k in range(n):
+        for k in range(n-1):
             i = np.argmax(np.abs(U[k:,k])) + k 
-            U[k,k:], U[i,k:] = U[i,k:], U[k,k:]
-            U[i,:k], U[k,:k] = U[k,:k] , U[i,:k]
+            t1 = U[k,k:].copy()
+            t2 = U[i,k:].copy()
+            U[i,k:] = t1
+            U[k,k:] = t2
+            t1 = U[i,:k].copy() 
+            t2 = U[k,:k].copy()
+            U[k,:k] = t1
+            U[i,:k] = t2
+            P[[i,k]] = P[[k,i]]
+            for j in range(k+1,n):
+                U[j,k] = U[j,k] / U[k,k]
+                U[j,(k+1):n] -= U[j,k]*U[k,(k+1):n]
+        return U, P
+    elif out == "double":
+        n = A.shape[0]
+        U = A.astype(float)
+        L = np.identity(n)
+        P = np.identity(n)
+        for k in range(n-1):
+            i = np.argmax(np.abs(U[k:,k])) + k 
+            t1 = U[k,k:].copy()
+            t2 = U[i,k:].copy()
+            U[i,k:] = t1
+            U[k,k:] = t2
+            t1 = L[i,:k].copy() 
+            t2 = L[k,:k].copy()
+            L[k,:k] = t1
+            L[i,:k] = t2
             P[[i,k]] = P[[k,i]]
             for j in range(k+1,n):
                 L[j,k] = U[j,k] / U[k,k]
-                U[j,k:n] -= L[j,k]*U[k,k:n]
+                U[j,(k+1):n] -= L[j,k]*U[k,(k+1):n]
         return L, U, P
     else:
         n = A.shape[0]
         A = A.astype(float)
+        n = A.shape[0]
+        U = A.astype(float)
+        L = np.identity(n)
+        P = np.identity(n)
+        for k in range(n-1):
+            i = np.argmax(np.abs(U[k:,k])) + k 
+            t1 = U[k,k:].copy()
+            t2 = U[i,k:].copy()
+            U[i,k:] = t1
+            U[k,k:] = t2
+            t1 = L[i,:k].copy() 
+            t2 = L[k,:k].copy()
+            L[k,:k] = t1
+            L[i,:k] = t2
+            P[[i,k]] = P[[k,i]]
+            for j in range(k+1,n):
+                L[j,k] = U[j,k] / U[k,k]
+                U[j,(k+1):n] -= L[j,k]*U[k,(k+1):n]
+        return L, U, P
 
 
-
-
+# Cholesky
+def cholesky(A,out="copy"):
+    assert shape
 
 # Examples of use
 if __name__ == "__main__":
     import numpy as np
-    U = np.matrix('1,2,3; 0,1,2; 0,0,1')
-    L = np.matrix('1,0,0; 1,2,0; 1,2,3')
-    v = np.array([1,5,0])
+    U = np.matrix('1,2,3; 0,1,2; 0,0,1', dtype=float)
+    L = np.matrix('1,0,0; 1,2,0; 1,2,3', dtype=float)
+    v = np.array([1,5,0], dtype=float)
 
     x = forsubs(L,v)
     y = backsubs(U,v)
@@ -108,7 +155,7 @@ if __name__ == "__main__":
           "La solución a Uy = v es ", y)
     
     # Example of LU decomposition
-    A = np.matrix('1,1,1; 4,3,-1; 3,5,3')
-    I, S, P = LUP(A)
+    A = np.matrix('2,1,1,0; 4,3,3,1; 8,7,9,5; 6,7,9,8',dtype=float)
+    S, P = LUP(A, out="compact")
 
-    print("L:", I, '\n', "U:", S, "\n", "P:", P)
+    print("U:", S, "\n", "P:", P)
