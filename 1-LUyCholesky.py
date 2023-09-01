@@ -76,16 +76,15 @@ def LUP(A, copy=True):
     if copy:
         n = A.shape[0]
         U = A.astype(float)
-        L = np.identity(n)
         P = np.identity(n)
         for k in range(n):
             i = np.argmax(np.abs(U[k:,k])) + k 
-            U[[i,k]] = U[[k,i]]
-            L[[i,k]] = L[[k,i]]
+            U[k,k:], U[i,k:] = U[i,k:], U[k,k:]
+            U[i,:k], U[k,:k] = U[k,:k] , U[i,:k]
             P[[i,k]] = P[[k,i]]
             for j in range(k+1,n):
                 L[j,k] = U[j,k] / U[k,k]
-                U[j,k:n] = U[j,k:n] - L[j,k]*U[k,k:n]
+                U[j,k:n] -= L[j,k]*U[k,k:n]
         return L, U, P
     else:
         n = A.shape[0]
