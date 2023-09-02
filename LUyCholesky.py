@@ -141,11 +141,12 @@ def LUP(A, out='copy'):
 def cholesky(A,copy=True):
     n = A.shape[0]
     assert n == A.shape[1], "Error: Matrix must be squared!"
+    assert not (0 in np.diag(A)), "Error: Matrix not compatible"
     if copy:
         R = A.astype(float)
         for k in range(n):
             for j in range(k+1,n):
-                R[j,j:n] -= R[k,j:n]*(R[k,j]/R[k,k])
+                R[j,j:n] -= (R[k,j:n]*(R[k,j]/R[k,k]))
             R[k,k:n] = R[k,k:n] / np.sqrt( R[k,k] )
         return R
     else:
@@ -159,6 +160,7 @@ def cholesky(A,copy=True):
 # Examples of use
 if __name__ == "__main__":
     import numpy as np
+    import matplotlib.pyplot as plt
     U = np.matrix('1,2,3; 2,1,2; 3,4,1', dtype=float)
     L = np.matrix('1,3,4; 1,2,5; 1,2,3', dtype=float)
     v = np.array([1,5,0], dtype=float)
@@ -179,32 +181,3 @@ if __name__ == "__main__":
     C = np.matrix('6,15,55;15,55,225;55,225,979',dtype=float)
     C = cholesky(C,copy=False)
     print(C)
-
-    
-    # Homework problems
-    
-    ## For replicability
-    np.random.seed(57)
-    ## Assigned matrix
-    A = np.matrix('1,0,0,0,1;-1,1,0,0,1;-1,-1,1,0,1;-1,-1,-1,1,1;-1,-1,-1,-1,1'
-        ,dtype=float)
-    
-    # Matrix with the random vectors
-    b = np.random.random((5,5))
-    if np.linalg.det(A) != 0:
-        x = np.zeros((5,5))
-        L, U, P = LUP(A,out="copy")
-        for i in range(b.shape[1]):
-            y = forsubs(L,b[:,i])
-            x[:,i] = backsubs(U,y)
-    print(x)
-
-    # Comparison of times
-    import time
-    # Random matrix
-    m = 500
-    t_chol = np.array((1,m))
-    t_LU = np.array((1,m))
-    for i in range(m):
-        h = np.random.random(i,i)
-        h = h @ h
