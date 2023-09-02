@@ -50,7 +50,7 @@ def forsubs(L,v):
     n = len(v)
     x[0] = v[0] / L[0,0]
     for i in range(len(v)-1):
-        x[i+1] = ( v[i+1] - np.sum(np.multiply(x,L[i,:])) ) / L[i+1,i+1]
+        x[i+1] = ( v[i+1] - np.sum(np.multiply(x[:(i+1)],L[(i+1),:(i+1)])) ) / L[i+1,i+1]
     return x
 
 # LUP
@@ -159,23 +159,52 @@ def cholesky(A,copy=True):
 # Examples of use
 if __name__ == "__main__":
     import numpy as np
-    U = np.matrix('1,2,3; 0,1,2; 0,0,1', dtype=float)
-    L = np.matrix('1,0,0; 1,2,0; 1,2,3', dtype=float)
+    U = np.matrix('1,2,3; 2,1,2; 3,4,1', dtype=float)
+    L = np.matrix('1,3,4; 1,2,5; 1,2,3', dtype=float)
     v = np.array([1,5,0], dtype=float)
 
-    x = forsubs(L,v)
+    z = forsubs(L,v)
     y = backsubs(U,v)
 
-    print("La solución a Lx = v es ",x, "\n",
+    print("La solución a Lx = v es ", z, "\n",
           "La solución a Uy = v es ", y)
     
     # Example of LU decomposition
-    A = np.matrix('2,1,1,0; 4,3,3,1; 8,7,9,5; 6,7,9,8',dtype=float)
-    S, P = LUP(A, out="compact")
+    E = np.matrix('2,1,1,0; 4,3,3,1; 8,7,9,5; 6,7,9,8',dtype=float)
+    I, S, M = LUP(E, out="copy")
 
-    print("U:", S, "\n", "P:", P)
+    print("L:", I, "\n U:", S, "\n", "P:", M)
 
     # Example of Cholesky
     C = np.matrix('6,15,55;15,55,225;55,225,979',dtype=float)
     C = cholesky(C,copy=False)
     print(C)
+
+    
+    # Homework problems
+    
+    ## For replicability
+    np.random.seed(57)
+    ## Assigned matrix
+    A = np.matrix('1,0,0,0,1;-1,1,0,0,1;-1,-1,1,0,1;-1,-1,-1,1,1;-1,-1,-1,-1,1'
+        ,dtype=float)
+    
+    # Matrix with the random vectors
+    b = np.random.random((5,5))
+    if np.linalg.det(A) != 0:
+        x = np.zeros((5,5))
+        L, U, P = LUP(A,out="copy")
+        for i in range(b.shape[1]):
+            y = forsubs(L,b[:,i])
+            x[:,i] = backsubs(U,y)
+    print(x)
+
+    # Comparison of times
+    import time
+    # Random matrix
+    m = 500
+    t_chol = np.array((1,m))
+    t_LU = np.array((1,m))
+    for i in range(m):
+        h = np.random.random(i,i)
+        h = h @ h
