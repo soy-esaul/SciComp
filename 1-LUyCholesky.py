@@ -138,8 +138,23 @@ def LUP(A, out='copy'):
 
 
 # Cholesky
-def cholesky(A,out="copy"):
-    assert shape
+def cholesky(A,copy=True):
+    n = A.shape[0]
+    assert n == A.shape[1], "Error: Matrix must be squared!"
+    if copy:
+        R = A.astype(float)
+        for k in range(n):
+            for j in range(k+1,n):
+                R[j,j:n] -= R[k,j:n]*(R[k,j]/R[k,k])
+            R[k,k:n] = R[k,k:n] / np.sqrt( R[k,k] )
+        return R
+    else:
+        A = A.astype(float)
+        for k in range(n):
+            for j in range(k+1,n):
+                A[j,j:n] -= A[k,j:n]*(A[k,j]/A[k,k])
+            A[k,k:n] = A[k,k:n] / np.sqrt( A[k,k] )
+        return A
 
 # Examples of use
 if __name__ == "__main__":
@@ -159,3 +174,8 @@ if __name__ == "__main__":
     S, P = LUP(A, out="compact")
 
     print("U:", S, "\n", "P:", P)
+
+    # Example of Cholesky
+    C = np.matrix('6,15,55;15,55,225;55,225,979',dtype=float)
+    C = cholesky(C,copy=False)
+    print(C)
