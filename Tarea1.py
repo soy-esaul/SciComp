@@ -47,7 +47,7 @@ if __name__ == "__main__":
     'font.family': 'serif',
     'text.usetex': True,
     'pgf.rcfonts': False,})
-
+    
     fig, ax = plt.subplots(figsize=(7,4))
     ax.plot(t_LU,label=r"LUP")
     ax.plot(t_chol,label=r"Cholesky")
