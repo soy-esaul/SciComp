@@ -93,7 +93,7 @@ def LUP(A, out='copy'):
                 U[j,k] = U[j,k] / U[k,k]
                 U[j,(k+1):n] -= U[j,k]*U[k,(k+1):n]
         return U, P
-    elif out == "double":
+    elif out == "copy":
         n = A.shape[0]
         U = A.astype(float)
         L = np.identity(n)
@@ -113,28 +113,28 @@ def LUP(A, out='copy'):
                 L[j,k] = U[j,k] / U[k,k]
                 U[j,(k+1):n] -= L[j,k]*U[k,(k+1):n]
         return L, U, P
-    else:
-        n = A.shape[0]
-        A = A.astype(float)
-        n = A.shape[0]
-        U = A.astype(float)
-        L = np.identity(n)
-        P = np.identity(n)
-        for k in range(n-1):
-            i = np.argmax(np.abs(U[k:,k])) + k 
-            t1 = U[k,k:].copy()
-            t2 = U[i,k:].copy()
-            U[i,k:] = t1
-            U[k,k:] = t2
-            t1 = L[i,:k].copy() 
-            t2 = L[k,:k].copy()
-            L[k,:k] = t1
-            L[i,:k] = t2
-            P[[i,k]] = P[[k,i]]
-            for j in range(k+1,n):
-                L[j,k] = U[j,k] / U[k,k]
-                U[j,(k+1):n] -= L[j,k]*U[k,(k+1):n]
-        return L, U, P
+    # else:
+    #     n = A.shape[0]
+    #     A = A.astype(float)
+    #     n = A.shape[0]
+    #     U = A.astype(float)
+    #     L = np.identity(n)
+    #     P = np.identity(n)
+    #     for k in range(n-1):
+    #         i = np.argmax(np.abs(U[k:,k])) + k 
+    #         t1 = U[k,k:].copy()
+    #         t2 = U[i,k:].copy()
+    #         U[i,k:] = t1
+    #         U[k,k:] = t2
+    #         t1 = L[i,:k].copy() 
+    #         t2 = L[k,:k].copy()
+    #         L[k,:k] = t1
+    #         L[i,:k] = t2
+    #         P[[i,k]] = P[[k,i]]
+    #         for j in range(k+1,n):
+    #             L[j,k] = U[j,k] / U[k,k]
+    #             U[j,(k+1):n] -= L[j,k]*U[k,(k+1):n]
+    #     return L, U, P
 
 
 # Cholesky
@@ -168,7 +168,7 @@ if __name__ == "__main__":
     z = forsubs(L,v)
     y = backsubs(U,v)
 
-    print("La solución a Lx = v es ", z, "\n",
+    print("La solución a Lz = v es ", z, "\n",
           "La solución a Uy = v es ", y)
     
     # Example of LU decomposition
@@ -180,4 +180,5 @@ if __name__ == "__main__":
     # Example of Cholesky
     C = np.matrix('6,15,55;15,55,225;55,225,979',dtype=float)
     C = cholesky(C,copy=False)
+    
     print(C)
