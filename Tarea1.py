@@ -1,6 +1,6 @@
-# %%
-import LUyCholesky
-# %%
+import numpy as np
+from LUyCholesky import LUP, cholesky, backsubs, forsubs
+
 if __name__ == "__main__":
     ## For replicability
     np.random.seed(57)
@@ -10,13 +10,13 @@ if __name__ == "__main__":
     
     # Matrix with the random vectors
     b = np.random.random((5,5))
+    # Run if the system is compatible determinated
     if np.linalg.det(A) != 0:
         x = np.zeros((5,5))
         L, U, P = LUP(A,out="copy")
         for i in range(b.shape[1]):
             y = forsubs(L,b[:,i])
             x[:,i] = backsubs(U,y)
-# %%
 
     # Comparison of times
     import time
@@ -36,10 +36,11 @@ if __name__ == "__main__":
         end = time.time()
         t_chol[i] = end - start
 
+    count = sum( t_chol < t_LU )
 
-# %%
     # Plot of time comparison
     import matplotlib
+    import matplotlib.pyplot as plt
     matplotlib.use("pgf")
     matplotlib.style.use("seaborn-v0_8")
     plt.rcParams.update({

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.5) (preloaded format=pdflatex 2023.6.13)  1 SEP 2023 22:54
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.5) (preloaded format=pdflatex 2023.6.13)  3 SEP 2023 21:02
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -614,13 +614,34 @@ Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 285.
 )
 \Hy@SectionHShift=\skip61
-)
-\c@lemma=\count323
-\c@theorem=\count324
+) (C:\Program Files\MiKTeX\tex/latex/listings\listings.sty
+\lst@mode=\count323
+\lst@gtempboxa=\box67
+\lst@token=\toks54
+\lst@length=\count324
+\lst@currlwidth=\dimen296
+\lst@column=\count325
+\lst@pos=\count326
+\lst@lostspace=\dimen297
+\lst@width=\dimen298
+\lst@newlines=\count327
+\lst@lineno=\count328
+\lst@maxwidth=\dimen299
+ (C:\Program Files\MiKTeX\tex/latex/listings\lstmisc.sty
+File: lstmisc.sty 2023/02/27 1.9 (Carsten Heinz)
+\c@lstnumber=\count329
+\lst@skipnumbers=\count330
+\lst@framebox=\box68
+) (C:\Program Files\MiKTeX\tex/latex/listings\listings.cfg
+File: listings.cfg 2023/02/27 1.9 listings configuration
+))
+Package: listings 2023/02/27 1.9 (Carsten Heinz)
+\c@lemma=\count331
+\c@theorem=\count332
 ) (C:\Program Files\MiKTeX\tex/latex/l3backend\l3backend-pdftex.def
 File: l3backend-pdftex.def 2023-04-19 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count325
-\l__pdf_internal_box=\box67
+\l__color_backend_stack_int=\count333
+\l__pdf_internal_box=\box69
 ) (Tarea1.aux
 LaTeX Info: Redefining \. on input line 22.
 LaTeX Info: Redefining \% on input line 22.
@@ -647,17 +668,17 @@ LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 14.
 LaTeX Font Info:    ... okay on input line 14.
  (C:\Program Files\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count326
-\scratchdimen=\dimen296
-\scratchbox=\box68
-\nofMPsegments=\count327
-\nofMParguments=\count328
-\everyMPshowfont=\toks54
-\MPscratchCnt=\count329
-\MPscratchDim=\dimen297
-\MPnumerator=\count330
-\makeMPintoPDFobject=\count331
-\everyMPtoPDFconversion=\toks55
+\scratchcounter=\count334
+\scratchdimen=\dimen300
+\scratchbox=\box70
+\nofMPsegments=\count335
+\nofMParguments=\count336
+\everyMPshowfont=\toks55
+\MPscratchCnt=\count337
+\MPscratchDim=\dimen301
+\MPnumerator=\count338
+\makeMPintoPDFobject=\count339
+\everyMPtoPDFconversion=\toks56
 ) (C:\Program Files\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
@@ -732,6 +753,7 @@ Package hyperref Info: Link coloring OFF on input line 14.
 \@outlinefile=\write4
 \openout4 = `Tarea1.out'.
 
+\c@lstlisting=\count340
 LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 17.
  (C:\Program Files\MiKTeX\tex/latex/lm\ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
@@ -776,7 +798,17 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <7> on input line 25.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <5> on input line 25.
- (LU-Chol.pgf
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 39.
+ (C:\Program Files\MiKTeX\tex/latex/lm\t1lmtt.fd
+File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `lmtt' (encoding: T1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+ [1
+
+{C:/Users/Esaul/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Program Files/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}{C:/Program Files/MiKTeX/fonts/enc/dvips/lm/lm-mathit.enc}{C:/Program Files/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}{C:/Program Files/MiKTeX/fonts/enc/dvips/lm/lm-mathsy.enc}{C:/Program Files/MiKTeX/fonts/enc/dvips/lm/lm-mathex.enc}] [2] (LU-Chol.pgf
 LaTeX Font Info:    Calculating math sizes for size <11> on input line 221.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <11> on input line 221.
@@ -790,13 +822,11 @@ LaTeX Font Warning: Font shape `U/rsfs/m/n' in size <5.5> not available
 (Font)              size <5> substituted on input line 221.
 
 )
-Overfull \hbox (5.406pt too wide) in paragraph at lines 1081--54
+Overfull \hbox (5.406pt too wide) in paragraph at lines 1108--171
 [][] 
  []
 
-[1
-
-{C:/Users/Esaul/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Program Files/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}{C:/Program Files/MiKTeX/fonts/enc/dvips/lm/lm-mathit.enc}{C:/Program Files/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}{C:/Program Files/MiKTeX/fonts/enc/dvips/lm/lm-mathsy.enc}{C:/Program Files/MiKTeX/fonts/enc/dvips/lm/lm-mathex.enc}] [2] (Tarea1.aux
+[3] (Tarea1.aux
 LaTeX Info: Redefining \. on input line 22.
 LaTeX Info: Redefining \% on input line 22.
 )
@@ -808,17 +838,17 @@ Package rerunfilecheck Info: File `Tarea1.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 35363 strings out of 476411
- 805800 string characters out of 5798949
- 1868845 words of memory out of 5000000
- 55061 multiletter control sequences out of 15000+600000
- 568624 words of font info for 120 fonts, out of 8000000 for 9000
+ 36801 strings out of 476411
+ 826574 string characters out of 5798949
+ 1875845 words of memory out of 5000000
+ 56461 multiletter control sequences out of 15000+600000
+ 569773 words of font info for 131 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 99i,7n,103p,1123b,644s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Program Files/MiKTeX/fonts/type1/public/lm/lmex10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmmi10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmmi12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmr12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmr17.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmri10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmsy10.pfb>
-Output written on Tarea1.pdf (2 pages, 139039 bytes).
+ 99i,7n,103p,1123b,662s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<C:/Program Files/MiKTeX/fonts/type1/public/lm/lmex10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmmi10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmmi12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmmi7.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmr12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmr17.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmr7.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmri10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmsy7.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmtt10.pfb>
+Output written on Tarea1.pdf (3 pages, 202084 bytes).
 PDF statistics:
- 76 PDF objects out of 1000 (max. 8388607)
- 11 named destinations out of 1000 (max. 500000)
- 28685 words of extra memory for PDF output out of 29859 (max. 10000000)
+ 100 PDF objects out of 1000 (max. 8388607)
+ 12 named destinations out of 1000 (max. 500000)
+ 29197 words of extra memory for PDF output out of 29859 (max. 10000000)
 

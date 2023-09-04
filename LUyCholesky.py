@@ -17,6 +17,7 @@ def backsubs(U,v):
     Requires:
     import numpy as np
     '''
+    import numpy as np
     assert 0 not in np.diag(U), "Error: La matriz no es compatible"
     assert U.shape[0] == U.shape[1], "Error: La matriz no es cuadrada"
     assert U.shape[0] == v.shape[0], "Error: las dimensiones del sistema son incompatibles"
@@ -43,6 +44,7 @@ def forsubs(L,v):
     Requires:
     import numpy as np
     '''
+    import numpy as np
     assert 0 not in np.diag(L), "Error: La matriz no es compatible"
     assert L.shape[0] == L.shape[1], "Error: La matriz no es cuadrada"
     assert L.shape[0] == v.shape[0], "Error: las dimensiones del sistema son incompatibles"
@@ -70,6 +72,7 @@ def LUP(A, out='copy'):
     Requires:
     import numpy as np
     '''
+    import numpy as np
     # Evaluate if the given matrix is squared
     assert A.shape[0] == A.shape[1], "Error: Matrix must be squared"
     assert out in {"compact","double","copy"}, "Error: Out value must be either 'compact', 'double' or 'copy'"
@@ -139,6 +142,7 @@ def LUP(A, out='copy'):
 
 # Cholesky
 def cholesky(A,copy=True):
+    import numpy as np
     n = A.shape[0]
     assert n == A.shape[1], "Error: Matrix must be squared!"
     assert not (0 in np.diag(A)), "Error: Matrix not compatible"

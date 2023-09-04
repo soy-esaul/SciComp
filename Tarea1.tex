@@ -34,6 +34,53 @@ Descomposición LU y Cholesky.}
         \end{pmatrix}
     \end{equation}
 
+    
+
+    Las matrices $L$ y $U$ que obtenemos como salida de de la función \texttt{LUP(A)}  son,
+
+\begin{verbatim*}
+L
+array([[ 1.,  0.,  0.,  0.,  0.],
+       [-1.,  1.,  0.,  0.,  0.],
+       [-1., -1.,  1.,  0.,  0.],
+       [-1., -1., -1.,  1.,  0.],
+       [-1., -1., -1., -1.,  1.]])
+
+U
+matrix([[ 1.,  0.,  0.,  0.,  1.],
+        [-1.,  1.,  0.,  0.,  2.],
+        [-1., -1.,  1.,  0.,  4.],
+        [-1., -1., -1.,  1.,  8.],
+        [-1., -1., -1., -1., 16.]])
+\end{verbatim*}
+
+    La salida de la matriz $P$ se omite porque es evidente, por la forma de $A$, que
+    durante el algoritmo nunca es necesario realizar permuutaciones (pues los valores
+    en la diagonal de $A$ son los máximos de su respectiva columna), así que $P=I_{n\times n}$.
+
+    Notemos además, que en la salida, $U$ no tiene explícitamente la forma de una matriz
+    triangular superior y esto es porque la implementación del algoritmo, por eficiencia,
+    no considera la escritura de las celdas correspondientes a la parte inferior de $U$,
+    que corresponde únicamente a ceros. Si tomamos esto en cuenta, la descomposición $LU$
+    de $A$ es,
+
+    \begin{equation*}
+        A = LU = \begin{bmatrix}
+            1. & 0. & 0. & 0. & 0.\\
+            -1. & 1. & 0. & 0. & 0.\\
+            -1. & -1. & 1. & 0. & 0.\\
+            -1. & -1. & -1. & 1. & 0.\\
+            -1. & -1. & -1. & -1. & 1.\\
+          \end{bmatrix} \begin{bmatrix}
+            1. & 0. & 0. & 0. & 1.\\
+            0. & 1. & 0. & 0. & 2.\\
+            0. & 0. & 1. & 0. & 4.\\
+            0. & 0. & 0. & 1. & 8.\\
+            0. & 0. & 0. & 0. & 16.\\
+          \end{bmatrix}.
+    \end{equation*}
+
+
     \item Usando la descomposición LUP anterior, resolver el sistema de la forma
 
 \begin{equation}
@@ -42,16 +89,97 @@ Descomposición LU y Cholesky.}
 
 donde $D$ son las matrices del problema 3, para 5 diferentes $b$ aleatorios con entradas $U (0, 1)$. Verificando si es o no posible resolver el sistema.
 
+    El primer paso es generar una matriz aleatoria de tamaño $5\times 5$ cuyas entradas sean v. a. i. i. d. uniformes
+    en $(0,1)$. La $j$-ésima columna representa un vector de tamaño 5 que corresponde al $j$-ésimo
+    vector $b$ con el que se resuelve el sistema $Ax = b$. Con la semilla usada, la matriz aleatoria
+    obtenida es:
+
+    \begin{verbatim*}
+b
+array([[0.08734964, 0.2304771 , 0.41106107, 0.3107827 , 0.56595589],
+        [0.5450637 , 0.80709944, 0.91815511, 0.52209075, 0.42468726],
+        [0.07180395, 0.89852885, 0.42051383, 0.58216979, 0.21415354],
+        [0.44748568, 0.4678638 , 0.10063716, 0.92728789, 0.16098684],
+        [0.87459418, 0.05216006, 0.99227957, 0.10514732, 0.40198985]]),\end{verbatim*}
+
+    
+        que corresponde a 
+
+
+        \begin{equation*}
+            B = \begin{bmatrix}
+                0.08734964 & 0.2304771 & 0.41106107 & 0.3107827 & 0.56595589\\
+                0.5450637 & 0.80709944 & 0.91815511 & 0.52209075 & 0.42468726\\
+                0.07180395 & 0.89852885 & 0.42051383 & 0.58216979 & 0.21415354\\
+                0.44748568 & 0.4678638 & 0.10063716 & 0.92728789 & 0.16098684\\
+                0.87459418 & 0.05216006 & 0.99227957 & 0.10514732 & 0.40198985\\
+              \end{bmatrix}.
+        \end{equation*}
+        
+        Como intentamos resolver $Ax = b$, y tomando $A = PLU = LU$ (usando que $P = I_{n\times n}$),
+        esto significa que $LUx = b$, por lo cual es posible resolver en dos pasos, primero
+        resolvemos para $y$ en $Ly = b$, y a continuación resolvemos para $x$ en $Ux = y$, con lo que
+        la solución que satisfaga esto será la que también satisface nuestro sistema original.
+
+        Después de verificar que $|A| \neq 0$, se usaron las funciones \texttt{backsubs} y \texttt{forsubs}
+        con cada uno de los vectores $b$ (columnas de $B$) para encontrar,
+
+        \begin{equation*}
+            X = \begin{bmatrix}
+                -0.18419659 & -0.23135391 & -0.14487977 & -0.11242976 & 0.11485089\\
+                0.08932088 & 0.11391453 & 0.21733451 & -0.01355147 & 0.08843316\\
+                -0.29461799 & 0.31925846 & -0.06297227 & 0.03297609 & -0.03366741\\
+                -0.21355425 & 0.20785187 & -0.44582121 & 0.41107029 & -0.1205015\\
+                0.27154623 & 0.46183101 & 0.55594084 & 0.42321246 & 0.451105\\
+              \end{bmatrix},
+        \end{equation*}
+
+        donde esta matriz tiene una interpretación análoga a $B$, es decir, cada columna $x$ de $X$
+        representa un vector solución al sistema $Ax = b$, con $B$ la columna correspondiente de
+        $B$.
+
     \item  Implementar el algoritmo de descomposición de Cholesky 23.1 del Trefethen (p. 175).
 
     \item Comparar la complejidad de su implementación de los algoritmos de
-factorización de Cholesky y LUP mediante la medición de los tiempos
-que tardan con respecto a la descomposición de una matriz aleatoria
-hermitiana definida positiva. Graficar la comparación.
+    factorización de Cholesky y LUP mediante la medición de los tiempos
+    que tardan con respecto a la descomposición de una matriz aleatoria
+    hermitiana definida positiva. Graficar la comparación.
 
-    \begin{figure*}
+    Haciendo uso del módulo \texttt{time}, podemos crear una función que nos indique el tiempo de 
+    inicio y final de ejecución de una determinada porción de código. Al repetir este procedimiento
+    para ambos algoritos y distintos tamaños de matrices, encontramos un vector de valores en el que
+    podemos observar como es que el tiempo de ejecución del algoritmo incrementa al variar el 
+    tamaño de la entrada.
+
+    Una comparación muy sencilla es contar la cantidad de matrices para las cuales el algoritmo
+    $LU$ tardó más tiempo que el algoritmo Cholesky. Con los valores obtenidos en esta ejecución en
+    particular, tenemos que esto ocurrió un total de 310 veces.
+
+    Otra manera útil de comparar ls tiempos de ejecución es mediante el uso de una gráfica.
+
+    En la siguiente figura observamos que, para $n$ pequeño, el tiempo de ejecución de ambos
+    algoritmos es similar, por lo que no se puede decir que alguna de las funciones esté dominada
+    por la otra, pero, a medida que el tamaño de la entrada crece, el tiempo que tarda en ejecutarse
+    el algoritmo $LUP$ es cada vez mayor comparado con el tiempo que tarda en ejecutarse el
+    algoritmo Cholesky, y las curvas que tienden a formar para tamaños de matriz grandes son
+    muy similares al resultado teórico de complejidad $\sim 2m^3/3$ para $LU$ y $\sim m^3/3$
+    para Cholesky.
+
+
+    \begin{figure*}[!h]
         \input{LU-Chol.pgf}
     \end{figure*}
+
+    También notamos en la gráfica que el comportamiento del tiempo presenta varias irregularidades
+    y esto se debe a que los datos son tiempos de ejecución en lugar de cantidad de operaciones
+    y estos tiempos pueden haber sido mayores en algún paso debido a una tarea en segundo plano que
+    realiza el procesador. 
+
+    En conclusión, podemos decir que en el timepo de ejecución del algoritmo intervienen varios
+    factores, por lo que estrictamente hablando, el que un algoritmo tenga mayor complejidad que
+    otro, no implica que siempre tardará más, pero a medida que incrementa el tamaño de la entrada,
+    el comportamiento del algoritmo se aproxima al de su término domimante, por lo que en tamaños
+    grandes, una menor complejidad sí supone una ventaja.
    
 \end{enumerate}
 
