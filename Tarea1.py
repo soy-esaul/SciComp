@@ -46,6 +46,7 @@ if __name__ == "__main__":
         end = time.time()
         t_chol[i] = end - start
 
+    # Count times LU took longer than Cholesky
     count = sum( t_chol < t_LU )
 
     # Plot of time comparison
