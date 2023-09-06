@@ -1,3 +1,4 @@
+# %%
 import numpy as np
 from LUyCholesky import LUP, cholesky, backsubs, forsubs
 
@@ -7,17 +8,27 @@ if __name__ == "__main__":
     ## Assigned matrix
     A = np.matrix('1,0,0,0,1;-1,1,0,0,1;-1,-1,1,0,1;-1,-1,-1,1,1;-1,-1,-1,-1,1'
         ,dtype=float)
+    ## Random uniform matrix
+    R = np.random.random((5,5))
     
     # Matrix with the random vectors
     b = np.random.random((5,5))
     # Run if the system is compatible determinated
-    if np.linalg.det(A) != 0:
-        x = np.zeros((5,5))
+    x = np.zeros((5,5))
+    x_R = np.zeros((5,5))
+    try:
         L, U, P = LUP(A,out="copy")
-        for i in range(b.shape[1]):
-            y = forsubs(L,b[:,i])
-            x[:,i] = backsubs(U,y)
-
+        L_R, U_R, P_R = LUP(R, out="copy")
+    except:
+        print("Program didn't finish! Exception ocurred!")
+    b_R = b.copy()
+    b_R = P_R @ b_R
+    for i in range(b.shape[1]):
+        y = forsubs(L,b[:,i])
+        y_R = forsubs(L_R,b_R[:,i])
+        x[:,i] = backsubs(U,y)
+        x_R[:,i] = backsubs(U_R,y_R)
+# %%
     # Comparison of times
     import time
     # Random matrix

@@ -14,6 +14,10 @@ def backsubs(U,v):
     - A vector x (numpy array of shape (n,1)) of values that solve for the system:
     Ux' = v
 
+    In practice, the matrix needs no strictly to be triangular, but the function will
+    ignore the above diagonal elements. This allows the function to be used on the 
+    matrices coming from the LUP or Cholesky factorization algorithms.
+
     Requires:
     import numpy as np
     '''
@@ -21,7 +25,7 @@ def backsubs(U,v):
     assert 0 not in np.diag(U), "Error: La matriz no es compatible"
     assert U.shape[0] == U.shape[1], "Error: La matriz no es cuadrada"
     assert U.shape[0] == v.shape[0], "Error: las dimensiones del sistema son incompatibles"
-    x = v
+    x = v.astype(float)
     n = len(v)
     x[n-1] = v[n-1] / U[n-1,n-1]
     for i in range(len(v)-2, -1, -1):
@@ -40,6 +44,10 @@ def forsubs(L,v):
     Returns:
     - A vector x (numpy array of shape (n,1)) of values that solve for the system:
     Lx' = v
+
+    In practice, the matrix needs no strictly to be triangular, but the function will
+    ignore the below diagonal elements. This allows the function to be used on the 
+    matrices coming from the LUP or Cholesky factorization algorithms.
 
     Requires:
     import numpy as np
@@ -67,7 +75,12 @@ def LUP(A, out='copy'):
     A tuple (L,U,P) with:
     - L: A lower triangular matrix (numpy array of shape (n,n))
     - U: An upper triangular matrix (numpy array of shape (n,n))
-    - P: 
+    - P: A permutation matrix
+
+    The matrices satisfy PA = LU when setting the below diagonal terms of U and
+    the above diagonal terms of L equal to 0. In practice these entries are not 0 so that
+    they can be used more efficiently and even saved inside a unique numpy array instead
+    of two separated instances
 
     Requires:
     import numpy as np
@@ -75,7 +88,7 @@ def LUP(A, out='copy'):
     import numpy as np
     # Evaluate if the given matrix is squared
     assert A.shape[0] == A.shape[1], "Error: Matrix must be squared"
-    assert out in {"compact","double","copy"}, "Error: Out value must be either 'compact', 'double' or 'copy'"
+    assert out in {"compact","copy"}, "Error: Out value must be either 'compact', 'double' or 'copy'"
     # Modify the original matrix or copy it
     if out == "compact":
         n = A.shape[0]
@@ -116,32 +129,25 @@ def LUP(A, out='copy'):
                 L[j,k] = U[j,k] / U[k,k]
                 U[j,(k+1):n] -= L[j,k]*U[k,(k+1):n]
         return L, U, P
-    # else:
-    #     n = A.shape[0]
-    #     A = A.astype(float)
-    #     n = A.shape[0]
-    #     U = A.astype(float)
-    #     L = np.identity(n)
-    #     P = np.identity(n)
-    #     for k in range(n-1):
-    #         i = np.argmax(np.abs(U[k:,k])) + k 
-    #         t1 = U[k,k:].copy()
-    #         t2 = U[i,k:].copy()
-    #         U[i,k:] = t1
-    #         U[k,k:] = t2
-    #         t1 = L[i,:k].copy() 
-    #         t2 = L[k,:k].copy()
-    #         L[k,:k] = t1
-    #         L[i,:k] = t2
-    #         P[[i,k]] = P[[k,i]]
-    #         for j in range(k+1,n):
-    #             L[j,k] = U[j,k] / U[k,k]
-    #             U[j,(k+1):n] -= L[j,k]*U[k,(k+1):n]
-    #     return L, U, P
 
 
 # Cholesky
 def cholesky(A,copy=True):
+    '''Implementation of the Cholesky decomposition algorithm
+    as shown in "Trefethen and Bau, Numerical linear algebra. (1997)"
+    
+    Arguments:
+    - A: A hermitian positive definite squared matrix (numpy array of shape (n,n))
+    
+    Returns:
+    - R: A matrix which above diagonal entries correspond to the Cholesky factorization 
+    of A such that 
+
+    R^T R = A
+
+    Requires:
+    import numpy as np
+    '''
     import numpy as np
     n = A.shape[0]
     assert n == A.shape[1], "Error: Matrix must be squared!"
@@ -164,7 +170,10 @@ def cholesky(A,copy=True):
 # Examples of use
 if __name__ == "__main__":
     import numpy as np
-    import matplotlib.pyplot as plt
+
+    # Example of forward and backward substitution.
+    # Note matrices are not necessarily diagonal because the function
+    # will only use the above or below diagonal elements.
     U = np.matrix('1,2,3; 2,1,2; 3,4,1', dtype=float)
     L = np.matrix('1,3,4; 1,2,5; 1,2,3', dtype=float)
     v = np.array([1,5,0], dtype=float)
@@ -175,7 +184,7 @@ if __name__ == "__main__":
     print("La solución a Lz = v es ", z, "\n",
           "La solución a Uy = v es ", y)
     
-    # Example of LU decomposition
+    # Example of LUP decomposition
     E = np.matrix('2,1,1,0; 4,3,3,1; 8,7,9,5; 6,7,9,8',dtype=float)
     I, S, M = LUP(E, out="copy")
 
