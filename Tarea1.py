@@ -31,7 +31,6 @@ if __name__ == "__main__":
 # %%
     # Comparison of times
     import time
-    # Random matrix
     m = 350
     t_chol = np.zeros((m,))
     t_LU = np.zeros((m,))
@@ -52,6 +51,7 @@ if __name__ == "__main__":
     # Plot of time comparison
     import matplotlib
     import matplotlib.pyplot as plt
+    # For LaTeX output
     matplotlib.use("pgf")
     matplotlib.style.use("seaborn-v0_8")
     plt.rcParams.update({
