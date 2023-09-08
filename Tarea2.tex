@@ -1,0 +1,43 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\input{compaq.tex}
+
+\title{Cómputo científico para probabilidad y estadística. Tarea 2.\\
+Descomposición QR y mínimos cuadrados.}
+\author{Juan Esaul González Rangel}
+\date{Septiembre 2023}
+
+
+
+\begin{document}
+
+\maketitle
+
+
+\begin{enumerate}
+
+    \item Implementar el algoritmo de Gram-Schmidt modificado 8.1 del Trefethen (p. 58) para generar la descomposición $QR$.
+
+    \item Implementar el algoritmo que calcula el estimador de mínimos cuadrados
+en una regresión usando la descomposición $QR$.
+
+    \item Generar $\mathbf Y$ compuesto de $y_i = \sen(x_i) + \epsilon_i$ donde $\epsilon_i \sim N (0, \sigma)$ con $\sigma = 0.11$ para $xi = \frac{4\pi_i}n$ para $i = 1, \dots , n$.
+
+    Hacer un ajuste de mínimos cuadrados a $\mathbf Y$, con descomposición $QR$, ajustando un polinomio de grado $p - 1$.
+
+    \begin{itemize}
+        \item Considerar los 12 casos: $p = 3, 4, 6, 100$ y $n = 100, 1000, 10000$.
+        \item Graficar el ajuste en cada caso.
+        \item Medir tiempo de ejecución de su algoritmo, comparar con descomposición $QR$ de scipy y graficar los resultados.
+    \end{itemize}
+
+
+    \item Hacer $p = 0.1n$, o sea, diez veces más observaciones que coeficientes en la regresión, ¿Cual es la $n$ máxima que puede manejar su computadora?
+   
+\end{enumerate}
+
+
+
+
+ \end{document}
