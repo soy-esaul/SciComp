@@ -19,8 +19,12 @@ Descomposición QR y mínimos cuadrados.}
 
     \item Implementar el algoritmo de Gram-Schmidt modificado 8.1 del Trefethen (p. 58) para generar la descomposición $QR$.
 
+    En el archivo \texttt{QR.py}, el algoritmo está implementado en la función \texttt{QR}. 
+
     \item Implementar el algoritmo que calcula el estimador de mínimos cuadrados
-en una regresión usando la descomposición $QR$.
+    en una regresión usando la descomposición $QR$.
+
+    En el archivo \texttt{QR.py}, el algoritmo está implementado en la función \texttt{LSQR}. 
 
     \item Generar $\mathbf Y$ compuesto de $y_i = \sen(x_i) + \epsilon_i$ donde $\epsilon_i \sim N (0, \sigma)$ con $\sigma = 0.11$ para $xi = \frac{4\pi_i}n$ para $i = 1, \dots , n$.
 
@@ -29,7 +33,7 @@ en una regresión usando la descomposición $QR$.
     \begin{itemize}
         \item Considerar los 12 casos: $p = 3, 4, 6, 100$ y $n = 100, 1000, 10000$.
         \item Graficar el ajuste en cada caso.
-        \item Medir tiempo de ejecución de su algoritmo, comparar con descomposición $QR$ de scipy y graficar los resultados.
+        \item Medir tiempo de ejecución de su algoritmo, comparar con descomposición $QR$ de \texttt{scipy} y graficar los resultados.
     \end{itemize}
 
 

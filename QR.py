@@ -2,13 +2,20 @@
 # %%
 def QR(A):
     '''Implementation of the Gram-Schmidt algorithm for QR factorization as seen on
-    Trefethen and Bau "Numerical Linear Algebra" (1997)'''
+    Trefethen and Bau "Numerical Linear Algebra" (1997).
+    
+    Arguments:
+    - A: A full rank matrix (numpy array of shape (n,m))
+    
+    Returns:
+    - Q: A matrix such that Q* Q = I and Q Q* = P, with P an orthogonal projector
+    - R: An upper triangular matrix such that A = QR'''
     import numpy as np
     m = A.shape[0]
     n = A.shape[1]
     V = A.astype(float)
     Q = V.copy()
-    R = np.zeros( (n,n) )
+    R = np.zeros((n,n), dtype=float)
     for i in range(n):
         R[i,i] = np.linalg.norm(V[:,i])
         Q[:,i] = V[:,i] / R[i,i]
@@ -19,7 +26,15 @@ def QR(A):
 
 def LSQR(X,b):
     '''Implementation of the Least Squares Algorithm using QR descomposition as seen on
-    Trefethen and Bau "Numerical Linear Algebra" (1997)'''
+    Trefethen and Bau "Numerical Linear Algebra" (1997).
+    
+    Arguments:
+    - X: A full rank matrix (numpy array of shape (n,m))
+    - b: An m-dimensional vector (numpy array of shape(m,1))
+
+    Returns:
+    - x: A vector which is the least square solution to the problem min(|Ax - b|)
+    '''
     Q, R = QR(X)
     from LUyCholesky import backsubs
     y = np.matmul(Q.T , b)
@@ -35,8 +50,8 @@ if __name__ == "__main__":
     Q, R = QR(A)
     print(Q,"\n",R)
 
-    X = np.matrix("1,2,3,4;5,6,7,8;9,8,8,6;5,4,3,2;1,3,4,5", dtype=float)
-    b = np.array([1,2,3,4,5], dtype=float)
+    X = np.array([[2,4,-2],[9,1,4],[1,-3,2],[-1,4,2]])
+    b = np.array([1,2,3,4], dtype=float)
     x = LSQR(X,b)
     print(x)
 # %%
