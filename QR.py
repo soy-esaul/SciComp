@@ -78,6 +78,8 @@ if __name__ == "__main__":
     import time
     # Plot style
     matplotlib.style.use("seaborn-v0_8")
+    # plt.rcParams.update({
+    # 'font.family': 'serif'})
     qtimes = []
     stimes = []
     # Loop over degree of polynomials
@@ -106,7 +108,7 @@ if __name__ == "__main__":
             end = time.time()
             stimes.append(end-start)
             # Create figure and axes
-            fig, ax = plt.subplots(figsize=(7,4))
+            fig, ax = plt.subplots(figsize=(10,6))
             # To plot the polynomial
             polynomial = np.zeros(axis.shape,dtype=float)
             # Add the polynomial values
@@ -117,13 +119,19 @@ if __name__ == "__main__":
             # Polynomial plot
             ax.plot(axis,polynomial,"--",c="g")
             fig.suptitle("Gráfica para " + f"%i" %d + " grados, y " + f"%i" % n + " puntos")
+            plt.savefig('Ajuste'+f"%i" %d + f"%i" %n +".png")
+    
     # Compare QR vs scipy QR run times
     fig2, ax2 = plt.subplots(figsize=(7,4))
     cases = [ "(3,100)","(4,100)","(6,100)","(100,100)","(3,1000)","(4,1000)","(6,1000)","(100,1000)","(3,10000)","(4,10000)","(6,10000)","(100,10000)"]
     ax2.scatter(cases,qtimes,label="Algoritmo propio",marker=",",alpha=0.5)
     ax2.scatter(cases,stimes,label="Scipy",marker=",",alpha=0.5)
     fig2.autofmt_xdate(rotation=45)
+    fig2.suptitle("Comparación entre implementación propia y de Scipy")
+    ax2.set_xlabel(r"Combinación $(p-1,n)$")
+    ax2.set_ylabel(r"Tiempo (segundos)")
     fig2.legend()
+    plt.savefig("qr-compar")
 # %%
     # Fit the polynomial for p = 0.1n and choose the biggest n
     for p in [ 50, 75, 100, 125, 150, 155, 300]:
@@ -131,6 +139,9 @@ if __name__ == "__main__":
         epsilon = norm.rvs(loc=0,scale=0.11,size=n)
         x = np.array([ (4*np.pi*(i+1))/n for i in range(n) ], dtype=float)
         y = np.sin(x) + epsilon
-        coef = polfit(x,y,p-1)
-        print("¡Lo logró hasta ",n,"!")
+        try:
+            coef = polfit(x,y,p-1)
+            print("¡Lo logró hasta ",n,"!")
+        except:
+            print("El programa no acabó, ocurrió un error")
 # %%
