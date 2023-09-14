@@ -1,0 +1,68 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\input{compaq.tex}
+
+\title{Cómputo científico para probabilidad y estadística. Tarea 3.\\
+Estabilidad.}
+\author{Juan Esaul González Rangel}
+\date{Septiembre 2023}
+
+
+
+\begin{document}
+
+\maketitle
+
+
+\begin{enumerate}
+
+    \item Sea $Q$ una matriz unitaria aleatoria de $20 \times 20$ (eg. con $A$ una 
+    matriz de tamaño $20 \times 20$ aleatoria calculen su descomposición $QR$). 
+    Sean $\lambda_1 > \lambda_2 > ... \ge \lambda_{20} = 1 > 0$ y 
+    
+    \[B = Q^*diag(\lambda_1, \lambda_2, ..., \lambda_{20})Q, \text{ y } B_\epsilon 
+    = Q^*diag(\lambda_1+\epsilon_1, \lambda_2+\epsilon_2, ..., \lambda_{20}+\epsilon_{20})Q,\]
+
+con $\epsilon_i \sim N (0, \sigma)$, con $\sigma = 0.02\lambda_{20} = 0.01$.
+
+\begin{enumerate}
+    \item Comparar la descomposición de Cholesky de $B$ y de $B_\epsilon$ usando el 
+    algoritmo de la tarea 1. Considerar los casos cuando $B$ tiene un buen número de 
+    condición y un mal número de condición.
+    
+    \item Con el caso mal condicionado, comparar el resultado de su algoritmo con 
+    el del algoritmo de Cholesky de scipy.
+    
+    \item Medir el tiempo de ejecución de su algoritmo de Cholesky con el de scipy.
+    
+\end{enumerate}
+
+
+    \item Resolver el problema de mínimos cuadrados,
+    
+        \[y = X\beta + \epsilon, \quad \epsilon_i \sim N (0, \sigma) \]
+
+    usando su implementación de la descomposición $QR$; $\beta$ es de tamaño 
+    $n \times 1$ y $X$ de tamaño $n \times d$.
+    
+    Sean $d = 5, n = 20, \beta = (5, 4, 3, 2, 1)' y \sigma = 0.13$
+
+    \begin{enumerate}
+        \item Hacer X con entradas aleatorias U (0, 1) y simular y. Encontrar $\hat\beta$
+         y compararlo con el obtenido $\hat\beta_p$ haciendo $X + \Delta X$, donde las 
+         entradas de $\Delta X$ son $N (0, \sigma = 0.01)$. Comparar a su vez con 
+         $\hat\beta_c = ((X + \Delta X)'(X + \Delta X))^{-1}(X + \Delta X)'y$ usando el 
+         algoritmo genérico para invertir matrices \texttt{scipy.linalg.inv}.
+        \item Lo mismo que el anterior pero con $X$ mal condicionada (ie. con casi colinealidad).
+    \end{enumerate}
+
+
+
+   
+\end{enumerate}
+
+
+
+
+ \end{document}
