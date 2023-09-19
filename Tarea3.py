@@ -8,6 +8,8 @@ def compare(X,beta,sigma=0.13):
     from scipy.linalg import inv
     from QR import LSQR
     
+    n,d = X.shape
+
     epsilon = N.rvs(loc=0, scale=sigma, size=n)
     y = X @ beta + epsilon
     DeltaX = N.rvs(loc=0,scale=0.01,size=d*n).reshape((n,d))
@@ -17,8 +19,8 @@ def compare(X,beta,sigma=0.13):
     hat_beta_c = ( inv( (X + DeltaX).T @ (X + DeltaX) ) @ (X + DeltaX).T ) @ y
     
     return hat_beta, hat_beta_p, hat_beta_c
+# %%
 if __name__ == "__main__":
-    # %%
                             ###### Problema 1 ######
     # Recquired packages
     import numpy as np
@@ -43,8 +45,8 @@ if __name__ == "__main__":
 
     epsilon = N.rvs(scale=0.01, loc=0, size=20)
 
-    B = (Q.T @ np.diag(lambdas) ) @ Q
-    Be = (Q.T @ (np.diag(lambdas + epsilon))) @ Q
+    B = (Q.T @ np.diag(lambdas_malas) ) @ Q
+    Be = (Q.T @ (np.diag(lambdas_malas + epsilon))) @ Q
 
     start = time()
     Bchol = cholesky(B)
