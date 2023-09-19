@@ -19,7 +19,28 @@ def compare(X,beta,sigma=0.13):
     hat_beta_c = ( inv( (X + DeltaX).T @ (X + DeltaX) ) @ (X + DeltaX).T ) @ y
     
     return hat_beta, hat_beta_p, hat_beta_c
-# %%
+def timer_chol(Matrix,method,times):
+    '''This is a custom function created only to evaluate running times of Cholesky decomposition
+    algorithms with different matrices'''
+    from scipy.linalg import cholesky as schol
+    from time import time
+    if method == "scipy":
+        try:
+            start = time()
+            for i in range(times):
+                chol = schol(Matrix,overwrite_a=True, check_finite=False)
+            end = time()
+        except:
+            print("Error en la descomposición con Scipy")
+    else:
+        try:
+            start = time()
+            for i in range(times):
+                chol = cholesky(Matrix)
+            end = time()
+        except:
+            print("Error en la descomposición propia")
+    return end - start
 if __name__ == "__main__":
                             ###### Problema 1 ######
     # Recquired packages
@@ -37,37 +58,46 @@ if __name__ == "__main__":
 
     Q, R = QR(A)
 
-    lambda1 = 5e13
-    ratio = 20
+    alpha = 7
 
-    lambdas_malas = [i/ratio for i in np.linspace(lambda1,ratio,num=20) ]
+    lambdas_malas = [(alpha**19) / (alpha**i) for i in range(20)]
     lambdas_buenas = np.linspace(20,1,num=20)
 
-    epsilon = N.rvs(scale=0.01, loc=0, size=20)
+    epsilon = N.rvs(scale=0.02, loc=0, size=20)
 
-    B = (Q.T @ np.diag(lambdas_malas) ) @ Q
-    Be = (Q.T @ (np.diag(lambdas_malas + epsilon))) @ Q
+    B_mala = (Q.T @ np.diag(lambdas_malas) ) @ Q
+    Be_mala = (Q.T @ (np.diag(lambdas_malas + epsilon))) @ Q
 
-    start = time()
-    Bchol = cholesky(B)
-    Bechol = cholesky(Be)
-    end = time()
+    B_buena = (Q.T @ np.diag(lambdas_buenas) ) @ Q
+    Be_buena = (Q.T @ (np.diag(lambdas_buenas + epsilon))) @ Q
 
-    t_hands = end - start
+    
+    Bchol_buena = cholesky(B_buena)
+    Bechol_buena = cholesky(Be_buena)
+    Bchol_mala = cholesky(B_mala)
+    Bechol_mala = cholesky(Be_mala)
+    
 
-    start = time()
-    sBchol = schol(B,overwrite_a=True, check_finite=False)
-    sBechol = schol(Be,overwrite_a=True, check_finite=False)
-    end = time()
+    tB_buena = timer_chol(B_buena,"any",500)
+    tBe_buena = timer_chol(Be_buena,"any",500)
+    tB_mala = timer_chol(B_mala,"any",500)
+    tBe_mala = timer_chol(Be_mala,"any",500)
 
-    t_scipy = end - start
 
-    print(t_hands, t_scipy)
-    # %%
+   
+    sBchol_buena = schol(B_buena,overwrite_a=True, check_finite=False)
+    sBechol_buena = schol(Be_buena,overwrite_a=True, check_finite=False)
+    sBchol_mala = schol(B_mala,overwrite_a=True, check_finite=False)
+    sBechol_mala = schol(Be_mala,overwrite_a=True, check_finite=False)
+    
+    stB_buena = timer_chol(B_buena,"scipy",500)
+    stBe_buena = timer_chol(Be_buena,"scipy",500)
+    stB_mala = timer_chol(B_mala,"scipy",500)
+    stBe_mala = timer_chol(Be_mala,"scipy",500)
+
                             ###### Problema 2 ######
     d = 5
     n = 20
-
     beta = np.array([5,4,3,2,1])
     sigma = 0.13
 
@@ -75,8 +105,7 @@ if __name__ == "__main__":
     X = X.reshape((n,d))
 
     hat_beta, hat_beta_p, hat_beta_c = compare(X,beta,sigma)
-    
-    # %%
+
     X_mala = uniform.rvs(size = int(3*n)).reshape((n,3))
     ncol1 = 0.5*X_mala[:,0] + 0.5*X_mala[:,2] + N.rvs(loc=0,scale=0.00001,size=20)
     ncol2 = 0.5*X_mala[:,1] + 0.5*X_mala[:,2] + N.rvs(loc=0,scale=0.00001,size=20)
