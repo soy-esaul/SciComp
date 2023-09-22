@@ -1,0 +1,64 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\input{compaq.tex}
+
+\title{Cómputo científico para probabilidad y estadística. Tarea 4.\\
+Cálculo de eigenvalores}
+\author{Juan Esaul González Rangel}
+\date{Septiembre 2023}
+
+
+
+\begin{document}
+
+\maketitle
+
+
+\begin{enumerate}
+
+    \item Dado el siguiente
+
+    \begin{theorem}[Gershgorin]
+    Dada una matriz $A = a_{ij}$ de $m \times m$, cada eigenvalor de $A$ está en al 
+    menos uno de los discos en el plano complejo con centro en $a_{ii}$ y radio 
+    $\sum_{j\neq i} |a_{ij}|$. Además, si $n$ de estos discos forman un dominio conexo, 
+    disjunto de los otros $m - n$ discos, entonces hay exactamente $n$ eigenvalores 
+    en ese dominio.
+    \end{theorem}
+
+    Deduce estimaciones de los eigenvalores de
+
+    \[ A = \begin{pmatrix}
+        8 & 1 & 0 \\
+        1 & 4 & \epsilon \\
+        0 & \epsilon & 1
+    \end{pmatrix} \]
+
+
+
+con $|\epsilon| < 1$.
+
+    \item Implementa la iteración $QR$ con shift. Aplícala a la matriz $A$ del 
+    Ejercicio 1 con $\epsilon = 10^{-N}$ para $N = 1, 3, 4, 5$.
+
+    \item Determina todos los eigenvalores y eigenvectores de una matriz de Householder.
+
+    \item Demuestra que no es posible construir la transformación de similaridad del 
+    teorema de Schur con un número finito de transformaciones de similaridad de 
+    Householder.
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \item ¿Qué pasa si aplicas la iteración $QR$ sin shift a una matriz ortogonal? 
+    o \textbf{hagan el que quieran}. Sea $A$ una matriz de Hessenberg superior y sea $QR = A$ 
+    la factorización QR de $A$. Muestra que $RQ$ es una matriz superior de Hessenberg.
+   
+\end{enumerate}
+
+
+
+
+ \end{document}
