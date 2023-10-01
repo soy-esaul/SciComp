@@ -1,0 +1,48 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\input{compaq.tex}
+
+\title{Cómputo científico para probabilidad y estadística. Tarea 5.\\
+Simulación Estocástica, introducción.}
+\author{Juan Esaul González Rangel}
+\date{Octubre 2023}
+
+
+
+\begin{document}
+
+\maketitle
+
+
+\begin{enumerate}
+
+    \item Definir la cdf inversa generalizada $F^-_X$ y demostrar que en el caso de 
+    variables aleatorias continuas esta coincide con la inversa usual. Demostrar 
+    además que en general para simular de $X$ podemos simular $u \sim U (0, 1)$ y 
+    $F^-_X (u)$ se distribuye como $X$. [1 punto]
+
+    \item Implementar el siguiente algoritmo para simular variables aleatorias 
+    uniformes:
+    
+    \[ x_i = 107374182x_{i-1} + 104420x_{i-5} \mod 2^{31} - 1\]
+    
+    regresa $x_i$ y recorrer el estado, esto es $x_{j-1} = x_j ; j = 1, 2, 3, 4, 5;$ 
+    ¿parecen $U (0, 1)$? [1 punto]
+
+    \item ¿Cuál es el algoritmo que usa \texttt{scipy.stats.uniform} para generar 
+    números aleatorios? ¿Cómo se pone la semilla? ¿y en \texttt{R}? [1 punto]
+
+    \item ¿En \texttt{scipy} que funciones hay para simular una variable aleatoria 
+    genérica discreta? ¿tienen preproceso? [1 punto]
+
+    \item Implementar el algoritmo Adaptive Rejection Sampling y simular de una 
+    Gama(2, 1) 10,000 muestras. ¿cuando es conveniente dejar de adaptar la envolvente?
+     (vea alg. A.7, p. 54 Robert y Casella, 2da ed.) [6 puntos]
+   
+\end{enumerate}
+
+
+
+
+ \end{document}

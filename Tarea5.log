@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.5) (preloaded format=pdflatex 2023.6.13)  22 SEP 2023 16:51
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.5) (preloaded format=pdflatex 2023.6.13)  1 OCT 2023 12:51
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"c:/Users/Esaul/Documents/Maestría en Probabilidad y Estadística/3 Tercer semestre/Cómputo científico/code/SciComp/Tarea4.tex"
-(c:/Users/Esaul/Documents/Maestría en Probabilidad y Estadística/3 Tercer semestre/Cómputo científico/code/SciComp/Tarea4.tex
+**"c:/Users/Esaul/Documents/Maestría en Probabilidad y Estadística/3 Tercer semestre/Cómputo científico/code/SciComp/Tarea5.tex"
+(c:/Users/Esaul/Documents/Maestría en Probabilidad y Estadística/3 Tercer semestre/Cómputo científico/code/SciComp/Tarea5.tex
 LaTeX2e <2022-11-01> patch level 1
 L3 programming layer <2023-05-15> (C:\Program Files\MiKTeX\tex/latex/base\article.cls
 Document Class: article 2022/07/02 v1.4n Standard LaTeX document class
@@ -441,11 +441,11 @@ Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 File: l3backend-pdftex.def 2023-04-19 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count309
 \l__pdf_internal_box=\box57
-) (Tarea4.aux
+) (Tarea5.aux
 LaTeX Info: Redefining \. on input line 22.
 LaTeX Info: Redefining \% on input line 22.
 )
-\openout1 = `Tarea4.aux'.
+\openout1 = `Tarea5.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 13.
 LaTeX Font Info:    ... okay on input line 13.
@@ -544,9 +544,9 @@ Package microtype Info: Using default kerning set `alltext'.
 File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman (RS)
 )
 Package hyperref Info: Link coloring OFF on input line 13.
- (Tarea4.out) (Tarea4.out)
+ (Tarea5.out) (Tarea5.out)
 \@outlinefile=\write3
-\openout3 = `Tarea4.out'.
+\openout3 = `Tarea5.out'.
 
 \c@lstlisting=\count316
 LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 16.
@@ -588,32 +588,40 @@ LaTeX Font Info:    Trying to load font information for U+rsfs on input line 16.
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 23.
+(Font)              <10> on input line 20.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 23.
+(Font)              <7> on input line 20.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 23.
+(Font)              <5> on input line 20.
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 33.
+ (C:\Program Files\MiKTeX\tex/latex/lm\t1lmtt.fd
+File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `lmtt' (encoding: T1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
  [1
 
-{C:/Users/Esaul/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Program Files/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}{C:/Program Files/MiKTeX/fonts/enc/dvips/lm/lm-mathit.enc}{C:/Program Files/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}{C:/Program Files/MiKTeX/fonts/enc/dvips/lm/lm-mathsy.enc}{C:/Program Files/MiKTeX/fonts/enc/dvips/lm/lm-mathex.enc}] (Tarea4.aux
+{C:/Users/Esaul/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Program Files/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}{C:/Program Files/MiKTeX/fonts/enc/dvips/lm/lm-mathit.enc}{C:/Program Files/MiKTeX/fonts/enc/dvips/lm/lm-mathsy.enc}{C:/Program Files/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}] (Tarea5.aux
 LaTeX Info: Redefining \. on input line 22.
 LaTeX Info: Redefining \% on input line 22.
 )
-Package rerunfilecheck Info: File `Tarea4.out' has not changed.
+Package rerunfilecheck Info: File `Tarea5.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 16764 strings out of 476411
- 268017 string characters out of 5798949
- 1862845 words of memory out of 5000000
- 36802 multiletter control sequences out of 15000+600000
- 555980 words of font info for 98 fonts, out of 8000000 for 9000
+ 16788 strings out of 476411
+ 268468 string characters out of 5798949
+ 1859845 words of memory out of 5000000
+ 36837 multiletter control sequences out of 15000+600000
+ 548380 words of font info for 91 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 80i,7n,79p,1123b,457s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Program Files/MiKTeX/fonts/type1/public/lm/lmbx10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmex10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmmi10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmmi7.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmr12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmr17.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmr7.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmri10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmsy7.pfb>
-Output written on Tarea4.pdf (1 page, 168494 bytes).
+ 80i,6n,79p,1123b,457s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<C:/Program Files/MiKTeX/fonts/type1/public/lm/lmmi10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmmi7.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmr12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmr17.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmr7.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmsy7.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmtt10.pfb>
+Output written on Tarea5.pdf (1 page, 157886 bytes).
 PDF statistics:
- 82 PDF objects out of 1000 (max. 8388607)
- 8 named destinations out of 1000 (max. 500000)
- 22529 words of extra memory for PDF output out of 24883 (max. 10000000)
+ 70 PDF objects out of 1000 (max. 8388607)
+ 7 named destinations out of 1000 (max. 500000)
+ 18945 words of extra memory for PDF output out of 20736 (max. 10000000)
 
