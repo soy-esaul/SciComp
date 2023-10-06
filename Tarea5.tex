@@ -33,8 +33,19 @@ Simulación Estocástica, introducción.}
     \item ¿Cuál es el algoritmo que usa \texttt{scipy.stats.uniform} para generar 
     números aleatorios? ¿Cómo se pone la semilla? ¿y en \texttt{R}? [1 punto]
 
+    % Kolmogorov-Smirnov, correlación, Lehmann, Die Hard
+
     \item ¿En \texttt{scipy} que funciones hay para simular una variable aleatoria 
     genérica discreta? ¿tienen preproceso? [1 punto]
+
+%     rk_double(rk_state *state)
+% {
+    %  /* shifts : 67108864 = 0x4000000, 9007199254740992 = 0x20000000000000 */
+%     long a = rk_random(state) >> 5, b = rk_random(state) >> 6;
+%     return (a * 67108864.0 + b) / 9007199254740992.0;
+% }
+% https://github.com/numpy/numpy/blob/7ccf0e08917d27bc0eba34013c1822b00a66ca6d/numpy/random/mtrand/mtrand.pyx#L3671
+
 
     \item Implementar el algoritmo Adaptive Rejection Sampling y simular de una 
     Gama(2, 1) 10,000 muestras. ¿cuando es conveniente dejar de adaptar la envolvente?
