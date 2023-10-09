@@ -15,7 +15,6 @@ def simulate_unif(n,seed=[57,189,42,26,4]):
         uniform_vector[i] = (107374182*seed[4] + 104420*seed[0]) % (2**(31) - 1)
         seed = np.append(seed[1:],x[i])
     return uniform_vector / (2**(31) - 2)
-# Simulation of exponential e = -log(u)
 
 def log_gamma_dens(point,alpha=2,beta=1):
     '''This function evaluates the logarithm of a Gamma(alpha,beta) density at 
@@ -41,23 +40,45 @@ def envelope(points,x):
     - points: A list or array-like containing the set of points to be used 
     in the envelope'''
     import numpy as np
-    x = np.sort(x)
+    points = np.sort(points)
     if x >= 0 and x <= points[0]:
         value = create_line((points[0],log_gamma_dens(points[0])),(points[1],log_gamma_dens(points[1])),x)
     elif x >= points[-1]:
         value = create_line((points[-2],log_gamma_dens(points[-2])),(points[-1],log_gamma_dens(points[-1])),x)
     elif x < 0:
         print("Error: La entrada debe ser no negativa")
-    elif x > points[0] and x <= x[1]:
+    elif x > points[0] and x <= points[1]:
         value = create_line((points[1],log_gamma_dens(points[1])),(points[2],log_gamma_dens(points[2])),x)
-    elif x > points[-2] and x < points[-1]:
+    elif x > points[-2] and x <= points[-1]:
         value = create_line((points[-3],log_gamma_dens(points[-3])),(points[-2],log_gamma_dens(points[-2])),x)
     else:
         pos = len([i for i in points if i <= x]) - 1
-        value_1 = create_line((points[pos],log_gamma_dens(points[pos])),(),x )
-        value_2 = create_line((),(),x )
-    
-    
+        value_1 = create_line((points[pos-1],log_gamma_dens(points[pos-1])),(points[pos],log_gamma_dens(points[pos])),x)
+        value_2 = create_line((points[pos+1],log_gamma_dens(points[pos+1])),(points[pos+2],log_gamma_dens(points[pos+2])),x)
+        value = np.min([value_1,value_2])
+    return value
+
+def exp_envelope(x_values,grid):
+    '''This function computes an envelope for a Gamma density through a logarithmic
+    envelope'''
+    import numpy as np
+    if type(x_values) in {int,float}:
+        y_values = np.exp(envelope(grid,x_values))
+    else:
+        y_values = np.zeros(len(x_values))
+        for i in range(len(x_values)):
+            y_values[i] = envelope(grid,x_values[i])
+        y_values = np.exp(y_values)
+    return y_values
+
+def envelope_cdf(grid,lim):
+    '''This function computes the distribution function of an envelope with 
+    scipy.integrate'''
+    from scipy.integrate import quad
+    import numpy as np
+    return quad(exp_envelope,0,lim,args=grid)
+
+
 if __name__ == "__main__":
     import numpy as np
     from matplotlib import pyplot as plt
