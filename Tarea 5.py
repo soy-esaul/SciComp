@@ -34,12 +34,29 @@ def create_line(start,end,point_to_evaluate):
     - end: A 2-tuple with the x and y coordinates of the second point to find the line'''
     return ((end[1]-start[1])*point_to_evaluate + start[1]*end[0] - start[0]*end[1] )/ (end[0] - start[0])
 
-def envelope(points):
+def envelope(points,x):
     '''This function creates an envelope for the logarithm of a Gamma density
     
     Arguments:
     - points: A list or array-like containing the set of points to be used 
     in the envelope'''
+    import numpy as np
+    x = np.sort(x)
+    if x >= 0 and x <= points[0]:
+        value = create_line((points[0],log_gamma_dens(points[0])),(points[1],log_gamma_dens(points[1])),x)
+    elif x >= points[-1]:
+        value = create_line((points[-2],log_gamma_dens(points[-2])),(points[-1],log_gamma_dens(points[-1])),x)
+    elif x < 0:
+        print("Error: La entrada debe ser no negativa")
+    elif x > points[0] and x <= x[1]:
+        value = create_line((points[1],log_gamma_dens(points[1])),(points[2],log_gamma_dens(points[2])),x)
+    elif x > points[-2] and x < points[-1]:
+        value = create_line((points[-3],log_gamma_dens(points[-3])),(points[-2],log_gamma_dens(points[-2])),x)
+    else:
+        pos = len([i for i in points if i <= x]) - 1
+        value_1 = create_line((points[pos],log_gamma_dens(points[pos])),(),x )
+        value_2 = create_line((),(),x )
+    
     
 if __name__ == "__main__":
     import numpy as np
