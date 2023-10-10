@@ -158,6 +158,7 @@ def ars_gamma(n_simul,grid=[0.5,1,3,6]):
 if __name__ == "__main__":
     import numpy as np
     from matplotlib import pyplot as plt
+    np.random.seed(57)
     x = np.linspace(0,8,1000)
     distr = []
     for i in x:
