@@ -71,12 +71,12 @@ def exp_envelope(x_values,grid):
         y_values = np.exp(y_values)
     return y_values
 
-# def envelope_cdf(grid,lim):
-#     '''This function computes the distribution function of an envelope with 
-#     scipy.integrate'''
-#     from scipy.integrate import quad
-#     import numpy as np
-#     return quad(exp_envelope,0,lim,args=grid)
+def sp_envelope_cdf(grid,lim):
+    '''This function computes the distribution function of an envelope with 
+    scipy.integrate'''
+    from scipy.integrate import quad
+    import numpy as np
+    return quad(exp_envelope,0,lim,args=grid)
 
 def exp_integral(liminf,limsup,a,b):
     '''This function evaluates the integral for exp(ax + b) where a and b are the slope
@@ -109,13 +109,25 @@ def envelope_cdf(grid,x):
         numerator = (logx_i - logx_n1)/(points[pos] - points[pos-1]) - (logx_i2 - logx_i1)/(points[pos+2] - points[pos+1])
         midpoint = denominator / numerator
         if x <= midpoint:
-            integral = envelope_cdf(grid,points[pos]) + exp_integral((points[pos-1],log_gamma_dens(points[pos-1])),(points[pos],log_gamma_dens(points[pos])),points[pos],x)
+            integral = envelope_cdf(grid,points[pos]) + exp_integral((points[pos-1],logx_n1),(points[pos],logx_i),points[pos],x)
         else:
-            integral = envelope_cdf(grid,midpoint) + exp_integral((points[pos+1],log_gamma_dens(points[pos+1])),(points[pos+2],log_gamma_dens(points[pos+2])),midpoint,x)
+            integral = envelope_cdf(grid,midpoint) + exp_integral((points[pos+1],logx_i1),(points[pos+2],logx_i2),midpoint,x)
     return integral
+
+def generalized_inverse(distr,values,x):
+    '''This function finds the generalized inverse of a distribution function for a given percentile'''
+    i = 0
+    while distr[i] < x:
+        i += 1
+    return values[i]
+
 
 if __name__ == "__main__":
     import numpy as np
     from matplotlib import pyplot as plt
+    simulations=[]
+    for i in range(10000):
+        u = np.random.uniform(size=1)
+        simulations.append(generalized_inverse(distr,x,u))
     
     
