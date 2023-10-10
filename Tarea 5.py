@@ -83,35 +83,36 @@ def exp_integral(liminf,limsup,a,b):
     and intercept of a rect being part of an envelope'''
     import numpy as np
     coeff = (limsup[1] - liminf[1])/(limsup[0] - liminf[0])
-    return (np.exp(-limsup[1]*liminf[0] + liminf[1]*limsup[0]))*coeff*(np.exp(coeff*b)-np.exp(coeff*a))
+    return (np.exp(-limsup[1]*liminf[0] + liminf[1]*limsup[0]))*(np.exp(coeff*b)-np.exp(coeff*a)) / coeff
 
 def envelope_cdf(grid,x):
     '''This function evaluates the cumulative distribution function for an envelope'''
     import numpy as np
-    grid = np.sort(grid)
-    if x >= 0 and x <= points[0]:
-        int = exp_integral((points[0],log_gamma_dens(points[0])),(points[1],log_gamma_dens(points[1])),0,x)
-    elif x >= points[-1]:
-        int = envelope_cdf(grid,points[-1]) + exp_integral((points[-2],log_gamma_dens(points[-2])),(points[-1],log_gamma_dens(points[-1])),points[-1],x)
-    elif x < 0:
-        int = 0
+    points = np.sort(grid)
+    if x > 0 and x <= points[0]:
+        integral = exp_integral((points[0],log_gamma_dens(points[0])),(points[1],log_gamma_dens(points[1])),0,x)
+    elif x > points[-1]:
+        integral = envelope_cdf(grid,points[-1]) + exp_integral((points[-2],log_gamma_dens(points[-2])),(points[-1],log_gamma_dens(points[-1])),points[-1],x)
+    elif x <= 0:
+        integral = 0
     elif x > points[0] and x <= points[1]:
-        int = envelope_cdf(grid,points[0]) + exp_integral((points[1],log_gamma_dens(points[1])),(points[2],log_gamma_dens(points[2])),points[0],x)
+        integral = envelope_cdf(grid,points[0]) + exp_integral((points[1],log_gamma_dens(points[1])),(points[2],log_gamma_dens(points[2])),points[0],x)
     elif x > points[-2] and x <= points[-1]:
-        int = envelope_cdf(grid,points[-2]) + exp_integral((points[-3],log_gamma_dens(points[-3])),(points[-2],log_gamma_dens(points[-2])),points[-2],x)
+        integral = envelope_cdf(grid,points[-2]) + exp_integral((points[-3],log_gamma_dens(points[-3])),(points[-2],log_gamma_dens(points[-2])),points[-2],x)
     else:
-        pos = len([i for i in points if i <= x]) - 1
+        pos = len([i for i in points if i < x]) - 1
         logx_i1 = log_gamma_dens(points[pos+1])
         logx_i2 = log_gamma_dens(points[pos+2])
         logx_n1 = log_gamma_dens(points[pos-1])
         logx_i  = log_gamma_dens(points[pos])
-        midpoint = ( (logx_i1*points[pos+2] - logx_i2*points[pos+1] - logx_n1*points[pos] + logx_i*points[pos-1]) 
-        / ( (points[pos+2] - points[pos+1])*(logx_i - logx_n1) - (points[pos] - points[pos-1])*(logx_i2 - logx_i1) ) )
+        denominator = logx_i*points[pos-1] - logx_n1*points[pos] - logx_i2*points[pos+1] + logx_i1*points[pos+2]
+        numerator = (logx_i - logx_n1)/(points[pos] - points[pos-1]) - (logx_i2 - logx_i1)/(points[pos+2] - points[pos+1])
+        midpoint = denominator / numerator
         if x <= midpoint:
-            int = envelope_cdf(grid,points[pos]) + exp_integral((points[pos-1],log_gamma_dens(points[pos-1])),(points[pos],log_gamma_dens(points[pos])),points[pos],x)
+            integral = envelope_cdf(grid,points[pos]) + exp_integral((points[pos-1],log_gamma_dens(points[pos-1])),(points[pos],log_gamma_dens(points[pos])),points[pos],x)
         else:
-            int = envelope_cdf(grid,midpoint) + exp_integral((points[pos+1],log_gamma_dens(points[pos+1])),(points[pos+2],log_gamma_dens(points[pos+2])),points[midpoint],x)
-    return int
+            integral = envelope_cdf(grid,midpoint) + exp_integral((points[pos+1],log_gamma_dens(points[pos+1])),(points[pos+2],log_gamma_dens(points[pos+2])),midpoint,x)
+    return integral
 
 if __name__ == "__main__":
     import numpy as np
