@@ -71,13 +71,39 @@ def exp_envelope(x_values,grid):
         y_values = np.exp(y_values)
     return y_values
 
-def envelope_cdf(grid,lim):
-    '''This function computes the distribution function of an envelope with 
-    scipy.integrate'''
-    from scipy.integrate import quad
-    import numpy as np
-    return quad(exp_envelope,0,lim,args=grid)
+# def envelope_cdf(grid,lim):
+#     '''This function computes the distribution function of an envelope with 
+#     scipy.integrate'''
+#     from scipy.integrate import quad
+#     import numpy as np
+#     return quad(exp_envelope,0,lim,args=grid)
 
+def exp_integral(liminf,limsup,a,b):
+    '''This function evaluates the integral for exp(ax + b) where a and b are the slope
+    and intercept of a rect being part of an envelope'''
+    import numpy as np
+    coeff = (limsup[1] - liminf[1])/(limsup[0] - liminf[0])
+    return (np.exp(-limsup[1]*liminf[0] + liminf[1]*limsup[0]))*coeff*(np.exp(coeff*b)-np.exp(coeff*a))
+
+def envelope_cdf(grid,liminf,limsup):
+    '''This function evaluates the cumulative distribution function for an envelope'''
+    import numpy as np
+    grid = np.sort(grid)
+    if x >= 0 and x <= points[0]:
+        value = create_line((points[0],log_gamma_dens(points[0])),(points[1],log_gamma_dens(points[1])),x)
+    elif x >= points[-1]:
+        value = create_line((points[-2],log_gamma_dens(points[-2])),(points[-1],log_gamma_dens(points[-1])),x)
+    elif x < 0:
+        print("Error: La entrada debe ser no negativa")
+    elif x > points[0] and x <= points[1]:
+        value = create_line((points[1],log_gamma_dens(points[1])),(points[2],log_gamma_dens(points[2])),x)
+    elif x > points[-2] and x <= points[-1]:
+        value = create_line((points[-3],log_gamma_dens(points[-3])),(points[-2],log_gamma_dens(points[-2])),x)
+    else:
+        pos = len([i for i in points if i <= x]) - 1
+        value_1 = create_line((points[pos-1],log_gamma_dens(points[pos-1])),(points[pos],log_gamma_dens(points[pos])),x)
+        value_2 = create_line((points[pos+1],log_gamma_dens(points[pos+1])),(points[pos+2],log_gamma_dens(points[pos+2])),x)
+        value = np.min([value_1,value_2])
 
 if __name__ == "__main__":
     import numpy as np
