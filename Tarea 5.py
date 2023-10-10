@@ -90,20 +90,21 @@ def envelope_cdf(grid,liminf,limsup):
     import numpy as np
     grid = np.sort(grid)
     if x >= 0 and x <= points[0]:
-        value = create_line((points[0],log_gamma_dens(points[0])),(points[1],log_gamma_dens(points[1])),x)
+        int = create_line((points[0],log_gamma_dens(points[0])),(points[1],log_gamma_dens(points[1])),x)
     elif x >= points[-1]:
-        value = create_line((points[-2],log_gamma_dens(points[-2])),(points[-1],log_gamma_dens(points[-1])),x)
+        int = create_line((points[-2],log_gamma_dens(points[-2])),(points[-1],log_gamma_dens(points[-1])),x)
     elif x < 0:
         print("Error: La entrada debe ser no negativa")
     elif x > points[0] and x <= points[1]:
-        value = create_line((points[1],log_gamma_dens(points[1])),(points[2],log_gamma_dens(points[2])),x)
+        int = create_line((points[1],log_gamma_dens(points[1])),(points[2],log_gamma_dens(points[2])),x)
     elif x > points[-2] and x <= points[-1]:
-        value = create_line((points[-3],log_gamma_dens(points[-3])),(points[-2],log_gamma_dens(points[-2])),x)
+        int = create_line((points[-3],log_gamma_dens(points[-3])),(points[-2],log_gamma_dens(points[-2])),x)
     else:
         pos = len([i for i in points if i <= x]) - 1
         value_1 = create_line((points[pos-1],log_gamma_dens(points[pos-1])),(points[pos],log_gamma_dens(points[pos])),x)
         value_2 = create_line((points[pos+1],log_gamma_dens(points[pos+1])),(points[pos+2],log_gamma_dens(points[pos+2])),x)
-        value = np.min([value_1,value_2])
+        int = np.min([value_1,value_2])
+    return int
 
 if __name__ == "__main__":
     import numpy as np
