@@ -20,9 +20,15 @@ def log_gamma_dens(point,alpha=2,beta=1):
     '''This function evaluates the logarithm of a Gamma(alpha,beta) density at 
     a given point'''
     import numpy as np
-    from scipy.stats import gamma
     from scipy.special import gamma as Gamma
     return (alpha*np.log(beta) - np.log(Gamma(alpha)) + (alpha-1)*np.log(point) - beta*point)
+
+def gamma_dens(point,alpha=2,beta=1):
+    '''This function evaluates a Gamma density in a given point'''
+    import numpy as np
+    from scipy.special import gamma as Gamma
+    return (((beta**alpha)/Gamma(alpha))*point**(alpha-1)*np.exp(-beta*point))
+    
 
 def create_line(start,end,point_to_evaluate):
     '''This function finds the function of a straight line passing through two points
@@ -83,29 +89,29 @@ def exp_integral(liminf,limsup,a,b):
     and intercept of a rect being part of an envelope'''
     import numpy as np
     coeff = (limsup[1] - liminf[1])/(limsup[0] - liminf[0])
-    return (np.exp(-limsup[1]*liminf[0] + liminf[1]*limsup[0]))*(np.exp(coeff*b)-np.exp(coeff*a)) / coeff
+    return (np.exp((-limsup[1]*liminf[0] + liminf[1]*limsup[0]) / (limsup[0] - liminf[0]) ))*(np.exp(coeff*b)-np.exp(coeff*a)) / coeff
 
 def envelope_cdf(grid,x):
     '''This function evaluates the cumulative distribution function for an envelope'''
     import numpy as np
     points = np.sort(grid)
-    if x > 0 and x <= points[0]:
-        integral = exp_integral((points[0],log_gamma_dens(points[0])),(points[1],log_gamma_dens(points[1])),0,x)
-    elif x > points[-1]:
-        integral = envelope_cdf(grid,points[-1]) + exp_integral((points[-2],log_gamma_dens(points[-2])),(points[-1],log_gamma_dens(points[-1])),points[-1],x)
-    elif x <= 0:
+    if x <= 0:
         integral = 0
+    elif x > 0 and x <= points[0]:
+        integral = exp_integral((points[0],log_gamma_dens(points[0])),(points[1],log_gamma_dens(points[1])),0,x)
     elif x > points[0] and x <= points[1]:
         integral = envelope_cdf(grid,points[0]) + exp_integral((points[1],log_gamma_dens(points[1])),(points[2],log_gamma_dens(points[2])),points[0],x)
     elif x > points[-2] and x <= points[-1]:
         integral = envelope_cdf(grid,points[-2]) + exp_integral((points[-3],log_gamma_dens(points[-3])),(points[-2],log_gamma_dens(points[-2])),points[-2],x)
+    elif x > points[-1]:
+        integral = envelope_cdf(grid,points[-1]) + exp_integral((points[-2],log_gamma_dens(points[-2])),(points[-1],log_gamma_dens(points[-1])),points[-1],x)
     else:
         pos = len([i for i in points if i < x]) - 1
         logx_i1 = log_gamma_dens(points[pos+1])
         logx_i2 = log_gamma_dens(points[pos+2])
         logx_n1 = log_gamma_dens(points[pos-1])
         logx_i  = log_gamma_dens(points[pos])
-        denominator = logx_i*points[pos-1] - logx_n1*points[pos] - logx_i2*points[pos+1] + logx_i1*points[pos+2]
+        denominator = (logx_i*points[pos-1] - logx_n1*points[pos])/(points[pos]-points[pos-1]) + (- logx_i2*points[pos+1] + logx_i1*points[pos+2]) / (points[pos+2] - points[pos+1])
         numerator = (logx_i - logx_n1)/(points[pos] - points[pos-1]) - (logx_i2 - logx_i1)/(points[pos+2] - points[pos+1])
         midpoint = denominator / numerator
         if x <= midpoint:
@@ -121,13 +127,49 @@ def generalized_inverse(distr,values,x):
         i += 1
     return values[i]
 
+def ars_gamma(n_simul,grid=[0.5,1,3,6]):
+    '''Thsi function generates a quantity (n_simul) of gamma random variables with parameters
+    alpha and beta specified by the user using the Adaptive Rejection algorithm as seen in 
+    Robert and Casella "Monte Carlo Statistical Methods" (2004).
+    
+    The Algorithm requieres to be initialized with a grid of numbers. By default, it uses the
+    list [0.5,1,3,6] as these numbers are well spaced for a Gamma(2,1) density'''
+    import numpy as np
+    simulations = []
+    accepted = 0
+    x = np.linspace(0,10,num=1000)
+    distr = []
+    for i in x:
+        distr.append(envelope_cdf(grid,i))
+    distr = distr / distr[-1]
+    while len(simulations) < n_simul:
+        u_1 = np.random.uniform(size=1)
+        dummy_var = generalized_inverse(distr,x,u_1)
+        u_2 = np.random.uniform(size=1)
+        if np.exp(envelope(grid,dummy_var))*u_2 <= gamma_dens(dummy_var):
+            simulations.append(dummy_var)
+            accepted += 1
+            # if accepted <= 10:
+            #     grid.append(dummy_var)
+            #     distr = []
+            #     for i in x:
+            #         distr.append(envelope_cdf(grid,i))
+            #     distr = distr / distr[-1]
+    return simulations
+    
+
 
 if __name__ == "__main__":
     import numpy as np
     from matplotlib import pyplot as plt
-    simulations=[]
-    for i in range(10000):
-        u = np.random.uniform(size=1)
-        simulations.append(generalized_inverse(distr,x,u))
+    # x = np.linspace(0,8,1000)
+    # distr = []
+    # for i in x:
+    #     distr.append(envelope_cdf(grid,i))
+    # distr = distr / distr[-1]
+    # simulations=[]
+    # for i in range(10000):
+    #     u = np.random.uniform(size=1)
+    #     simulations.append(generalized_inverse(distr,x,u))
     
     
