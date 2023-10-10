@@ -136,8 +136,7 @@ def ars_gamma(n_simul,grid=[0.5,1,3,6]):
     list [0.5,1,3,6] as these numbers are well spaced for a Gamma(2,1) density'''
     import numpy as np
     simulations = []
-    accepted = 0
-    x = np.linspace(0,10,num=1000)
+    x = np.linspace(0,8,1000)
     distr = []
     for i in x:
         distr.append(envelope_cdf(grid,i))
@@ -148,28 +147,33 @@ def ars_gamma(n_simul,grid=[0.5,1,3,6]):
         u_2 = np.random.uniform(size=1)
         if np.exp(envelope(grid,dummy_var))*u_2 <= gamma_dens(dummy_var):
             simulations.append(dummy_var)
-            accepted += 1
-            # if accepted <= 10:
-            #     grid.append(dummy_var)
-            #     distr = []
-            #     for i in x:
-            #         distr.append(envelope_cdf(grid,i))
-            #     distr = distr / distr[-1]
+            if len(simulations) < 10:
+                grid.append(dummy_var)
+                distr = []
+                for i in x:
+                    distr.append(envelope_cdf(grid,i))
+                distr = distr / distr[-1]
     return simulations
     
-
-
 if __name__ == "__main__":
     import numpy as np
     from matplotlib import pyplot as plt
-    # x = np.linspace(0,8,1000)
-    # distr = []
-    # for i in x:
-    #     distr.append(envelope_cdf(grid,i))
-    # distr = distr / distr[-1]
-    # simulations=[]
-    # for i in range(10000):
-    #     u = np.random.uniform(size=1)
-    #     simulations.append(generalized_inverse(distr,x,u))
+    x = np.linspace(0,8,1000)
+    distr = []
+    for i in x:
+        distr.append(envelope_cdf(grid,i))
+    distr = distr / distr[-1]
+    simulations=[]
+    for i in range(10000):
+        u = np.random.uniform(size=1)
+        simulations.append(generalized_inverse(distr,x,u))
+    gamma_sims = []
+    while len(gamma_sims) <10000:
+        u = np.random.uniform(size=1)
+        dummy = generalized_inverse(distr,x,u)
+        u2 = np.random.uniform(size=1)
+        if np.exp(envelope(grid,dummy))*u2 <= gamma_dens(dummy):
+            gamma_sims.append(dummy)
+                                                
     
     
