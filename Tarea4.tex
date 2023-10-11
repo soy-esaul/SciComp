@@ -2,6 +2,7 @@
 \usepackage[utf8]{inputenc}
 
 \input{compaq.tex}
+\renewcommand{\C}{\mathbb{C}}
 
 \title{Cómputo científico para probabilidad y estadística. Tarea 4.\\
 Cálculo de eigenvalores}
@@ -39,23 +40,135 @@ Cálculo de eigenvalores}
 
 con $|\epsilon| < 1$.
 
+    Por el Teorema de Gershgorin, los tres eigenvalores de $A$ se encuentran en el dominio,
+
+    \begin{equation*}
+        \{ x \in \C : |8 + x| \le 1 \} \cup \{ x \in \C : |4 + x| \le 1 + |\epsilon| \} \cup \{ x \in \C : |1+x| \le |\epsilon|\}.
+    \end{equation*}
+
+    Como $|\epsilon|<1$, cada disco es disjunto de los otros dos, y además es conexo. Por lo
+    tanto, 
+
+    \begin{align*}
+        \lambda_1 &\in \{ x \in \C : |8 + x| \le 1 \},\\
+        \lambda_2 &\in \{ x \in \C : |4 + x| \le 1 + |\epsilon| \},\\
+        \lambda_3 &\in \{ x \in \C : |1+x| \le |\epsilon|\}.
+    \end{align*}
+
+    Notemos que si $\epsilon \in \R$, entonces $A$ es hermitiana y por lo tanto todos sus
+    valores propios son reales, de donde obtenemos una mejor estimación de los eigenvalores,
+
+    \begin{align*}
+        \lambda_1 &\in \{ x \in \C : |8 + x| \le 1 \}\cap \R \qquad \Rightarrow 7 \le \lambda_1 \le 9,\\
+        \lambda_2 &\in \{ x \in \C : |4 + x| \le 1 + |\epsilon| \}\cap\R \qquad
+        \Rightarrow 4 - (1 + |\epsilon|) \le \lambda_2 \le 4 + (1 + |\epsilon|),\\
+        \lambda_3 &\in \{ x \in \C : |1+x| \le |\epsilon|\}\cap\R \qquad 
+        \Rightarrow 1 - \epsilon \le \lambda_1 \le 1 + \epsilon.
+    \end{align*}
+
+
     \item Implementa la iteración $QR$ con shift. Aplícala a la matriz $A$ del 
     Ejercicio 1 con $\epsilon = 10^{-N}$ para $N = 1, 3, 4, 5$.
 
+    En el archivo \texttt{Tarea4.py}, la función se encuentra implementada con el nombre de
+    \texttt{QR\_shift}. La función toma tres argumentos; \texttt{Matrix}, la matriz a la cuál se le aplicará
+    el algoritmo; \texttt{shift}, el desplazamiento que se aplicará a la matriz, y \texttt{iterations},
+    la cantidad de veces que se repetirá el algoritmo antes de parar.
+
+    El siguiente es un ejemplo de uso del algoritmo,
+
+    \begin{lstlisting}[language=Python]
+B = np.array( [[1,2,3],[4,5,6],[7,8,9]] )
+vals = QR_shift(B,2,200)\end{lstlisting}
+
+    El tiempo de ejecución del código anterior es menor a un segundo y la salida es \texttt{array([ 1.61168440e+01, -1.11684397e+00,  1.55431223e-15])}.
+        
+    Para la matriz $A$, se iteró un total de 10,000 veces por cada valor de $\epsilon$ y se obtuvieron
+    las siguientes estimaciones de los eigenvalores de la matriz,
+
+    \begin{lstlisting}[language=Python]
+[array([8.23614095, 3.76735469, 0.99650436]),
+array([8.23606798, 3.76393237, 0.99999965]),
+array([8.23606798, 3.76393203, 1.        ]),
+array([8.23606798, 3.76393202, 1.        ])]\end{lstlisting}
+
+        Es decir, para $N=1$ los eigenvalores estimados son $(8.23614095, 3.76735469, 0.99650436)$,
+        para $N=3$, son $(8.23606798, 3.76393237, 0.99999965)$, para $N=4$ son $(8.23606798, 3.76393203, 1.)$,
+        y para $N=5$ son $(8.23606798, 3.76393202, 1.)$.
+    
+    Cuando ejecutamos el código con 10 iteraciones, obtenemos los siguientes valores
+
+\begin{lstlisting}[language=Python]
+[array([8.23614095, 3.76735469, 0.99650436]),
+array([8.23606798, 3.76393237, 0.99999965]),
+array([8.23606798, 3.76393203, 1.        ]),
+array([8.23606798, 3.76393202, 1.        ])]\end{lstlisting}
+
+    Los valores coinciden exactamente con los que obtenemos para 10,000 iteraciones. Concluimos
+    que en este caso la convergencia del algoritmo bastante rápida.
+
     \item Determina todos los eigenvalores y eigenvectores de una matriz de Householder.
+    
+    Sea $H$ una matriz de Householder de tamaño $n\times n$, entonces $H$ es de la forma
+
+    \[ H = I - 2vv^*, \]
+
+    con $v \in \C^{n}$ un eigenvector de norma 1. Sea $u$ cualquier vector linealmente independiente a $v$, entonces
+
+    \[ Hu = (I - 2vv^*)u = u - 2v(v^*u) = u - 2v(0) = u. \]
+
+    Por lo tanto, $u$ es un eigenvector de $H$ con eigenvalor 1. Como $\C^n$ tiene dimensión $n$,
+    existe un total de $n-1$ vectores linealmente independientes entre sí y linealmente independientes
+    a $v$ (pues de otra forma se podría formar una base de $\C^n$ de tamaño distinto a $n$). El valor
+    $1$ entonces es un eigenvalor con multiplicidad $n-1$.
+
+    Ahora, para $Hv$ se cumple,
+
+    \[ Hv = (I - 2vv^*)v = v - 2v\|v\| = -v. \]
+
+    Por lo tanto $v$ es un eigenvector con eigenvalor $-1$. Los eigenvalores de $H$ son $1$ con
+    multiplicidad $n-1$ y $-1$ con multiplicidad 1.
 
     \item Demuestra que no es posible construir la transformación de similaridad del 
     teorema de Schur con un número finito de transformaciones de similaridad de 
     Householder.
 
     \begin{proof}
+        Supongamos que existe un algoritmo que nos permita encontrar de manera exacta los eigenvalores
+        de cualquier matriz $A$ con un número finito de transformaciones de similaridad de Householder.
+
+        Sea entonces $p(\lambda)$ cualquier polinomio de orden mayor a 4. Sabemos que podemos encontrar una matriz $A$
+        acompañante de $p(\lambda)$ tal que los eigenvalores de $A$ son las raíces de $p(\lambda)$.
+        Aplicando nuestro algoritmo, podemos encontrar los eigenvalores de $A$ en una cantidad finita de
+        transformaciones de Householder. Pero las transformaciones de Householder son tranformaciones
+        lineales, por lo que en particular son operaciones algebraicas. 
         
+        Lo anterior significa que podemos encontrar las raíces de cualquier polinomio de grado 
+        mayor que 4 usando una cantidad finita de operaciones algebraicas, lo que es una 
+        contradicción del Teorema de Abel-Rufini.
+    
     \end{proof}
 
     \item ¿Qué pasa si aplicas la iteración $QR$ sin shift a una matriz ortogonal? 
     o \textbf{hagan el que quieran}. Sea $A$ una matriz de Hessenberg superior y sea $QR = A$ 
     la factorización QR de $A$. Muestra que $RQ$ es una matriz superior de Hessenberg.
-   
+    
+    Contestando a la primera pregunta. Sea $A$ una matriz ortogonal, sabemos que la descomposición 
+    $QR$ en una matriz ortogonal y una triangular superior es única (salvo un signo). Además se 
+    satisface que $A = AI$, y como $A$ es ortogonal y $I$ es triangular superior, esta es la única
+    descomposición $QR$ de $A$. 
+    
+    Por lo anterior, $Q_1 R_1 = A_0 = A$, entonces $Q_1 = A, R_1 = I$, por un argumento recursivo
+    llegamos a que para cada paso del algoritmo tenemos
+
+    \begin{align*}
+        Q_{k}R_{k} &= A_{k-1} = A, \qquad \Rightarrow Q_{k} = A, R_{k} = I,\\
+        \Rightarrow A_k &= R_k Q_k = I A = A.
+    \end{align*}
+
+    Es decir, la matriz no cambia después de todas las iteraciones, por lo que el algoritmo no 
+    representa ninguna utilidad para encontrar los eigenvalores.
+
 \end{enumerate}
 
 

@@ -28,19 +28,28 @@ def QR_shift(Matrix,shift,iterations):
     accelerates the process by adding a shift'''
     import numpy as np
     S = shift*np.identity( np.shape(Matrix)[0] )
-    norm = np.max( np.abs([Matrix[0,1],Matrix[0,2],Matrix[1,0],Matrix[1,2],Matrix[2,0],Matrix[2,1]] ) )
     for i in range(iterations):
         Q, R = QR(Matrix - S)
         Matrix = R @ Q + S
         print(Matrix)
     return np.diag(Matrix)
 
+# Examples and homework
 if __name__ == "__main__":
     import numpy as np
     eigvals = []
     powers = [1,3,4,5]
+    # We get the eigenvalues for 10000 iterations
     for N in powers:
         epsilon = 10**(-N)
         A = np.array( [ [8,1,0], [1,4,epsilon],[0,epsilon,1] ] )
-        values = QR_shift(A,1,1000)
+        values = QR_shift(A,1,10000)
         eigvals.append(values)
+    
+    # We get the eigenvalues for 10 iterations
+    eigvals_10 = []
+    for N in powers:
+        epsilon = 10**(-N)
+        A = np.array( [ [8,1,0], [1,4,epsilon],[0,epsilon,1] ] )
+        values = QR_shift(A,1,8)
+        eigvals_10.append(values)
