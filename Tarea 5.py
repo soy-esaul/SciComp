@@ -1,3 +1,27 @@
+# Function from a previous homework
+def QR(A):
+    '''Implementation of the Gram-Schmidt algorithm for QR factorization as seen on
+    Trefethen and Bau "Numerical Linear Algebra" (1997).
+    
+    Arguments:
+    - A: A full rank matrix (numpy array of shape (n,m))
+    
+    Returns:
+    - Q: A matrix such that Q* Q = I and Q Q* = P, with P an orthogonal projector
+    - R: An upper triangular matrix such that A = QR'''
+    import numpy as np
+    m, n = A.shape
+    V = A.astype(float)
+    Q = V.copy()
+    R = np.zeros((n,n), dtype=float)
+    for i in range(n):
+        R[i,i] = np.linalg.norm(V[:,i])
+        Q[:,i] = V[:,i] / R[i,i]
+        for j in range(i+1,n):
+            R[i,j] = np.matmul(Q[:,i].T,V[:,j])
+            V[:,j] -= R[i,j]*Q[:,i]
+    return Q, R
+
 def simulate_unif(n,seed=[57,189,42,26,4]):
     '''This function simulates a sample of n i.i.d. random variables distributed
     as uniform in (0,1)
@@ -159,6 +183,7 @@ if __name__ == "__main__":
     import numpy as np
     from matplotlib import pyplot as plt
     np.random.seed(57)
+    grid = [0.5,1,3,6]
     x = np.linspace(0,8,1000)
     distr = []
     for i in x:
@@ -175,6 +200,7 @@ if __name__ == "__main__":
         u2 = np.random.uniform(size=1)
         if np.exp(envelope(grid,dummy))*u2 <= gamma_dens(dummy):
             gamma_sims.append(dummy)
+    reg_gamma_sims = ars_gamma(10000)
                                                 
     
     
