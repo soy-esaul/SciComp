@@ -219,8 +219,8 @@ if __name__ == "__main__":
     # Hypothesis testing
     from scipy.stats import gamma as g
     sp_sample = g.rvs(2,size=10000)
-    gam_sample = array(reg_gamma_sims).reshape((10000,))
-    gamma_test = kstest(gam,sp_sample)
+    gam_sample = np.array(reg_gamma_sims).reshape((10000,))
+    gamma_test = kstest(gam_sample,sp_sample)
                                                 
     
     
