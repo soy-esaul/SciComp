@@ -1,3 +1,4 @@
+# %% Functions for the uniform simulation
 def simulate_unif(n,seed=[57,189,42,26,4]):
     '''This function simulates a sample of n i.i.d. random variables distributed
     as uniform in (0,1)
@@ -13,9 +14,10 @@ def simulate_unif(n,seed=[57,189,42,26,4]):
     uniform_vector = np.zeros((n,1))
     for i in range(n):
         uniform_vector[i] = (107374182*seed[4] + 104420*seed[0]) % (2**(31) - 1)
-        seed = np.append(seed[1:],x[i])
+        seed = np.append(seed[1:],uniform_vector[i])
     return uniform_vector / (2**(31) - 2)
 
+# Functions for the gamma ARS
 def log_gamma_dens(point,alpha=2,beta=1):
     '''This function evaluates the logarithm of a Gamma(alpha,beta) density at 
     a given point'''
@@ -154,21 +156,43 @@ def ars_gamma(n_simul,grid=[0.5,1,3,6]):
                     distr.append(envelope_cdf(grid,i))
                 distr = distr / distr[-1]
     return simulations
-    
+
+# %% 
+# Examples and homework
 if __name__ == "__main__":
     import numpy as np
     from matplotlib import pyplot as plt
+    from scipy.stats import kstest
     np.random.seed(57)
+    
+    # Uniform simulation
+    unif_sims = simulate_unif(10000)
+    unif_mean = np.mean(unif_sims)
+    unif_var = np.var(unif_sims)
+    unif_max_min = [ np.min(unif_sims), np.max(unif_sims) ]
+    # Create histogram
+    plt.hist(unif_sims,density=True)
+    plt.title('Histograma para 10,00 simulaciones U(0,1)')
+    plt.ylabel("Frecuencia relativa")
+    plt.xlabel("Valor")
+    plt.show()
+    # Hypothesis test
+    unif_sims = unif_sims.reshape((10000,))
+    test = kstest(unif_sims,"uniform")
+
+    # Gamma simulation with envelope
     grid = [0.5,1,3,6]
     x = np.linspace(0,8,1000)
     distr = []
     for i in x:
         distr.append(envelope_cdf(grid,i))
     distr = distr / distr[-1]
-    simulations=[]
+    # Simulations for the envelope
+    env_simulations=[]
     for i in range(10000):
         u = np.random.uniform(size=1)
-        simulations.append(generalized_inverse(distr,x,u))
+        env_simulations.append(generalized_inverse(distr,x,u))
+    # Simulations for gamma without updating the envelope
     gamma_sims = []
     while len(gamma_sims) <10000:
         u = np.random.uniform(size=1)
@@ -176,7 +200,27 @@ if __name__ == "__main__":
         u2 = np.random.uniform(size=1)
         if np.exp(envelope(grid,dummy))*u2 <= gamma_dens(dummy):
             gamma_sims.append(dummy)
+    # Using the function to update the envelope
     reg_gamma_sims = ars_gamma(10000)
+    gamma_mean = np.mean(reg_gamma_sims)
+    gamma_var = np.var(reg_gamma_sims)
+    dens = []
+    for i in x:
+        dens.append(gamma_dens(i))
+    envelope_dens = exp_envelope(x,grid)
+    plt.plot(x,dens,label="Densidad gamma(0,1)")
+    plt.plot(x,envelope_dens,label="Envolvente inicial")
+    plt.hist(reg_gamma_sims,density=True,bins=30,label="Histograma")
+    plt.xlabel("Valor")
+    plt.ylabel("Densidad")
+    plt.legend()
+    plt.title("Simulación de una muestra Gamma(2,1) mediante ARS")
+    plt.show()
+    # Hypothesis testing
+    from scipy.stats import gamma as g
+    sp_sample = g.rvs(2,size=10000)
+    gam_sample = array(reg_gamma_sims).reshape((10000,))
+    gamma_test = kstest(gam,sp_sample)
                                                 
     
     
