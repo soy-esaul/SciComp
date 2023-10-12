@@ -52,7 +52,7 @@ def MH_unif(iterations,trials,successes):
     output.append(current_point)
     for i in range(iterations):
         proposal = np.random.random()
-        rho = rho_unif(current_point,proposal)
+        rho = rho_unif(current_point,proposal,trials,successes)
         u = np.random.random()
         if u <= rho:
             current_point = proposal
@@ -62,11 +62,28 @@ def MH_unif(iterations,trials,successes):
 # Examples and homework
 if  __name__ == "__main__":
     import numpy as np
+    import matplotlib.pyplot as plt
     np.random.seed(57)
     
+    # Samples of Bernoulli
     sample5 = np.random.binomial(5,1/3,1)
     sample40 = np.random.binomial(40,1/3,1)
-
     r5 = np.sum(sample5)
     r40 = np.sum(sample40)
+
+    # Implementation with data
+    MH_beta_sims5 = MH_beta(1000,5,r5)
+    MH_beta_sims40 = MH_beta(1000,40,r40)
+    beta_sizes = [len(MH_beta_sims5), len(MH_beta_sims40)]
+    # Histograms
+
+    # Implementation with the new proposal
+    MH_unif_sims5 = MH_unif(1000,5,r5)
+    MH_unif_sims40 = MH_unif(1000,40,r40)
+    unif_sizes = [len(MH_unif_sims5),len(MH_unif_sims40)]
+
+    # Simple example of MH_beta()
+    simple_sample = MH_beta(100,50,28)
+    plt.hist(simple_sample,density=True)
+
 
