@@ -17,7 +17,7 @@ def rho_beta(x,y):
     rho = np.min([1,np.cos(np.pi*y)/np.cos(np.pi*x)])
     return rho
 
-def MH_beta(iterations,trials,successes):
+def MH_beta(iterations,trials,successes,history=False):
     '''This function implements the Metropolis-Hastings algorithm to simulate from 
     the posterior of the parameter in Bayesian inference'''
     import numpy as np
@@ -25,14 +25,26 @@ def MH_beta(iterations,trials,successes):
     current_point = np.random.random()*0.5
     output = []
     output.append(current_point)
-    for i in range(iterations):
-        proposal = np.random.beta(successes+1,trials-successes+1)
-        rho = rho_beta(current_point,proposal)
-        u = np.random.random()
-        if u <= rho:
-            current_point = proposal
-            output.append(current_point)
-    return output
+    if history == False:
+        for i in range(iterations):
+            proposal = np.random.beta(successes+1,trials-successes+1)
+            rho = rho_beta(current_point,proposal)
+            u = np.random.random()
+            if u <= rho:
+                current_point = proposal
+                output.append(current_point)
+        return output
+    else:
+        history = []
+        for i in range(iterations):
+            proposal = np.random.beta(successes+1,trials-successes+1)
+            history.append(current_point)
+            rho = rho_beta(current_point,proposal)
+            u = np.random.random()
+            if u <= rho:
+                current_point = proposal
+                output.append(current_point)
+        return output, history
 
 def rho_unif(x,y,n,r):
     '''This function evaluates the probability of acceptance for the proposal in the 
@@ -42,7 +54,7 @@ def rho_unif(x,y,n,r):
     rho = np.min([1,quotient])
     return rho
 
-def MH_unif(iterations,trials,successes):
+def MH_unif(iterations,trials,successes,history=False):
     '''This function implements the Metropolis-Hastings algorithm to simulate from 
     the posterior of the parameter in Bayesian inference'''
     import numpy as np
@@ -50,14 +62,26 @@ def MH_unif(iterations,trials,successes):
     current_point = np.random.random()*0.5
     output = []
     output.append(current_point)
-    for i in range(iterations):
-        proposal = np.random.random()
-        rho = rho_unif(current_point,proposal,trials,successes)
-        u = np.random.random()
-        if u <= rho:
-            current_point = proposal
-            output.append(current_point)
-    return output    
+    if history == False:
+        for i in range(iterations):
+            proposal = np.random.random()
+            rho = rho_unif(current_point,proposal,trials,successes)
+            u = np.random.random()
+            if u <= rho:
+                current_point = proposal
+                output.append(current_point)
+        return output
+    else:
+        history = []
+        for i in range(iterations):
+            proposal = np.random.random()
+            history.append(current_point)
+            rho = rho_unif(current_point,proposal,trials,successes)
+            u = np.random.random()
+            if u <= rho:
+                current_point = proposal
+                output.append(current_point)
+        return output, history
 
 # Examples and homework
 if  __name__ == "__main__":
@@ -72,14 +96,14 @@ if  __name__ == "__main__":
     r40 = np.sum(sample40)
 
     # Implementation with data
-    MH_beta_sims5 = MH_beta(1000,5,r5)
-    MH_beta_sims40 = MH_beta(1000,40,r40)
+    MH_beta_sims5, history_beta_5 = MH_beta(1000,5,r5,history=True)
+    MH_beta_sims40, history_beta_40 = MH_beta(1000,40,r40,history=True)
     beta_sizes = [len(MH_beta_sims5), len(MH_beta_sims40)]
     # Histograms
 
     # Implementation with the new proposal
-    MH_unif_sims5 = MH_unif(1000,5,r5)
-    MH_unif_sims40 = MH_unif(1000,40,r40)
+    MH_unif_sims5, history_unif_5 = MH_unif(1000,5,r5,history=True)
+    MH_unif_sims40, history_unif_40 = MH_unif(1000,40,r40,history=True)
     unif_sizes = [len(MH_unif_sims5),len(MH_unif_sims40)]
 
     # Simple example of MH_beta()
