@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.5) (preloaded format=pdflatex 2023.6.13)  17 OCT 2023 18:59
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.5) (preloaded format=pdflatex 2023.6.13)  18 OCT 2023 00:14
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -865,42 +865,42 @@ Overfull \hbox (1.95328pt too wide) in paragraph at lines 435--114
  []
 
 [2] (tarea6/hist_beta5.pgf) (tarea6/hist_beta40.pgf)
-Overfull \hbox (1.95328pt too wide) in paragraph at lines 603--125
+Overfull \hbox (1.95328pt too wide) in paragraph at lines 1023--125
  [] 
  []
 
 
-Overfull \hbox (1.95328pt too wide) in paragraph at lines 603--125
+Overfull \hbox (1.95328pt too wide) in paragraph at lines 1023--125
  [] 
  []
 
 [3] [4] (tarea6/figlogb5.pgf) (tarea6/figlogb40.pgf)
-Overfull \hbox (1.95328pt too wide) in paragraph at lines 704--157
+Overfull \hbox (1.95328pt too wide) in paragraph at lines 3236--158
  [] 
  []
 
 
-Overfull \hbox (1.95328pt too wide) in paragraph at lines 704--157
+Overfull \hbox (1.95328pt too wide) in paragraph at lines 3236--158
  [] 
  []
 
 [5] (tarea6/hist_unif5.pgf) (tarea6/hist_unif40.pgf)
-Overfull \hbox (1.95328pt too wide) in paragraph at lines 527--189
+Overfull \hbox (1.95328pt too wide) in paragraph at lines 1023--190
  [] 
  []
 
 
-Overfull \hbox (1.95328pt too wide) in paragraph at lines 527--189
+Overfull \hbox (1.95328pt too wide) in paragraph at lines 1023--190
  [] 
  []
 
 [6] (tarea6/figlogu5.pgf) (tarea6/figlogu40.pgf)
-Overfull \hbox (1.95328pt too wide) in paragraph at lines 1156--197
+Overfull \hbox (1.95328pt too wide) in paragraph at lines 5842--198
  [] 
  []
 
 
-Overfull \hbox (1.95328pt too wide) in paragraph at lines 1156--197
+Overfull \hbox (1.95328pt too wide) in paragraph at lines 5842--198
  [] 
  []
 
@@ -924,22 +924,22 @@ LaTeX Font Warning: Font shape `U/rsfs/m/n' in size <5.5> not available
 (Font)              size <5> substituted on input line 183.
 
 ) (tarea6/fig_unif5.pgf)
-Overfull \hbox (1.95328pt too wide) in paragraph at lines 773--223
+Overfull \hbox (1.95328pt too wide) in paragraph at lines 773--225
  [] 
  []
 
 
-Overfull \hbox (1.95328pt too wide) in paragraph at lines 773--223
+Overfull \hbox (1.95328pt too wide) in paragraph at lines 773--225
  [] 
  []
 
 (tarea6/fig_beta40.pgf [9]) (tarea6/fig_unif40.pgf)
-Overfull \hbox (1.95328pt too wide) in paragraph at lines 1258--226
+Overfull \hbox (1.95328pt too wide) in paragraph at lines 1254--228
  [][] 
  []
 
 
-Overfull \hbox (1.95328pt too wide) in paragraph at lines 1258--226
+Overfull \hbox (1.95328pt too wide) in paragraph at lines 1254--228
  [] 
  []
 
@@ -955,15 +955,15 @@ Package rerunfilecheck Info: File `Tarea6.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 37463 strings out of 476411
- 836567 string characters out of 5798949
- 1916845 words of memory out of 5000000
+ 37469 strings out of 476411
+ 836627 string characters out of 5798949
+ 1926845 words of memory out of 5000000
  57043 multiletter control sequences out of 15000+600000
- 577205 words of font info for 146 fonts, out of 8000000 for 9000
+ 577454 words of font info for 149 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  102i,8n,104p,1123b,1465s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\Esaul\AppData\Local\MiKTeX\fonts/pk/ljfour/public/doublestroke/dpi600\dsrom10.pk><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmmi10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmmi12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmmi7.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmmi8.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmr12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmr17.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmr5.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmr7.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmri10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmsy7.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmtt10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmtt8.pfb>
-Output written on Tarea6.pdf (11 pages, 329253 bytes).
+Output written on Tarea6.pdf (11 pages, 456029 bytes).
 PDF statistics:
  159 PDF objects out of 1000 (max. 8388607)
  25 named destinations out of 1000 (max. 500000)

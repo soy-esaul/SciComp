@@ -69,15 +69,21 @@ if  __name__ == "__main__":
     np.random.seed(57)
    
     # For LaTeX graphs
+    #############################################################################
+    # (comenté todas las funciones de LaTeX y los savefig para que cuando se corra
+    # el código en otra compu eso no dé problema y sólo se vean las gráficas png.
+    # Marqué todos los códigos con LaTeX por si se quieren guardar las gráficas en
+    # PGF, se pueden descomentar las líneas que llevan # LaTeX)
+    ###########################################################################
     import matplotlib.pyplot as plt
     import matplotlib
-    matplotlib.use("pgf")
+    # matplotlib.use("pgf")  # LaTeX
     matplotlib.style.use("seaborn-v0_8")
-    plt.rcParams.update({
-    "pgf.texsystem": "pdflatex",
-    'font.family': 'serif',
-    'text.usetex': True,
-    'pgf.rcfonts': False,})
+    # plt.rcParams.update({   # LaTeX
+    # "pgf.texsystem": "pdflatex",  # LaTeX
+    # 'font.family': 'serif',   # LaTeX
+    # 'text.usetex': True,    # LaTeX
+    # 'pgf.rcfonts': False,})   # LaTeX
 
     # Simple example of MH_beta()
     simple_sample = MH_beta(1000,50,28)
@@ -85,7 +91,7 @@ if  __name__ == "__main__":
     plt.title("Histograma con propuesta beta y $n=50, r=28$")
     plt.xlabel("Valor")
     plt.ylabel("Frecuencia")
-    plt.savefig("tarea6/explot.pgf")
+    # plt.savefig("tarea6/explot.pgf") # LaTeX
     
     # Samples of Bernoulli
     sample5 = np.random.binomial(5,1/3,1)
@@ -94,15 +100,15 @@ if  __name__ == "__main__":
     r40 = np.sum(sample40)
 
     # Implementation with data
-    MH_beta_sims5 = MH_beta(1000,5,r5)
-    MH_beta_sims40 = MH_beta(1000,40,r40)
+    MH_beta_sims5 = MH_beta(50000,5,r5)
+    MH_beta_sims40 = MH_beta(50000,40,r40)
     
     # Plots of sampling process
     fig_beta5, axb5 = plt.subplots(figsize=(7,4))
     fig_beta40, axb40 = plt.subplots(figsize=(7,4))
 
-    axb5.plot(MH_beta_sims5)
-    axb40.plot(MH_beta_sims40)
+    axb5.plot(MH_beta_sims5[:1000])
+    axb40.plot(MH_beta_sims40[:1000])
 
     fig_beta5.suptitle(r"Muestreo con propuesta beta y $n=5$")
     fig_beta40.suptitle(r"Muestreo con propuesta beta y $n=40$")
@@ -133,8 +139,8 @@ if  __name__ == "__main__":
     hist_beta5, abh5 = plt.subplots(figsize=(7,4))
     hist_beta40, abh40 = plt.subplots(figsize=(7,4))
 
-    abh5.hist(MH_beta_sims5,density=True,alpha=0.8)
-    abh40.hist(MH_beta_sims40,density=True,alpha=0.8)
+    abh5.hist(MH_beta_sims5,density=True,alpha=0.8,bins=30)
+    abh40.hist(MH_beta_sims40,density=True,alpha=0.8,bins=30)
     abh5.set_xlabel("Valor")
     abh5.set_ylabel("Frecuencia")
     abh40.set_xlabel("Valor")
@@ -143,14 +149,14 @@ if  __name__ == "__main__":
     hist_beta5.suptitle("Histograma para la muestra con propuesta beta y $n=5, r=$" + str(r5))
 
     # Implementation with the new proposal
-    MH_unif_sims5 = MH_unif(1000,5,r5)
-    MH_unif_sims40 = MH_unif(1000,40,r40)
+    MH_unif_sims5 = MH_unif(50000,5,r5)
+    MH_unif_sims40 = MH_unif(50000,40,r40)
 
     fig_unif40, axu40 = plt.subplots(figsize=(7,4))
     fig_unif5, axu5 = plt.subplots(figsize=(7,4))
 
-    axu5.plot(MH_unif_sims5)
-    axu40.plot(MH_unif_sims40)
+    axu5.plot(MH_unif_sims5[:1000])
+    axu40.plot(MH_unif_sims40[:1000])
 
     fig_unif5.suptitle(r"Muestreo con propuesta $U(01)$ y $n=5$")
     fig_unif40.suptitle(r"Muestreo con propuesta $U(0,1)$ y $n=40$")
@@ -163,8 +169,8 @@ if  __name__ == "__main__":
     hist_unif5, abu5 = plt.subplots(figsize=(7,4))
     hist_unif40, abu40 = plt.subplots(figsize=(7,4))
 
-    abu5.hist(MH_unif_sims5,density=True,color="#2ca02c",alpha=0.5)
-    abu40.hist(MH_unif_sims40,density=True,color="#2ca02c",alpha=0.5)
+    abu5.hist(MH_unif_sims5,density=True,color="#2ca02c",alpha=0.5,bins=30)
+    abu40.hist(MH_unif_sims40,density=True,color="#2ca02c",alpha=0.5,bins=30)
     hist_unif40.suptitle("Histograma para la muestra con propuesta $U(0,1)$ y $n=40, r=$" + str(r40))
     hist_unif5.suptitle("Histograma para la muestra con propuesta $U(0,1)$ y $n=5, r=$" + str(r5))
     abu5.set_xlabel("Valor")
@@ -173,16 +179,16 @@ if  __name__ == "__main__":
     abu40.set_ylabel("Frecuencia")
 
     # Save figures
-    fig_beta5.savefig("tarea6/fig_beta5.pgf")
-    fig_beta40.savefig("tarea6/fig_beta40.pgf")
-    fig_unif5.savefig("tarea6/fig_unif5.pgf")
-    fig_unif40.savefig("tarea6/fig_unif40.pgf")
-    figdens5.savefig("tarea6/fig_dens5.pgf")
-    figdens40.savefig("tarea6/fig_dens40.pgf")
-    hist_beta5.savefig("tarea6/hist_beta5.pgf")
-    hist_beta40.savefig("tarea6/hist_beta40.pgf")
-    hist_unif5.savefig("tarea6/hist_unif5.pgf")
-    hist_unif40.savefig("tarea6/hist_unif40.pgf")
+    # fig_beta5.savefig("tarea6/fig_beta5.pgf")  # LaTeX
+    # fig_beta40.savefig("tarea6/fig_beta40.pgf")  # LaTeX
+    # fig_unif5.savefig("tarea6/fig_unif5.pgf")  # LaTeX
+    # fig_unif40.savefig("tarea6/fig_unif40.pgf")  # LaTeX
+    # figdens5.savefig("tarea6/fig_dens5.pgf")  # LaTeX
+    # figdens40.savefig("tarea6/fig_dens40.pgf")  # LaTeX
+    # hist_beta5.savefig("tarea6/hist_beta5.pgf")  # LaTeX
+    # hist_beta40.savefig("tarea6/hist_beta40.pgf")  # LaTeX
+    # hist_unif5.savefig("tarea6/hist_unif5.pgf")  # LaTeX
+    # hist_unif40.savefig("tarea6/hist_unif40.pgf")  # LaTeX
 
     # Log density for burn-in
     logdensb5 = []
@@ -203,17 +209,17 @@ if  __name__ == "__main__":
     figlogu5, alu5 = plt.subplots(figsize=(7,4))
     figlogu40, alu40 = plt.subplots(figsize=(7,4))
 
-    alb5.plot(logdensb5)
-    alb40.plot(logdensb40)
-    alu5.plot(logdensu5)
-    alu40.plot(logdensu40)
+    alb5.plot(logdensb5[:10000])
+    alb40.plot(logdensb40[:10000])
+    alu5.plot(logdensu5[:10000])
+    alu40.plot(logdensu40[:10000])
 
     figlogb5.suptitle("Gráfica de $\log f(X_t)$ para propuesta beta, $n=5, r=$"+str(r5))
     figlogb40.suptitle("Gráfica de $\log f(X_t)$ para propuesta beta, $n=40, r=$"+str(r40))
     figlogu5.suptitle("Gráfica de $\log f(X_t)$ para propuesta $U(0,1)$, $n=5, r=$"+str(r5))
     figlogu40.suptitle("Gráfica de $\log f(X_t)$ para propuesta $U(0,1)$, $n=40, r=$"+str(r40))
 
-    figlogb5.savefig("tarea6/figlogb5.pgf")
-    figlogb40.savefig("tarea6/figlogb40.pgf")
-    figlogu5.savefig("tarea6/figlogu5.pgf")
-    figlogu40.savefig("tarea6/figlogu40.pgf")
+    # figlogb5.savefig("tarea6/figlogb5.pgf")  # LaTeX
+    # figlogb40.savefig("tarea6/figlogb40.pgf")  # LaTeX
+    # figlogu5.savefig("tarea6/figlogu5.pgf")  # LaTeX
+    # figlogu40.savefig("tarea6/figlogu40.pgf")  # LaTeX

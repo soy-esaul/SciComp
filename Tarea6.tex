@@ -149,7 +149,8 @@ plt.hist(simple_sample,density=True)\end{lstlisting}
 
     Para solucionar el problema de muestrear desde los primeros valores, podemos usar el logaritmo
     de la densidad evaluada en el proceso $X_t$ y revisar en qué momento este valor parece estabilizarse.
-    Las siguientes figuras muestran como se comporta esta función para los dos muestreos,
+    Las siguientes figuras muestran como se comporta esta función para los dos muestreos, evaluados en un intervalo
+    de tiempo relativamente chico para apreciar mejor el punto de cambio
 
     \begin{center}
         \input{tarea6/figlogb5.pgf}
@@ -189,7 +190,7 @@ plt.hist(simple_sample,density=True)\end{lstlisting}
     \end{center}
 
     Ambos histogramas parecen acercarse al resultado deseado. Las gráficas para el logaritmo 
-    de la densidad evaluadas en $X_t$ son las siguientes
+    de la densidad evaluadas en $X_t$ (para $0 \le t \le 10000$) son las siguientes
 
     \begin{center}
         \input{tarea6/figlogu5.pgf}
@@ -209,9 +210,10 @@ plt.hist(simple_sample,density=True)\end{lstlisting}
     a la distribución objetivo, y por lo tanto se muestrea más rápido.
 
     En las siguiente gráficas podemos comparar el comportamiento de las cadenas con transición beta y
-    uniforme para $r_5$ y $r_{40}$. Notemos que a pesar de ser la misma cantidad de puntos en cada caso,
+    uniforme para $r_5$ y $r_{40}$ (Incluyendo sólo los primeros puntos para observar los intervalos de constancia). 
+    Notemos que a pesar de ser la misma cantidad de puntos en cada caso,
     la cadena con distribución beta y $n=5, r=3$ rechaza la transición con más frecuencia (tiene más intervalos 
-    de constancia), puede ser causado porque
+    de constancia), lo que puede ser causado porque
     el soporte de la densidad beta incluye puntos que no se encuentran en el intervalo $(0,1/2)$.
     Lo anterior podría significar que la cadena con función de transición beta realiza un muestreo más
     lento en este caso. En el caso con $n=40$ y $r=13$, la cadena con densidad de transición uniforme
