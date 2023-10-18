@@ -1,6 +1,7 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
-
+\usepackage{tikz}
+\usepackage{pgfplots}
 \input{compaq.tex}
 
 \title{Cómputo científico para probabilidad y estadística. Tarea 6.\\
@@ -32,8 +33,8 @@ r40 = np.sum(sample40)\end{lstlisting}
     Usando la semilla 57 encontramos los siguiente valores para $r_5$ y $r_{40}$,
 
     \begin{align*}
-        r_5 &= 0,\\
-        r_{40} &= 11.
+        r_5 &= 3,\\
+        r_{40} &= 15.
     \end{align*}
 
     \item Implementar el algoritmo Metropolis-Hastings para simular de la posterior
@@ -48,16 +49,17 @@ r40 = np.sum(sample40)\end{lstlisting}
     y \texttt{successes}. El segundo y tercer argumentos se refieren a la cantidad de ensayos
     Bernoulli independientes que se realizaron y cuáles de ellos resultaron en éxito. 
     
-    El primer argumento representa la cantidad de iteraciones que realizará el algoritmo, pero
-    este número no coincide necesariamente con la cantidad de valores de la muestra que
-    se obtienen, pues algunos serán repetidos. Una manera de evaluar qué tan buena es la
+    El primer argumento representa la cantidad de iteraciones que realizará el algoritmo. 
+    Este número coincide con la cantidad de valores de la muestra que
+    se obtienen, pero algunos serán repetidos. Una manera de evaluar qué tan buena es la
     propuesta de transición dada para el problema es cuestión es medir qué tanto 
-    difieren la cantidad de iteraciones y la cantidad de valores de la muestra.
+    tiempo permanece la cadena en un mismo estado. Cuando una cadena tarda más en aceptar
+    la transición, es natural esperar que tarde más en converger a la distribución estacionaria.
 
     El siguiente es un ejemplo sencillo de uso de la función,
 
 \begin{lstlisting}[language=Python]
-simple_sample = MH_beta(100,50,28)
+simple_sample = MH_beta(1000,50,28)
 plt.hist(simple_sample,density=True)\end{lstlisting}
 
     En el código anterior, se considera que se obtuvo una muestra de 50 ensayos Bernoulli
@@ -66,7 +68,7 @@ plt.hist(simple_sample,density=True)\end{lstlisting}
     El histograma de la muestra anterior es el siguiente,
 
     \begin{center}
-        % \includegraphics[options]{name}
+        \input{tarea6/explot.pgf}
     \end{center}
 
     \item Argumentar porque la cadena es $f$-irreducible y porque es ergódica. 
@@ -75,73 +77,158 @@ plt.hist(simple_sample,density=True)\end{lstlisting}
     Por diseño del kernel de transición de nuestra cadena, este satisface las ecuaciones
     de balance detallado con $f(p\mid \bar x)$, de donde se sigue que $f$ es estacionaria
     para $K$. Por lo tanto, basta mostrar que $K$ es $f(p\mid \bar x)$-irreducible para
-    gerantizar que la cadena es Harris-estacionaria, Harris, periódica y ergódica.
+    gerantizar que la cadena es Harris-estacionaria, y ergódica.
 
     Mostramos a continuación que el kernel construido efectivamente es $f(p\mid \bar x)$-irreducuble.
 
     \begin{proof}
         Denotemos por $\mu_f$ a la medida de probabilidad asociada a $f(p\mid \bar x)$, y sea
-        $A$ un conjunto medible tal que $\mu_f(A)>0$. Notemos que el soporte de $f$ es un subconjunto
-        del soporte de $\cos(\pi p)\mathds 1_{[0,1/2]}(p)$ y el soporte de $p^r(1-p)^{n-r}$. 
-        Entonces el soporte de $f$ es un subconjunto del intervalo $(0,1/2)$, y se sigue que $A \subset (0,1/2)$.
+        $A$ un conjunto medible tal que $\mu_f(A)>0$. 
+        Notemos que el soporte de $f$ es un subconjunto del soporte de $\cos(\pi p)\mathds 1_{[0,1/2]}(p)$ 
+        y el soporte de $p^r(1-p)^{n-r}$. Entonces el soporte de $f$ es un subconjunto del intervalo 
+        $(0,1/2)$, y se sigue que $A \subset (0,1/2)$.
 
-        Para $K(x,A)$ tenemos
+        Sea $a \in A$, entonces $K(x,a) = q(a\mid x) \frac{ f(y) q(a \mid y) }{f(a) q(y\mid a)} + (1 - r(a))\delta_{a}(y)$.
+        Como la densidad beta es positiva en $(0,1)$, en particular es positiva en $(0,1/2)$. Además, si el
+        punto de transición propuesto está en el soporte de $f$, entonces existe posibilidad positiva de aceptar
+        la transición, luego, $K(x,a) > 0$ para $a\in A$. Es decir, con la densidad escogida, el kernel
+        de transición en un pasoes positivo sobre el soporte de $A$.
 
-        \begin{align*}
-            K(x,A) &= q(A\mid x) \frac{ f(y) q(A \mid y) }{\mu_f(A) q(y\mid A)} + (1 - r(A))\mathds 1_{A}(y),\\
-            &= \int_A B(r+1,n-r+1) p^r(1-p)^{n-r} dp \frac{p^r(1-p)^{n-r} \cos (\pi p) \mathds 1_{(0,1/2)} (p) }
-            {\mu_f(A) p^r(1-p)^{n-r}}.
-        \end{align*}
+        % Para $K(x,A)$ tenemos
 
-        En la última igualdad el término $(1-r(A))\mathds1_A (y)$ no aparece, pues
+        % \begin{align*}
+        %     K(x,A) &= q(A\mid x) \frac{ f(y) q(A \mid y) }{\mu_f(A) q(y\mid A)} + (1 - r(A))\mathds 1_{A}(y),\\
+        %     %&= \int_A B(r+1,n-r+1) p^r(1-p)^{n-r} dp \frac{p^r(1-p)^{n-r} \cos (\pi p) \mathds 1_{(0,1/2)} (p) }
+        %     %{\mu_f(A) p^r(1-p)^{n-r}}.
+        % \end{align*}
+
+        % En la última igualdad el término $(1-r(A))\mathds1_A (y)$ no aparece, pues
     \end{proof}
 
-    Al implementar el algoritmo con los datos discretos obtenemos los siguientes histogramas
+    Antes de implementar el algoritmo de Metropolis-Hastings para simular, graficamos las densidades
+    objetivo con los valores que tenemos de $n$ y $r$.
 
     \begin{center}
-        
+        \input{tarea6/fig_dens5.pgf}
+        \input{tarea6/fig_dens40.pgf}
     \end{center}
 
-    Podemos evaluar cuál es el tamaño de la muestra que se obtuvo para cada observación de las
-    Bernoulli. Obtenemos que de las 1,000 propuestas en cada caso, 887 fueron aceptadas para
-    $r_5$ y 832 fueron aceptadas para $r_{40}$. El porcentaje de aceptación es de 88.7\% y 83.2\%
-    respectivamente. Basandanos únicamente en estas observaciones, los datos parecen sugerir que 
-    la distribución de transición propuesta funciona mejor para muestrear de $f(p|r_5)$ que de $f(p|r_{40})$.
+    Estas gráficas en realidad corresponden a múltiplos de la densidad, ya que no conocemos sus constantes
+    de normalización. Precisamente parte de la utilidad del algoritmo de Metropolis-Hastings es que únicamente
+    necesitamos conocer un múltiplo de la densidad objetivo para muestrear de ella.
 
-    Otra observación importante es que, a pesar de que se obtuvieron 887 y 832 valores de muestreo, 
-    estos no constituyen una muestra i. i. d., pues al provenir de observaciones simuladas de una cadena
-    de Márkov existe una correlación. Para poder considerar a la muestra independiente, sería necesario
-    tomar valores suficientemente espaciados a lo largo de toda la muestra, de manera que la correlación
-    entre ellos sea cercana a cero. 
-    
-    Similarmente, no podemos afirmar que desde el primer valor que obtuvimos estamos muestreando de $f$,
+    Al implementar el algoritmo con los datos descritos obtenemos los siguientes histogramas
+
+    \begin{center}
+        \input{tarea6/hist_beta5.pgf}
+        \input{tarea6/hist_beta40.pgf}
+    \end{center}
+
+    Notamos que en ambos casos los histogramas son parecidos a la densidad objetivo, aunque presentan
+    diferencias, como más masa cerca del punto cero. Esto puede deberse a que el punto inicial uniforme comenzó
+    cerca del cero, lo que ocasiona muestreo de puntos poco probables para la densidad. No podemos 
+    afirmar que desde el primer valor que obtuvimos estamos muestreando de $f$,
     ya que la convergencia a la distribución objetivo es asintótica. Para poder hablar de un muestreo
     real de $f$ sería necesario descartar una cantidad fija de valores que se consideran observaciones
     de la cadena que aún no son ``suficientemente cercanas'' a la distribución de $f$.
 
+    % Podemos evaluar cuál es el tamaño de la muestra que se obtuvo para cada observación de las
+    % Bernoulli. Obtenemos que de las 1,000 propuestas en cada caso, 887 fueron aceptadas para
+    % $r_5$ y 832 fueron aceptadas para $r_{40}$. El porcentaje de aceptación es de 88.7\% y 83.2\%
+    % respectivamente. Basandanos únicamente en estas observaciones, los datos parecen sugerir que 
+    % la distribución de transición propuesta funciona mejor para muestrear de $f(p|r_5)$ que de $f(p|r_{40})$.
+
+    Otra observación importante es que, a pesar de que se obtuvieron 1,000 valores de muestreo, 
+    estos no constituyen una muestra i. i. d., pues al provenir de observaciones simuladas de una cadena
+    de Márkov existe una correlación. Para poder considerar a la muestra independiente, sería necesario
+    tomar valores suficientemente espaciados a lo largo de toda la muestra, de manera que la correlación
+    entre ellos sea cercana a cero. 
+
+    La manera de lidiar el problemas anterior se basa en heurísticas que se revisarán en
+    el curso y se incluirán en tareas posteriores. 
+
+    Para solucionar el problema de muestrear desde los primeros valores, podemos usar el logaritmo
+    de la densidad evaluada en el proceso $X_t$ y revisar en qué momento este valor parece estabilizarse.
+    Las siguientes figuras muestran como se comporta esta función para los dos muestreos,
+
+    \begin{center}
+        \input{tarea6/figlogb5.pgf}
+        \input{tarea6/figlogb40.pgf}
+    \end{center}
+
+    Como podemos notar, en la segunda figura, el algoritmo comienza con un valor de log-densidad
+    muy alejado del resto de los puntos, pero eventualmente se estabiliza. Podemos considerar
+    que una vez que este se ha estabilizado estamos muestreando desde la distribución objetivo.
+    El primer punto en que se estabiliza la densidad parece ser alrededor de $t=50$
+
+    En la segunda figura (para $n=5, r=3$) el logaritmo de la densidad parece variar de manera
+    uniforme a lo largo de toda la trayectoria del proceso. Podemos concluir que según esta heurística,
+    es posible considerar desde el primer valor como parte del muestreo de la distribución
+    objetivo.
+
+    Con base en lo anterior, descartamos las primeras 50 iteraciones del muestreo con $n=40$ y $r=15$,
+    miestras que conservamos todas las observaciones cuando $n=5, r=3$.
+    
+    
+
     \item  Implementar el algoritmo Metropolis-Hastings con la posterior de arriba
     tomando una propuesta diferente.
 
-    Como buscamos distribuciones que tengan soporte en $(0,1)$, una propuesta puede ser la uniforme
-    continua en $(0,1)$. Una variante del algoritmo de Metropolos-Hastings que utiliza una densidad
+    Como buscamos distribuciones que tengan soporte en $(0,1/2)$, una propuesta puede ser la uniforme
+    continua en $(0,1/2)$. Una variante del algoritmo de Metropolis-Hastings que utiliza una densidad
     uniforme como función de transición de la cadena original se encuentra implementada en el archivo
     \texttt{Tarea6.py} con el nombre de \texttt{MH\_unif()}. La función toma como entrada los mismos 
     argumentos que la función \texttt{MH\_beta()}.
 
     Al hacer 1,000 iteraciones de \texttt{MH\_unif()} para $r_5$ y 1,000 para $r_{40}$ encontramos
-    que el total de datos en la muestra es 210 y 212, respectivamente. 
+    los histogramas siguientes,
 
-    Los histogramas de los valores son los siguientes,
+    \begin{center}
+        \input{tarea6/hist_unif5.pgf}
+        \input{tarea6/hist_unif40.pgf}
+    \end{center}
 
-    Evidentemente, la distribución uniforme es una peor propuesta que la beta para este problema.
+    Ambos histogramas parecen acercarse al resultado deseado. Las gráficas para el logaritmo 
+    de la densidad evaluadas en $X_t$ son las siguientes
+
+    \begin{center}
+        \input{tarea6/figlogu5.pgf}
+        \input{tarea6/figlogu40.pgf}
+    \end{center}
+
+    En este caso tenemos que la primera gráfica tiene a estabilizarse relativamente pronto, por lo
+    que se pueden descartar los primeros valores como \textit{burn-in}. La segunda gráfica presenta
+    un comportamiento más irregular que las anteriores, esto puede deberse a que efectivamente se muestrea desde la
+    densidad objetivo desde el comienzo, o a que la propuesta dada no permite una convergencia rápida.
+    Decidimos descartar los primeros 20 valores de la cadena con $n=5, r = 3$ y conservar todos en el
+    caso de la cadena con $n=40, r = 15$.
+
+    Una pregunta interesante es cuál de las dos funciones de transición propuestas nos da la mejor
+    velocidad de convergencia. Un indicador de esta velocidad es que tan frecuentemente se rechaza la
+    transición; si la transición se acepta con más frecuencia, entonces las propuestas son más parecidas
+    a la distribución objetivo, y por lo tanto se muestrea más rápido.
+
     En las siguiente gráficas podemos comparar el comportamiento de las cadenas con transición beta y
     uniforme para $r_5$ y $r_{40}$. Notemos que a pesar de ser la misma cantidad de puntos en cada caso,
-    la cadena con distribución uniforme rechaza la transición con más frecuencia, por lo que el 
-    muestreo es más lento.
+    la cadena con distribución beta y $n=5, r=3$ rechaza la transición con más frecuencia (tiene más intervalos 
+    de constancia), puede ser causado porque
+    el soporte de la densidad beta incluye puntos que no se encuentran en el intervalo $(0,1/2)$.
+    Lo anterior podría significar que la cadena con función de transición beta realiza un muestreo más
+    lento en este caso. En el caso con $n=40$ y $r=13$, la cadena con densidad de transición uniforme
+    parece rechazar con más frecuencia.
+
+    \begin{center}
+        \input{tarea6/fig_beta5.pgf}
+        \input{tarea6/fig_unif5.pgf}
+
+        \input{tarea6/fig_beta40.pgf}
+        \input{tarea6/fig_unif40.pgf}
+    \end{center}
 
     Tras observar los ejemplos anteriores podemos concluir que, a pesar de que la implementación del
     algoritmo de Metropolis-Hastings es conceptualmente simple, obtener un algoritmo que pueda muestrear
-    de una distribución objetivo de manera eficiente requiere varias decisiones de diseño.
+    de una distribución objetivo de manera eficiente requiere varias decisiones de diseño no triviales
+    y que afectan notablemente el desempeño práctico del algoritmo.
    
 \end{enumerate}
 
