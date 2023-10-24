@@ -36,3 +36,4 @@ if __name__ == "__main__":
     Z30 = poster_graf(X30,Y30,data30)
     plt.contour(X30,Y30,Z30,levels=500)
     plt.show()
+    hola
