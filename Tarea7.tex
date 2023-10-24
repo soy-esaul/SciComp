@@ -1,0 +1,75 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\input{compaq.tex}
+
+\title{Cómputo científico para probabilidad y estadística. Tarea 7.\\
+MCMC: Metropolis-Hastings II}
+\author{Juan Esaul González Rangel}
+\date{Octubre 2023}
+
+
+
+\begin{document}
+
+\maketitle
+
+\textbf{ \large Con el algoritmo Metropolis-Hastings (MH), simular lo siguiente: }
+
+\begin{enumerate}
+
+    \item Sean $x_i \sim Ga(\alpha, \beta); i = 1, 2, . . . , n$. Simular datos $x_i$ con $\alpha = 3$ y $\beta = 100$ considerando los casos $n = 4$ y 30.
+    
+    Con $\alpha \sim U(1,4), \beta \sim exp(1)$ distribuciones a priori, se tiene la posterior
+
+    \[ f(\alpha, \beta | \bar x) \propto \frac{\beta^{n\alpha}}{\Gamma(\alpha)^n} r_1^{\alpha - 1} e^{-\beta(r_2 + 1)} \mathds 1_{1 \le \alpha \le 4} \mathds 1_{\beta > 0}, \]
+
+    con $r_2 = \sum_{i=1}^n x_i$ y $r_1 = \prod_{i=1}^n x_i$.
+
+    En ambos casos, grafica los contornos para visualizar dónde está concentrada la posterior.
+    
+    Utilizar la propuesta
+
+    \[ q \left( \binom{\alpha_p}{\beta_p} \left| \binom{\alpha}\beta \right. \right) = \binom{\alpha}{\beta} + \binom{\epsilon_1}{\epsilon_2}, \]
+
+    donde
+
+    \[ \binom{\epsilon_1}{\epsilon_2} \sim \mathcal N_2\left( \binom 00, \begin{pmatrix}
+        \sigma_1^2 & 0 \\
+        0 & \sigma_2^2
+    \end{pmatrix} \right). \]
+
+
+    \item Simular de la distribución Gamma$(\alpha,1)$ con la propuesta Gamma$([\alpha],1)$, donde $[\alpha]$ denota la parte entera de $\alpha$. 
+    
+    Además, realizar el siguiente experimento: poner como punto inicial $x_0 = 900$ y graficar la evolución de la cadena, es decir, $f (X_t)$ vs $t$.
+
+    \item Implementar Random Walk Metropolis Hasting (RWMH) donde la distribución objetivo es $\mathcal N_2(\mu, \Sigma)$, con
+
+    \[ \mu = \binom{3}{5} \quad \Sigma = \begin{pmatrix}
+        1 & 0.9 \\
+        0.9 & 1
+    \end{pmatrix}. \]
+
+
+Utilizar como propuesta $\epsilon_t \sim \mathcal N_2 (\mathbf0, \sigma I)$. ¿Cómo elegir $\sigma$ para que la cadena sea eficiente? ¿Qué consecuencias tiene la elección de $\sigma$?
+
+Como experimento, elige como punto inicial $x_o = \binom{1000}{1}$ y comenta los resultados.
+
+\textbf{Para todos los incisos del ejercicio anterior:}
+
+\begin{itemize}
+    \item Establece cual es tu distribución inicial.
+    \item Grafica la evolución de la cadena.
+    \item Indica cuál es el Burn-in.
+    \item Comenta qué tan eficiente es la cadena.
+    \item Implementa el algoritmo MH considerando una propuesta diferente.
+\end{itemize}
+   
+\end{enumerate}
+
+
+
+
+
+ \end{document}
