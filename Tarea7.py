@@ -181,15 +181,16 @@ if __name__ == "__main__":
     beta_ax4 = np.arange(0,15,delta)
     X4, Y4 = np.meshgrid(alpha_ax4, beta_ax4)
     Z4 = poster_graf(X4,Y4,data4)
-    # Contour plot
-    plt.contour(X4,Y4,Z4,levels=50,cmap="viridis")
-    plt.title("Contorno de la posterior con $n=4$")
-    plt.show()
     plt.contour(X4,Y4,Z4,levels=50,cmap="viridis")
     plt.plot(alpha4_sims[0],beta4_sims[0],'ro')
     plt.title("Trayectoria de la cadena para la posterior con $n=4$")
     plt.ylabel(r"$\beta$")
     plt.xlabel(r"$\alpha$")
+    plt.show()
+
+    # Contour plot
+    plt.contour(X4,Y4,Z4,levels=50,cmap="viridis")
+    plt.title("Contorno de la posterior con $n=4$")
     plt.show()
 
     alpha30_sims, beta30_sims = MHgamma(data30,30000,sigma1=0.05,sigma2=0.5)
@@ -198,15 +199,16 @@ if __name__ == "__main__":
     beta_ax30 = np.arange(0,30,delta)
     X30, Y30 = np.meshgrid(alpha_ax30, beta_ax30)
     Z30 = poster_graf(X30,Y30,data30)
-    # Contour plot
-    plt.contour(X30,Y30,Z30,levels=50,cmap="viridis")
-    plt.title("Contorno de la posterior con $n=30$")
-    plt.show()
     plt.contour(X30,Y30,Z30,levels=50,cmap="viridis")
     plt.plot(alpha30_sims[0],beta30_sims[0],'ro')
     plt.title("Trayectoria de la cadena para la posterior con $n=30$")
     plt.ylabel(r"$\beta$")
     plt.xlabel(r"$\alpha$")
+    plt.show()
+
+    # Contour plot
+    plt.contour(X30,Y30,Z30,levels=50,cmap="viridis")
+    plt.title("Contorno de la posterior con $n=30$")
     plt.show()
 
     # Logarithm of density plots
@@ -315,6 +317,7 @@ if __name__ == "__main__":
     plt.xlabel("$t$")
     plt.ylabel("$f(X_t)$")
     plt.title("Gráfica de $f(X_t)$ contra $t$")
+    plt.show()
 
     # Alternative
     gamma_alt_sims = MHuga_alt(10000,np.pi)
@@ -357,6 +360,7 @@ if __name__ == "__main__":
     plt.hist(rw_sims_n1[100:],density=True,bins=50)
     plt.title(r"Histograma de la primera componente con propuesta $N(0,\sigma)$")
     plt.show()
+
     plt.hist(rw_sims_n2[100:],density=True,bins=50,color="mediumseagreen")
     plt.title(r"Histograma de la segunda componente con propuesta $N(0,\sigma)$")
     plt.show()
@@ -385,6 +389,7 @@ if __name__ == "__main__":
     plt.hist(alt_rw_sims1[100:],density=True,bins=50)
     plt.title(r"Histograma de la primera componente con propuesta t de Student")
     plt.show()
+
     plt.hist(alt_rw_sims2[100:],density=True,bins=50,color="mediumseagreen")
     plt.title(r"Histograma de la segunda componente con propuesta t de Student")
     plt.show()
