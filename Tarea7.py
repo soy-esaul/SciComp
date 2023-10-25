@@ -164,6 +164,7 @@ if __name__ == "__main__":
     from matplotlib import pyplot as plt
     import matplotlib
     matplotlib.style.use("seaborn-v0_8")
+    plt.rcParams["figure.figsize"] = (7,4)
     np.random.seed(57)
 
     ###############################
@@ -247,7 +248,7 @@ if __name__ == "__main__":
     plt.plot(alpha30alt_sims,beta30alt_sims,alpha=0.75,marker='.',linewidth=0.5,markersize=0.75)
     plt.contour(X30,Y30,Z30,levels=50,cmap="viridis")
     plt.plot(alpha30alt_sims[0],beta30alt_sims[0],'ro')
-    plt.title("Trayectoria de la cadena alternativa para la posterior con $n=4$")
+    plt.title("Trayectoria de la cadena alternativa para la posterior con $n=30$")
     plt.ylabel(r"$\beta$")
     plt.xlabel(r"$\alpha$")
     plt.show()
@@ -309,7 +310,7 @@ if __name__ == "__main__":
     
     plt.plot(gamx,gamy,label="Densidad teórica")
     plt.hist(gamma_alt_sims[1:],density=True,bins=50,label="Histograma")
-    plt.title(r"Histograma del muestreo con propuesta $\Gamma([\alpha])$")
+    plt.title(r"Histograma del muestreo con propuesta $Unif(0,12))$")
     plt.legend()
     plt.show()
 
@@ -368,8 +369,8 @@ if __name__ == "__main__":
 
     # Histograms
     plt.hist(alt_rw_sims1[100:],density=True,bins=50)
-    plt.title(r"Histograma de la primera componente con propuesta $N(0,\sigma)$")
+    plt.title(r"Histograma de la primera componente con propuesta t de Student")
     plt.show()
     plt.hist(alt_rw_sims2[100:],density=True,bins=50,color="mediumseagreen")
-    plt.title(r"Histograma de la segunda componente con propuesta $N(0,\sigma)$")
+    plt.title(r"Histograma de la segunda componente con propuesta t de Student")
     plt.show()
