@@ -1,6 +1,6 @@
-    ###############################
-    ######## Exercise 1 ###########
-    ###############################
+###############################
+######## Exercise 1 ###########
+###############################
 
 def poster_graf(alpha,beta,data):
     '''This function evaluates the posterior density with a given alpha, beta and some
@@ -82,7 +82,7 @@ def MHuga(iterations,alpha):
     # Alternative
 
 def MHuga_alt(iterations,alpha,step=1,starting_point=10):
-    '''Implementation of Metropolis-Hastings algorithm for the second excercise'''
+    '''Implementation of alternative Metropolis-Hastings algorithm for the second excercise'''
     n = int(alpha)
     current_point = starting_point
     output = [current_point]
@@ -147,6 +147,12 @@ def rwmh_alt(iterations,sigma,starting_point=[10,10]):
         norm2.append(current_point[1])
     return norm1, norm2
 
+
+
+################################
+#### Solutions to exercises ####
+################################
+
 if __name__ == "__main__":
     import numpy as np
     from scipy.special import gamma as Gamma
@@ -169,87 +175,112 @@ if __name__ == "__main__":
     delta = 0.01
 
     alpha4_sims, beta4_sims = MHgamma(data4,30000,sigma1=0.05,sigma2=0.5)
-    plt.plot(alpha4_sims,beta4_sims,alpha=0.5,marker='.', linewidth=0.3, markersize=0.5)
+    plt.plot(alpha4_sims,beta4_sims,alpha=0.75,marker='.', linewidth=0.5, markersize=0.75)
     alpha_ax4 = np.arange(1,4,delta)
     beta_ax4 = np.arange(0,15,delta)
     X4, Y4 = np.meshgrid(alpha_ax4, beta_ax4)
     Z4 = poster_graf(X4,Y4,data4)
-    plt.contour(X4,Y4,Z4,levels=50)
+    plt.contour(X4,Y4,Z4,levels=50,cmap="viridis")
     plt.plot(alpha4_sims[0],beta4_sims[0],'ro')
+    plt.title("Trayectoria de la cadena para la posterior con $n=4$")
+    plt.ylabel(r"$\beta$")
+    plt.xlabel(r"$\alpha$")
     plt.show()
 
     alpha30_sims, beta30_sims = MHgamma(data30,30000,sigma1=0.05,sigma2=0.5)
-    plt.plot(alpha30_sims,beta30_sims,alpha=0.5,marker='.', linewidth=0.3, markersize=0.5)
+    plt.plot(alpha30_sims,beta30_sims,alpha=0.75,marker='.', linewidth=0.5, markersize=0.75)
     alpha_ax30 = np.arange(1,4,delta)
     beta_ax30 = np.arange(0,30,delta)
     X30, Y30 = np.meshgrid(alpha_ax30, beta_ax30)
     Z30 = poster_graf(X30,Y30,data30)
-    plt.contour(X30,Y30,Z30,levels=50)
+    plt.contour(X30,Y30,Z30,levels=50,cmap="viridis")
     plt.plot(alpha30_sims[0],beta30_sims[0],'ro')
+    plt.title("Trayectoria de la cadena para la posterior con $n=30$")
+    plt.ylabel(r"$\beta$")
+    plt.xlabel(r"$\alpha$")
     plt.show()
 
     # Logarithm of density plots
     densgamma4 = []
     for i in range(len(alpha4_sims)):
         densgamma4.append(poster_graf(alpha4_sims[i],beta4_sims[i],data4))
-    plt.plot(np.log(densgamma4))
+    plt.plot(np.log(densgamma4),linewidth=0.75)
+    plt.title("Logaritmo de $f(X_t)$ para $n=4$")
     plt.show()
     
     densgamma30 = []
     for i in range(len(alpha30_sims)):
         densgamma30.append(poster_graf(alpha30_sims[i],beta30_sims[i],data30))
-    plt.plot(np.log(densgamma30))
+    plt.plot(np.log(densgamma30),linewidth=0.75)
+    plt.title("Logaritmo de $f(X_t)$ para $n=30$")
     plt.show()
 
     # Histograms of parameters
     burn4 = 2500
     burn30 = 1500
     plt.hist(alpha4_sims[burn4:],density=True,bins=100)
+    plt.title(r"Histograma de frecuencia relativa de $\alpha$ para $n=4$")
     plt.show()
     plt.hist(beta4_sims[burn4:],density=True,bins=100,color="tab:red")
+    plt.title(r"Histograma de frecuencia relativa de $\beta$ para $n=4$")
     plt.show()
-    plt.hist(alpha30_sims[burn30:],density=True,bins=100,color="tab:green")
+    plt.hist(alpha30_sims[burn30:],density=True,bins=100,color="mediumseagreen")
+    plt.title(r"Histograma de frecuencia relativa de $\alpha$ para $n=30$")
     plt.show()
     plt.hist(beta30_sims[burn30:],density=True,bins=100,color="tab:purple")
+    plt.title(r"Histograma de frecuencia relativa de $\beta$ para $n=30$")
     plt.show()
 
     # Alternative distribution
     # n = 4
     alpha4alt_sims, beta4alt_sims = MHgamma_arc(data4,30000,sigma1=0.07)
-    plt.plot(alpha4alt_sims,beta4alt_sims,alpha=0.5,marker='.',linewidth=0.3,markersize=0.5)
-    plt.contour(X4,Y4,Z4,levels=50)
+    plt.plot(alpha4alt_sims,beta4alt_sims,alpha=0.75,marker='.',linewidth=0.5,markersize=0.75)
+    plt.contour(X4,Y4,Z4,levels=50,cmap="viridis")
     plt.plot(alpha4alt_sims[0],beta4alt_sims[0],'ro')
+    plt.title("Trayectoria de la cadena alternativa para la posterior con $n=4$")
+    plt.ylabel(r"$\beta$")
+    plt.xlabel(r"$\alpha$")
     plt.show()
+
     # n = 30 
     alpha30alt_sims, beta30alt_sims = MHgamma_arc(data30,30000,sigma1=0.07)
-    plt.plot(alpha30alt_sims,beta30alt_sims,alpha=0.5,marker='.',linewidth=0.3,markersize=0.5)
-    plt.contour(X30,Y30,Z30,levels=50)
+    plt.plot(alpha30alt_sims,beta30alt_sims,alpha=0.75,marker='.',linewidth=0.5,markersize=0.75)
+    plt.contour(X30,Y30,Z30,levels=50,cmap="viridis")
     plt.plot(alpha30alt_sims[0],beta30alt_sims[0],'ro')
+    plt.title("Trayectoria de la cadena alternativa para la posterior con $n=4$")
+    plt.ylabel(r"$\beta$")
+    plt.xlabel(r"$\alpha$")
     plt.show()
 
     # Logarithm of density plots
     densgamma4alt = []
     for i in range(len(alpha4alt_sims)):
         densgamma4alt.append(poster_graf(alpha4alt_sims[i],beta4alt_sims[i],data4))
-    plt.plot(np.log(densgamma4alt))
+    plt.plot(np.log(densgamma4alt),linewidth=0.75)
+    plt.title("Logaritmo de $f(X_t)$ alternativa para $n=4$")
     plt.show()
     
     densgamma30alt = []
     for i in range(len(alpha30alt_sims)):
         densgamma30alt.append(poster_graf(alpha30alt_sims[i],beta30alt_sims[i],data30))
-    plt.plot(np.log(densgamma30alt))
+    plt.plot(np.log(densgamma30alt),linewidth=0.75)
+    plt.title("Logaritmo de $f(X_t)$ alternativa para $n=30$")
     plt.show()
 
     # Histograms of parameters for alternative
     burn4alt = 2500
     burn30alt = 1500
     plt.hist(alpha4alt_sims[burn4alt:],density=True,bins=100)
+    plt.title(r"Histograma alternativo de frecuencia relativa de $\alpha$ para $n=4$")
     plt.show()
     plt.hist(beta4alt_sims[burn4alt:],density=True,bins=100,color="tab:red")
+    plt.title(r"Histograma alternativo de frecuencia relativa de $\beta$ para $n=4$")
     plt.show()
-    plt.hist(alpha30alt_sims[burn30alt:],density=True,bins=100,color="tab:green")
+    plt.hist(alpha30alt_sims[burn30alt:],density=True,bins=100,color="mediumseagreen")
+    plt.title(r"Histograma alternativo de frecuencia relativa de $\alpha$ para $n=30$")
     plt.show()
     plt.hist(beta30alt_sims[burn30alt:],density=True,bins=100,color="tab:purple")
+    plt.title(r"Histograma alternativo de frecuencia relativa de $\beta$ para $n=30$")
     plt.show()
 
 
@@ -259,19 +290,27 @@ if __name__ == "__main__":
 
     gamma_sims = MHuga(10000,np.pi)
     plt.plot(gamma_sims)
+    plt.title(r"Trayectoria de la cadena con propuesta $\Gamma([\alpha])$")
     plt.show()
+
     gamx = np.linspace(0,12,num=1000)
     gamy = gamma.pdf(gamx,np.pi,scale=1)
-    plt.plot(gamx,gamy)
-    plt.hist(gamma_sims[1:],density=True,bins=50)
+    plt.plot(gamx,gamy,label="Densidad teórica")
+    plt.hist(gamma_sims[1:],density=True,bins=50,label="Histograma")
+    plt.title(r"Histograma del muestreo con propuesta $\Gamma([\alpha])$")
+    plt.legend()
     plt.show()
 
     # Alternative
     gamma_alt_sims = MHuga_alt(10000,np.pi)
     plt.plot(gamma_sims)
+    plt.title(r"Trayectoria de la cadena con propuesta $Unif(0,12)$")
     plt.show()
-    plt.plot(gamx,gamy)
-    plt.hist(gamma_alt_sims[1:],density=True,bins=50)
+    
+    plt.plot(gamx,gamy,label="Densidad teórica")
+    plt.hist(gamma_alt_sims[1:],density=True,bins=50,label="Histograma")
+    plt.title(r"Histograma del muestreo con propuesta $\Gamma([\alpha])$")
+    plt.legend()
     plt.show()
 
 
@@ -280,7 +319,14 @@ if __name__ == "__main__":
     ###############################
 
     rw_sims1, rw_sims2 = rwmh(10000,1)
-    rw_sims_n1, rw_sims_n2 = rwmh(1000,0.5,starting_point=[1,1])
+    rw_sims_n1, rw_sims_n2 = rwmh(10000,0.5,starting_point=[1,1])
+
+    # Evolution of chain
+    plt.plot(rw_sims_n1, rw_sims_n2,alpha=0.9,marker='.',linewidth=0.3,markersize=0.5)
+    plt.plot(rw_sims_n1[0],rw_sims_n2[0],'ro',label="Punto inicial")
+    plt.title("Evolución de la cadena RWMH con propuesta normal")
+    plt.legend()
+    plt.show()
 
     # Logarithm of density plots
     mu = np.array([3,5],dtype=float)
@@ -288,13 +334,16 @@ if __name__ == "__main__":
     densrw = []
     for i in range(len(rw_sims_n1)):
         densrw.append((mvn.pdf([rw_sims_n1[i],rw_sims_n2[i]],mu,Sigma)))
-    plt.plot(np.log(densrw))
+    plt.plot(np.log(densrw[:1000]),linewidth=0.75)
+    plt.title("Logaritmo de la densidad evaluada en la cadena para RWMH con propuesta normal")
     plt.show()
 
     # Histograms
-    plt.hist(rw_sims_n1,density=True,bins=50)
+    plt.hist(rw_sims_n1[100:],density=True,bins=50)
+    plt.title(r"Histograma de la primera componente con propuesta $N(0,\sigma)$")
     plt.show()
-    plt.hist(rw_sims_n2,density=True,bins=50,color="tab:green")
+    plt.hist(rw_sims_n2[100:],density=True,bins=50,color="mediumseagreen")
+    plt.title(r"Histograma de la segunda componente con propuesta $N(0,\sigma)$")
     plt.show()
 
 
@@ -302,16 +351,25 @@ if __name__ == "__main__":
 
     alt_rw_sims1, alt_rw_sims2 = rwmh_alt(10000,1)
 
+    # Evolution of chain
+    plt.plot(alt_rw_sims1, alt_rw_sims2,alpha=0.9,marker='.',linewidth=0.3,markersize=0.5)
+    plt.plot(alt_rw_sims1[0],alt_rw_sims2[0],'ro',label="Punto inicial")
+    plt.title("Evolución de la cadena RWMH con propuesta t de Student")
+    plt.legend()
+    plt.show()
+
     # Logarithm of density plots
     alt_densrw = []
     for i in range(len(alt_rw_sims1)):
         alt_densrw.append((mvn.pdf([alt_rw_sims1[i],alt_rw_sims2[i]],mu,Sigma)))
-    plt.plot(np.log(alt_densrw[:1000]))
+    plt.plot(np.log(alt_densrw[:1000]),linewidth=0.75)
+    plt.title("Logaritmo de la densidad evaluada en la cadena para RWMH con propuesta t de Student")
     plt.show()
 
     # Histograms
-    plt.hist(alt_rw_sims1,density=True,bins=50)
+    plt.hist(alt_rw_sims1[100:],density=True,bins=50)
+    plt.title(r"Histograma de la primera componente con propuesta $N(0,\sigma)$")
     plt.show()
-    plt.hist(alt_rw_sims2,density=True,bins=50,color="tab:green")
+    plt.hist(alt_rw_sims2[100:],density=True,bins=50,color="mediumseagreen")
+    plt.title(r"Histograma de la segunda componente con propuesta $N(0,\sigma)$")
     plt.show()
-
