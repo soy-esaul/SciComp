@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.5) (preloaded format=pdflatex 2023.6.13)  24 OCT 2023 15:51
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.5) (preloaded format=pdflatex 2023.6.13)  25 OCT 2023 06:41
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -593,19 +593,200 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <7> on input line 21.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <5> on input line 21.
-LaTeX Font Info:    Trying to load font information for U+dsrom on input line 25.
+LaTeX Font Info:    Trying to load font information for U+dsrom on input line 28.
  (C:\Program Files\MiKTeX\tex/latex/doublestroke\udsrom.fd
 File: Udsrom.fd 1995/08/01 v0.1 Double stroke roman font definitions
 )
 Package microtype Info: Fixing zero \fontdimen 6 for font `U/dsrom/m/n/10'
-(microtype)             (new value: 10.0pt) on input line 25.
+(microtype)             (new value: 10.0pt) on input line 28.
 Package microtype Info: Fixing zero \fontdimen 6 for font `U/dsrom/m/n/7'
-(microtype)             (new value: 7.0pt) on input line 25.
+(microtype)             (new value: 7.0pt) on input line 28.
 Package microtype Info: Fixing zero \fontdimen 6 for font `U/dsrom/m/n/5'
-(microtype)             (new value: 5.0pt) on input line 25.
+(microtype)             (new value: 5.0pt) on input line 28.
+ (C:\Program Files\MiKTeX\tex/latex/listings\lstlang1.sty
+File: lstlang1.sty 2023/02/27 1.9 listings language file
+)
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 54.
+ (C:\Program Files\MiKTeX\tex/latex/lm\t1lmtt.fd
+File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `lmtt' (encoding: T1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+<tarea7/cont4.png, id=3, 424.2249pt x 269.5671pt>
+File: tarea7/cont4.png Graphic file (type png)
+<use tarea7/cont4.png>
+Package pdftex.def Info: tarea7/cont4.png  used on input line 66.
+(pdftex.def)             Requested size: 317.36526pt x 201.66478pt.
+<tarea7/cont30.png, id=5, 424.2249pt x 269.5671pt>
+File: tarea7/cont30.png Graphic file (type png)
+<use tarea7/cont30.png>
+Package pdftex.def Info: tarea7/cont30.png  used on input line 67.
+(pdftex.def)             Requested size: 317.36526pt x 201.66478pt.
  [1
 
-{C:/Users/Esaul/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Program Files/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}{C:/Program Files/MiKTeX/fonts/enc/dvips/lm/lm-mathit.enc}{C:/Program Files/MiKTeX/fonts/enc/dvips/lm/lm-mathsy.enc}{C:/Program Files/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}{C:/Program Files/MiKTeX/fonts/enc/dvips/lm/lm-mathex.enc}] (Tarea7.aux
+{C:/Users/Esaul/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Program Files/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}{C:/Program Files/MiKTeX/fonts/enc/dvips/lm/lm-mathit.enc}{C:/Program Files/MiKTeX/fonts/enc/dvips/lm/lm-mathsy.enc}{C:/Program Files/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}{C:/Program Files/MiKTeX/fonts/enc/dvips/lm/lm-mathex.enc}]
+<tarea7/gamma4_norm.png, id=36, 448.074pt x 283.2984pt>
+File: tarea7/gamma4_norm.png Graphic file (type png)
+<use tarea7/gamma4_norm.png>
+Package pdftex.def Info: tarea7/gamma4_norm.png  used on input line 80.
+(pdftex.def)             Requested size: 370.2541pt x 234.10013pt.
+ [2 <./tarea7/cont4.png> <./tarea7/cont30.png>]
+<tarea7/logdensgamma4.png, id=43, 430.0065pt x 269.5671pt>
+File: tarea7/logdensgamma4.png Graphic file (type png)
+<use tarea7/logdensgamma4.png>
+Package pdftex.def Info: tarea7/logdensgamma4.png  used on input line 105.
+(pdftex.def)             Requested size: 370.2541pt x 232.11111pt.
+ [3 <./tarea7/gamma4_norm.png> <./tarea7/logdensgamma4.png>]
+<tarea7/histalpha4.png, id=50, 418.4433pt x 269.5671pt>
+File: tarea7/histalpha4.png Graphic file (type png)
+<use tarea7/histalpha4.png>
+Package pdftex.def Info: tarea7/histalpha4.png  used on input line 115.
+(pdftex.def)             Requested size: 370.2541pt x 238.52368pt.
+<tarea7/histbeta4.png, id=51, 432.8973pt x 269.5671pt>
+File: tarea7/histbeta4.png Graphic file (type png)
+<use tarea7/histbeta4.png>
+Package pdftex.def Info: tarea7/histbeta4.png  used on input line 121.
+(pdftex.def)             Requested size: 370.2541pt x 230.56863pt.
+<tarea7/gamma30_norm.png, id=52, 448.074pt x 283.2984pt>
+File: tarea7/gamma30_norm.png Graphic file (type png)
+<use tarea7/gamma30_norm.png>
+Package pdftex.def Info: tarea7/gamma30_norm.png  used on input line 128.
+(pdftex.def)             Requested size: 370.2541pt x 234.10013pt.
+ [4 <./tarea7/histalpha4.png> <./tarea7/histbeta4.png>]
+<tarea7/logdensgamma30.png, id=59, 430.0065pt x 269.5671pt>
+File: tarea7/logdensgamma30.png Graphic file (type png)
+<use tarea7/logdensgamma30.png>
+Package pdftex.def Info: tarea7/logdensgamma30.png  used on input line 139.
+(pdftex.def)             Requested size: 370.2541pt x 232.11111pt.
+<tarea7/histalpha30.png, id=60, 424.2249pt x 269.5671pt>
+File: tarea7/histalpha30.png Graphic file (type png)
+<use tarea7/histalpha30.png>
+Package pdftex.def Info: tarea7/histalpha30.png  used on input line 147.
+(pdftex.def)             Requested size: 370.2541pt x 235.2742pt.
+ [5 <./tarea7/gamma30_norm.png> <./tarea7/logdensgamma30.png>]
+<tarea7/histbeta30.png, id=67, 432.8973pt x 269.5671pt>
+File: tarea7/histbeta30.png Graphic file (type png)
+<use tarea7/histbeta30.png>
+Package pdftex.def Info: tarea7/histbeta30.png  used on input line 153.
+(pdftex.def)             Requested size: 370.2541pt x 230.56863pt.
+<tarea7/trajsemi4.png, id=68, 448.074pt x 283.2984pt>
+File: tarea7/trajsemi4.png Graphic file (type png)
+<use tarea7/trajsemi4.png>
+Package pdftex.def Info: tarea7/trajsemi4.png  used on input line 171.
+(pdftex.def)             Requested size: 370.2541pt x 234.10013pt.
+ [6 <./tarea7/histalpha30.png> <./tarea7/histbeta30.png>]
+<tarea7/logsemic4.png, id=75, 430.0065pt x 269.5671pt>
+File: tarea7/logsemic4.png Graphic file (type png)
+<use tarea7/logsemic4.png>
+Package pdftex.def Info: tarea7/logsemic4.png  used on input line 178.
+(pdftex.def)             Requested size: 370.2541pt x 232.11111pt.
+<tarea7/histalphasemic4.png, id=76, 418.4433pt x 269.5671pt>
+File: tarea7/histalphasemic4.png Graphic file (type png)
+<use tarea7/histalphasemic4.png>
+Package pdftex.def Info: tarea7/histalphasemic4.png  used on input line 188.
+(pdftex.def)             Requested size: 317.36526pt x 204.44945pt.
+<tarea7/histbetasemic4.png, id=77, 432.8973pt x 269.5671pt>
+File: tarea7/histbetasemic4.png Graphic file (type png)
+<use tarea7/histbetasemic4.png>
+Package pdftex.def Info: tarea7/histbetasemic4.png  used on input line 189.
+(pdftex.def)             Requested size: 317.36526pt x 197.63379pt.
+ [7 <./tarea7/trajsemi4.png> <./tarea7/logsemic4.png>]
+<tarea7/trajsemi30.png, id=85, 448.074pt x 283.2984pt>
+File: tarea7/trajsemi30.png Graphic file (type png)
+<use tarea7/trajsemi30.png>
+Package pdftex.def Info: tarea7/trajsemi30.png  used on input line 197.
+(pdftex.def)             Requested size: 333.23273pt x 210.69228pt.
+ [8 <./tarea7/histalphasemic4.png> <./tarea7/histbetasemic4.png> <./tarea7/trajsemi30.png>]
+<tarea7/logsemic30.png, id=93, 430.0065pt x 269.5671pt>
+File: tarea7/logsemic30.png Graphic file (type png)
+<use tarea7/logsemic30.png>
+Package pdftex.def Info: tarea7/logsemic30.png  used on input line 205.
+(pdftex.def)             Requested size: 343.80565pt x 215.53056pt.
+<tarea7/histalphasemic30.png, id=94, 424.2249pt x 269.5671pt>
+File: tarea7/histalphasemic30.png Graphic file (type png)
+<use tarea7/histalphasemic30.png>
+Package pdftex.def Info: tarea7/histalphasemic30.png  used on input line 212.
+(pdftex.def)             Requested size: 343.80565pt x 218.46744pt.
+<tarea7/histbetasemic30.png, id=95, 432.8973pt x 269.5671pt>
+File: tarea7/histbetasemic30.png Graphic file (type png)
+<use tarea7/histbetasemic30.png>
+Package pdftex.def Info: tarea7/histbetasemic30.png  used on input line 213.
+(pdftex.def)             Requested size: 343.80565pt x 214.09915pt.
+ [9 <./tarea7/logsemic30.png> <./tarea7/histalphasemic30.png>]
+<tarea7/trajgamex2.png, id=102, 430.0065pt x 269.5671pt>
+File: tarea7/trajgamex2.png Graphic file (type png)
+<use tarea7/trajgamex2.png>
+Package pdftex.def Info: tarea7/trajgamex2.png  used on input line 243.
+(pdftex.def)             Requested size: 396.70256pt x 248.69165pt.
+ [10 <./tarea7/histbetasemic30.png> <./tarea7/trajgamex2.png>]
+<tarea7/ft_t_traj.png, id=111, 450.2421pt x 284.7438pt>
+File: tarea7/ft_t_traj.png Graphic file (type png)
+<use tarea7/ft_t_traj.png>
+Package pdftex.def Info: tarea7/ft_t_traj.png  used on input line 254.
+(pdftex.def)             Requested size: 343.80565pt x 217.43726pt.
+<tarea7/histgamex2.png, id=112, 432.8973pt x 269.5671pt>
+File: tarea7/histgamex2.png Graphic file (type png)
+<use tarea7/histgamex2.png>
+Package pdftex.def Info: tarea7/histgamex2.png  used on input line 264.
+(pdftex.def)             Requested size: 343.80565pt x 214.09915pt.
+ [11 <./tarea7/ft_t_traj.png> <./tarea7/histgamex2.png>]
+<tarea7/trajunifex2.png, id=119, 430.0065pt x 269.5671pt>
+File: tarea7/trajunifex2.png Graphic file (type png)
+<use tarea7/trajunifex2.png>
+Package pdftex.def Info: tarea7/trajunifex2.png  used on input line 280.
+(pdftex.def)             Requested size: 343.80565pt x 215.53056pt.
+<tarea7/histunifex2.png, id=120, 432.8973pt x 269.5671pt>
+File: tarea7/histunifex2.png Graphic file (type png)
+<use tarea7/histunifex2.png>
+Package pdftex.def Info: tarea7/histunifex2.png  used on input line 290.
+(pdftex.def)             Requested size: 343.80565pt x 214.09915pt.
+ [12 <./tarea7/trajunifex2.png> <./tarea7/histunifex2.png>]
+<tarea7/trajrwnorm.png, id=128, 418.4433pt x 267.399pt>
+File: tarea7/trajrwnorm.png Graphic file (type png)
+<use tarea7/trajrwnorm.png>
+Package pdftex.def Info: tarea7/trajrwnorm.png  used on input line 346.
+(pdftex.def)             Requested size: 370.2541pt x 236.60526pt.
+<tarea7/logdensrwnorm.png, id=129, 463.9734pt x 267.399pt>
+File: tarea7/logdensrwnorm.png Graphic file (type png)
+<use tarea7/logdensrwnorm.png>
+Package pdftex.def Info: tarea7/logdensrwnorm.png  used on input line 357.
+(pdftex.def)             Requested size: 370.2541pt x 213.38498pt.
+ [13 <./tarea7/trajrwnorm.png>]
+<tarea7/histrwnorm1.png, id=137, 432.8973pt x 269.5671pt>
+File: tarea7/histrwnorm1.png Graphic file (type png)
+<use tarea7/histrwnorm1.png>
+Package pdftex.def Info: tarea7/histrwnorm1.png  used on input line 365.
+(pdftex.def)             Requested size: 370.2541pt x 230.56863pt.
+<tarea7/histrwnorm2.png, id=138, 432.8973pt x 269.5671pt>
+File: tarea7/histrwnorm2.png Graphic file (type png)
+<use tarea7/histrwnorm2.png>
+Package pdftex.def Info: tarea7/histrwnorm2.png  used on input line 366.
+(pdftex.def)             Requested size: 370.2541pt x 230.56863pt.
+ [14 <./tarea7/logdensrwnorm.png> <./tarea7/histrwnorm1.png>]
+<tarea7/trajrwt.png, id=145, 424.2249pt x 267.399pt>
+File: tarea7/trajrwt.png Graphic file (type png)
+<use tarea7/trajrwt.png>
+Package pdftex.def Info: tarea7/trajrwt.png  used on input line 381.
+(pdftex.def)             Requested size: 370.2541pt x 233.38191pt.
+<tarea7/logdensrwt.png, id=146, 492.1587pt x 267.399pt>
+File: tarea7/logdensrwt.png Graphic file (type png)
+<use tarea7/logdensrwt.png>
+Package pdftex.def Info: tarea7/logdensrwt.png  used on input line 390.
+(pdftex.def)             Requested size: 370.2541pt x 201.16486pt.
+ [15 <./tarea7/histrwnorm2.png> <./tarea7/trajrwt.png>]
+<tarea7/histrwt1.png, id=153, 427.1157pt x 267.399pt>
+File: tarea7/histrwt1.png Graphic file (type png)
+<use tarea7/histrwt1.png>
+Package pdftex.def Info: tarea7/histrwt1.png  used on input line 399.
+(pdftex.def)             Requested size: 370.2541pt x 231.81105pt.
+<tarea7/histrwt2.png, id=154, 427.1157pt x 267.399pt>
+File: tarea7/histrwt2.png Graphic file (type png)
+<use tarea7/histrwt2.png>
+Package pdftex.def Info: tarea7/histrwt2.png  used on input line 400.
+(pdftex.def)             Requested size: 370.2541pt x 231.81105pt.
+ [16 <./tarea7/logdensrwt.png> <./tarea7/histrwt1.png>] [17 <./tarea7/histrwt2.png>] (Tarea7.aux
 LaTeX Info: Redefining \. on input line 22.
 LaTeX Info: Redefining \% on input line 22.
 )
@@ -613,17 +794,17 @@ Package rerunfilecheck Info: File `Tarea7.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 16802 strings out of 476411
- 268651 string characters out of 5798949
- 1869845 words of memory out of 5000000
- 36820 multiletter control sequences out of 15000+600000
- 564317 words of font info for 111 fonts, out of 8000000 for 9000
+ 17605 strings out of 476411
+ 280567 string characters out of 5798949
+ 1919845 words of memory out of 5000000
+ 37509 multiletter control sequences out of 15000+600000
+ 577138 words of font info for 138 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 80i,8n,79p,1123b,457s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <C:\Users\Esaul\AppData\Local\MiKTeX\fonts/pk/ljfour/public/doublestroke/dpi600\dsrom10.pk><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmbx10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmbx12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmex10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmmi10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmmi7.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmr12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmr17.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmr5.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmr7.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmsy7.pfb>
-Output written on Tarea7.pdf (1 page, 220073 bytes).
+ 80i,8n,79p,1123b,1543s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ <C:\Users\Esaul\AppData\Local\MiKTeX\fonts/pk/ljfour/public/doublestroke/dpi600\dsrom10.pk><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmbx10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmbx12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmex10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmmi10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmmi7.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmr12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmr17.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmr5.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmr7.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmri10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmsy7.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmtt8.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on Tarea7.pdf (17 pages, 922460 bytes).
 PDF statistics:
- 90 PDF objects out of 1000 (max. 8388607)
- 5 named destinations out of 1000 (max. 500000)
- 28673 words of extra memory for PDF output out of 29859 (max. 10000000)
+ 251 PDF objects out of 1000 (max. 8388607)
+ 29 named destinations out of 1000 (max. 500000)
+ 35996 words of extra memory for PDF output out of 42996 (max. 10000000)
 

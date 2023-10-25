@@ -181,6 +181,10 @@ if __name__ == "__main__":
     beta_ax4 = np.arange(0,15,delta)
     X4, Y4 = np.meshgrid(alpha_ax4, beta_ax4)
     Z4 = poster_graf(X4,Y4,data4)
+    # Contour plot
+    plt.contour(X4,Y4,Z4,levels=50,cmap="viridis")
+    plt.title("Contorno de la posterior con $n=4$")
+    plt.show()
     plt.contour(X4,Y4,Z4,levels=50,cmap="viridis")
     plt.plot(alpha4_sims[0],beta4_sims[0],'ro')
     plt.title("Trayectoria de la cadena para la posterior con $n=4$")
@@ -194,6 +198,10 @@ if __name__ == "__main__":
     beta_ax30 = np.arange(0,30,delta)
     X30, Y30 = np.meshgrid(alpha_ax30, beta_ax30)
     Z30 = poster_graf(X30,Y30,data30)
+    # Contour plot
+    plt.contour(X30,Y30,Z30,levels=50,cmap="viridis")
+    plt.title("Contorno de la posterior con $n=30$")
+    plt.show()
     plt.contour(X30,Y30,Z30,levels=50,cmap="viridis")
     plt.plot(alpha30_sims[0],beta30_sims[0],'ro')
     plt.title("Trayectoria de la cadena para la posterior con $n=30$")
@@ -302,6 +310,12 @@ if __name__ == "__main__":
     plt.legend()
     plt.show()
 
+    gamma_traj = gamma.pdf(gamma_sims,np.pi,scale=1)
+    plt.plot(gamma_traj)
+    plt.xlabel("$t$")
+    plt.ylabel("$f(X_t)$")
+    plt.title("Gráfica de $f(X_t)$ contra $t$")
+
     # Alternative
     gamma_alt_sims = MHuga_alt(10000,np.pi)
     plt.plot(gamma_sims)
@@ -319,7 +333,7 @@ if __name__ == "__main__":
     ######## Exercise 3 ###########
     ###############################
 
-    rw_sims1, rw_sims2 = rwmh(10000,1)
+    rw_sims1, rw_sims2 = rwmh(10000,1) # Error
     rw_sims_n1, rw_sims_n2 = rwmh(10000,0.5,starting_point=[1,1])
 
     # Evolution of chain
