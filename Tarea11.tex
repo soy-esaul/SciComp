@@ -1,0 +1,65 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\input{compaq.tex}
+
+\title{Cómputo científico para probabilidad y estadística. Tarea 11.\\
+Deep neural networks}
+\author{Juan Esaul González Rangel}
+\date{Noviembre 2023}
+
+
+
+\begin{document}
+
+\maketitle
+
+
+\begin{enumerate}
+
+    \item Usando la base de datos MNIST realice lo siguiente y explique cada decisión tomada:
+
+    \begin{itemize}
+        \item Diseñe una red neuronal de una sola capa oculta para la clasificación de las imágenes. Use una función de pérdida predefinida.
+        \item Entrene la red neuronal
+        \item Presente la matriz de confusión (Confusion matrix),
+        \item Describa que es la precisión y la exhaustividad (precision and recall) y calculelos a partir de su matriz de confusión
+    \end{itemize}
+
+
+    \item Usando la base de datos Fashion MNIST realice lo siguiente y explique
+cada decisión tomada:
+
+    \begin{itemize}
+        \item Diseñe una red neuronal de dos capas ocultas para la clasificación de las imágenes, cada una con diferente función de activación y use una función de pérdida en la que el error de clasificar mal un calzado sea el doble que el resto de prendas.
+        \item Entrene la red neuronal.
+        \item Presente la matriz de confusión (Confusion matrix).
+    \end{itemize}
+
+
+    \item Con la base de datos CIFAR-10 realice lo siguiente:
+
+    \begin{itemize}
+        \item Diseñe una red neuronal de una capa oculta completamente conectada de al menos 10,000 neuronas para la clasificación de las imágenes
+        \item Entrene la red neuronal
+        \item Presente la matriz de confusión (Confusion matrix)
+        \item Entrene una segunda red neuronal usando la estructura de LeNet 5.
+        \item Presente la matriz de confusión (Confusion matrix)
+        \item Compare ambas redes. Para esta comparación será necesario que al menos presente las curvas de error de entrenamiento y predicción para ambas redes, los tiempos de entrenamiento y que tome en cuenta las matrices de confusión.
+    \end{itemize}
+
+
+    \item Usando la base de datos MNIST y la estructura LeNet 5 realice lo siguiente:
+
+    \begin{itemize}
+        \item Entrene la red neuronal
+        \item Implemente el algoritmo \textit{Deepfool} y construya un ejemplo adversario para cada una de las categorías, presente la imagen original, el ruido que añadió y la nueva imagen. 
+    \end{itemize}
+        
+   
+\end{enumerate}
+
+
+
+
+ \end{document}
