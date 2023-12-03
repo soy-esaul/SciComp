@@ -57,7 +57,7 @@ Sampler}
 
 
 
-    \item Considere los tiempos de falla $t1, \dots, t_n$ con distribución 
+    \item Considere los tiempos de falla $t_1, \dots, t_n$ con distribución 
     \textit{Weibull}$(\alpha, \lambda)$:
     
     \[ f (t_i|\alpha, \lambda) = \alpha\lambda t^{\alpha-1}_i e^{-t^\alpha_i 
@@ -68,7 +68,7 @@ Sampler}
     f (\alpha)$\footnote{Este ejemplo aparece en Kundu, D. (2008), ``Bayesian 
     Inference and Life Testing Plan for the Weibull Distribution in Presence of 
     Progressive Censoring'', Technometrics, 50(2), 144–154.}. Así, para la 
-    disitribución posterior se tiene:
+    distribución posterior se tiene:
     
     \[f (\alpha, \lambda|\bar t) \propto f (\bar t|\alpha, \lambda)f (\alpha, 
     \lambda)\]
@@ -94,7 +94,9 @@ Sampler}
     \underline{Propuesta 4 (RWMH):} 
     
     $\alpha_p = \alpha + \epsilon$, con $\epsilon \sim N (0, \sigma)$ y dejando 
-    $\lambda$ fijo. Simular datos usando $\alpha = 1$ y $\lambda = 1$ con $n = 20$. 
+    $\lambda$ fijo. 
+    
+    Simular datos usando $\alpha = 1$ y $\lambda = 1$ con $n = 20$. 
     Para la a priori usar $c = 1$ y $b = 1$.
 
 
