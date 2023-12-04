@@ -14,14 +14,19 @@ MCMC: Tarea Final}
 
 \maketitle
 
-En ambos problemas hay que diseñar e implementar el MCMC, investigar sobre su convergencia y tener algún grado de certeza sobre si sí se está simulando de la posterior correspondiente. Más aun, recuerde que se trata de un problema de inferencia: Hay que hablar del problema en si, comentar sobre las posteriores simuladas y posibles estimadores (a partir de la muestra de posterior) que se pueden proporcionar de cada parámetro.
+En ambos problemas hay que diseñar e implementar el MCMC, investigar sobre su 
+convergencia y tener algún grado de certeza sobre si sí se está simulando de la 
+posterior correspondiente. Más aún, recuerde que se trata de un problema de 
+inferencia: Hay que hablar del problema en sí, comentar sobre las posteriores 
+simuladas y posibles estimadores (a partir de la muestra de posterior) que se 
+pueden proporcionar de cada parámetro.
 
 \begin{enumerate}
     \item (\textbf{Problema en ecología}) Sean $X_1, \dots, X_m$ variables aleatorias donde $X_i$ denota el número de individuos de una especie en cierta región. Suponga que $X_i|N, p \sim $Binomial$(N, p)$, entonces
     
-    \[f (\bar x|N, p) = m\prod_{i=1}^n \frac{N!}{x_i!(N - x_i)!}p^{x_i} (1 - p)^{N - x_i}.\]
+    \[f (\bar x|N, p) = \prod_{i=1}^m \frac{N!}{x_i!(N - x_i)!}p^{x_i} (1 - p)^{N - x_i}.\]
 
-    Asumiendo la distribución a priori $p \sim $Beta$(\alpha, \beta)$ y $N \sim h(\cdot)$, donde $h$ es una dist. discreta en $\{0, 1, 2, \dots , N_{\max} \}$, se tiene definida la distribución posterior $f (N, P |\bar x)$.
+    Asumiendo la distribución a priori $p \sim $Beta$(\alpha, \beta)$ y $N \sim h(\cdot)$, donde $h$ es una dist. discreta en $\{0, 1, 2, \dots , N_{\max} \}$, se tiene definida la distribución posterior $f (N, p |\bar x)$.
     
     A partir del algoritmo MH, simule valores de la distribución posterior usando un kernel híbrido. Para ello considere como sugerencia la siguiente distribución inicial para el MCMC 
     

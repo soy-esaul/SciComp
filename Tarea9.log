@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.5) (preloaded format=pdflatex 2023.6.13)  14 NOV 2023 22:01
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.5) (preloaded format=pdflatex 2023.6.13)  3 DEC 2023 23:44
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -588,15 +588,15 @@ LaTeX Font Info:    Trying to load font information for U+rsfs on input line 16.
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 20.
+(Font)              <10> on input line 25.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 20.
+(Font)              <7> on input line 25.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 20.
+(Font)              <5> on input line 25.
  [1
 
 {C:/Users/Esaul/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Program Files/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}{C:/Program Files/MiKTeX/fonts/enc/dvips/lm/lm-mathit.enc}{C:/Program Files/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}{C:/Program Files/MiKTeX/fonts/enc/dvips/lm/lm-mathsy.enc}{C:/Program Files/MiKTeX/fonts/enc/dvips/lm/lm-mathex.enc}]
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 71.
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 76.
  (C:\Program Files\MiKTeX\tex/latex/lm\t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
@@ -605,37 +605,37 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 
-Overfull \hbox (15.81177pt too wide) in paragraph at lines 81--81
+Overfull \hbox (15.81177pt too wide) in paragraph at lines 86--86
  []\T1/lmtt/m/n/10 X = array([ 25, 18, 19, 51, 16, 59, 16, 54, 52, 16, 31, 31, 54, 26, 19, 13, 59, 48, 54, 23, 50, 59,[] 
  []
 
 
-Overfull \hbox (15.81177pt too wide) in paragraph at lines 81--81
+Overfull \hbox (15.81177pt too wide) in paragraph at lines 86--86
  []\T1/lmtt/m/n/10 55, 37, 61, 53, 56, 31, 34, 15, 41, 14, 13, 13, 32, 46, 17, 52, 54, 25, 61, 15, 53, 39, 33, 52, 65,[] 
  []
 
 
-Overfull \hbox (15.81177pt too wide) in paragraph at lines 81--81
+Overfull \hbox (15.81177pt too wide) in paragraph at lines 86--86
  []\T1/lmtt/m/n/10 35, 65, 26, 54, 16, 47, 14, 42, 47, 48, 25, 15, 46, 31, 50, 42, 23, 17, 47, 32, 65, 45, 28, 12, 22,[] 
  []
 
 
-Overfull \hbox (10.56178pt too wide) in paragraph at lines 81--81
+Overfull \hbox (10.56178pt too wide) in paragraph at lines 86--86
  []\T1/lmtt/m/n/10 30, 36, 33, 16, 39, 50, 13, 23, 50, 34, 19, 46, 43, 56, 52,42, 48, 55, 37, 21, 45, 64, 53, 16, 62,[] 
  []
 
 
-Overfull \hbox (5.3118pt too wide) in paragraph at lines 81--81
+Overfull \hbox (5.3118pt too wide) in paragraph at lines 86--86
  []\T1/lmtt/m/n/10 Y = array([1275, 325, 517, 0, 86, 0, 101, 0, 0, 89, 78, 83, 0, 1074, 508, 5, 0, 0, 0, 1447, 0, 0,[] 
  []
 
 
-Overfull \hbox (21.06175pt too wide) in paragraph at lines 81--81
+Overfull \hbox (21.06175pt too wide) in paragraph at lines 86--86
  []\T1/lmtt/m/n/10 0, 0, 0, 0, 0, 87, 7, 37, 0, 15, 5, 6, 35, 0, 158, 0, 0, 1349, 0, 35, 0, 0, 12, 0, 0, 2, 0, 1117, 0,[] 
  []
 
 
-Overfull \hbox (15.81177pt too wide) in paragraph at lines 81--81
+Overfull \hbox (15.81177pt too wide) in paragraph at lines 86--86
  []\T1/lmtt/m/n/10 79, 0, 13, 0, 0, 0, 1334, 56, 0, 81, 0, 0, 1480, 177, 0, 29, 0, 0, 551, 0, 1338, 196, 0, 9, 104, 0,[] 
  []
 
@@ -655,7 +655,7 @@ Here is how much of TeX's memory you used:
  1141 hyphenation exceptions out of 8191
  80i,6n,79p,1123b,584s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Program Files/MiKTeX/fonts/type1/public/lm/lmbx10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmex10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmmi10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmmi5.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmmi7.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmr12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmr17.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmr7.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmsy7.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmtt10.pfb>
-Output written on Tarea9.pdf (2 pages, 210321 bytes).
+Output written on Tarea9.pdf (2 pages, 210246 bytes).
 PDF statistics:
  86 PDF objects out of 1000 (max. 8388607)
  6 named destinations out of 1000 (max. 500000)
