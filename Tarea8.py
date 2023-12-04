@@ -28,19 +28,19 @@ def mhbivar(iterations,mu=[0,0],rho=0.8,starting_point=np.array([0,0],dtype=floa
     current_point = np.array(starting_point,dtype=float)
     for t in range(iterations):
         u = np.random.random()
-        if u > 0.5:
+        if u < 0.4999:
             proposal = normal.rvs(loc=mu[0]+rho*((sigma1/sigma2)*(current_point[1]-mu[1])),
-                                   scale=sigma1*(1-rho**2))
+                                scale = sigma1*(1-rho**2))
             current_point[0] = proposal.copy()
-        else:
+        elif u >= 0.4999 and u < 0.9998:
             proposal = normal.rvs(loc=mu[1]+rho*((sigma2/sigma1)*(current_point[0]-mu[0])),
-                               scale=sigma2*(1-rho**2))
+                               scale = sigma2*(1-rho**2))
             current_point[1] = proposal.copy()
+        else:
+            pass
         output.append(current_point.copy())
     output = np.array(output,dtype=float)
     return output
-
-# def mvn_graph(x,mu,Sigma=np.array([[1,0],[0,1]],dtype=float)):
 
         
 ## For exercise 2
@@ -114,14 +114,18 @@ def MHpump(starting_point=np.array([1,1,1,1,1,1,1,1,1,1,1],dtype=float),
     n = 10
     output.append(starting_point)
     for m in range(iterations):
-        i = np.random.choice(11,1)[0]
-        if i == 10:
-            proposal = gammavar.rvs(a=n*alpha+gamita,scale=1/(delta+sum(current_point[:-1])))
-            current_point[10] = proposal.copy()
+        unif = np.random.random()
+        if unif > 0.0001:
+            i = np.random.choice(11,1)[0]
+            if i == 10:
+                proposal = gammavar.rvs(a=n*alpha+gamita,scale=1/(delta+sum(current_point[:-1])))
+                current_point[10] = proposal.copy()
+            else:
+                beta = current_point[10]
+                proposal = gammavar.rvs(a=p[i]+alpha,scale=1/(beta+t[i]))
+                current_point[i] = proposal.copy()
         else:
-            beta = current_point[10]
-            proposal = gammavar.rvs(a=p[i]+alpha,scale=1/(beta+t[i]))
-            current_point[i] = proposal.copy()
+            pass
         output.append(current_point.copy())
     output = np.array(output,dtype=float)
     return output
@@ -222,7 +226,7 @@ if __name__ == "__main__":
     plt.xlabel("Iteraciones")
     plt.ylabel("logaritmo de la densidad")
     plt.title(r"Trayectoria para burn-in del ejercicio 1 con $\rho=0.8$")
-    plt.savefig("burnin1.png")
+    plt.savefig("Tarea8/burnin1.png")
     plt.show()
 
     logtrajex2 = []
@@ -236,7 +240,7 @@ if __name__ == "__main__":
     plt.xlabel("Iteraciones")
     plt.ylabel("logaritmo de la densidad")
     plt.title(r"Trayectoria para burn-in del ejercicio 1 con $\rho=0.95$")
-    plt.savefig("burnin2.png")
+    plt.savefig("Tarea8/burnin2.png")
     plt.show()
 
 
@@ -272,7 +276,7 @@ if __name__ == "__main__":
     plt.xlabel("Iteraciones")
     plt.ylabel("logaritmo de la densidad")
     plt.title("Trayectoria para burn-in del ejercicio 2")
-    plt.savefig("burnin3.png")
+    plt.savefig("Tarea8/burnin3.png")
     plt.show()
 
 

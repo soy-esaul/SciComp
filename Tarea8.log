@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.5) (preloaded format=pdflatex 2023.6.13)  2 DEC 2023 16:41
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.5) (preloaded format=pdflatex 2023.6.13)  4 DEC 2023 03:54
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -617,7 +617,114 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             See the microtype manual for details.
  [1
 
-{C:/Users/Esaul/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Program Files/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}{C:/Program Files/MiKTeX/fonts/enc/dvips/lm/lm-mathit.enc}{C:/Program Files/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}{C:/Program Files/MiKTeX/fonts/enc/dvips/lm/lm-mathsy.enc}{C:/Program Files/MiKTeX/fonts/enc/dvips/lm/lm-mathex.enc}] [2] (Tarea8.aux
+{C:/Users/Esaul/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Program Files/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}{C:/Program Files/MiKTeX/fonts/enc/dvips/lm/lm-mathit.enc}{C:/Program Files/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}{C:/Program Files/MiKTeX/fonts/enc/dvips/lm/lm-mathsy.enc}{C:/Program Files/MiKTeX/fonts/enc/dvips/lm/lm-mathex.enc}]
+<Tarea8/traj11.png, id=33, 578.16pt x 397.485pt>
+File: Tarea8/traj11.png Graphic file (type png)
+<use Tarea8/traj11.png>
+Package pdftex.def Info: Tarea8/traj11.png  used on input line 105.
+(pdftex.def)             Requested size: 396.70256pt x 272.73047pt.
+<Tarea8/burnin1.png, id=35, 578.16pt x 397.485pt>
+File: Tarea8/burnin1.png Graphic file (type png)
+<use Tarea8/burnin1.png>
+Package pdftex.def Info: Tarea8/burnin1.png  used on input line 120.
+(pdftex.def)             Requested size: 396.70256pt x 272.73047pt.
+ [2 <./Tarea8/traj11.png>]
+<Tarea8/traj12.png, id=41, 578.16pt x 397.485pt>
+File: Tarea8/traj12.png Graphic file (type png)
+<use Tarea8/traj12.png>
+Package pdftex.def Info: Tarea8/traj12.png  used on input line 131.
+(pdftex.def)             Requested size: 396.70256pt x 272.73047pt.
+ [3 <./Tarea8/burnin1.png> <./Tarea8/traj12.png>]
+<Tarea8/burnin2.png, id=48, 578.16pt x 397.485pt>
+File: Tarea8/burnin2.png Graphic file (type png)
+<use Tarea8/burnin2.png>
+Package pdftex.def Info: Tarea8/burnin2.png  used on input line 141.
+(pdftex.def)             Requested size: 370.2541pt x 254.54723pt.
+<Tarea8/hist_dens.png, id=49, 578.16pt x 397.485pt>
+File: Tarea8/hist_dens.png Graphic file (type png)
+<use Tarea8/hist_dens.png>
+Package pdftex.def Info: Tarea8/hist_dens.png  used on input line 156.
+(pdftex.def)             Requested size: 396.70256pt x 272.73047pt.
+ [4 <./Tarea8/burnin2.png> <./Tarea8/hist_dens.png>]
+<Tarea8/traj2.png, id=57, 578.16pt x 397.485pt>
+File: Tarea8/traj2.png Graphic file (type png)
+<use Tarea8/traj2.png>
+Package pdftex.def Info: Tarea8/traj2.png  used on input line 238.
+(pdftex.def)             Requested size: 423.151pt x 290.91371pt.
+ [5]
+<Tarea8/hist21.png, id=65, 578.16pt x 397.485pt>
+File: Tarea8/hist21.png Graphic file (type png)
+<use Tarea8/hist21.png>
+Package pdftex.def Info: Tarea8/hist21.png  used on input line 250.
+(pdftex.def)             Requested size: 370.2541pt x 254.54723pt.
+<Tarea8/hist22.png, id=66, 578.16pt x 397.485pt>
+File: Tarea8/hist22.png Graphic file (type png)
+<use Tarea8/hist22.png>
+Package pdftex.def Info: Tarea8/hist22.png  used on input line 254.
+(pdftex.def)             Requested size: 370.2541pt x 254.54723pt.
+ [6 <./Tarea8/traj2.png> <./Tarea8/hist21.png>]
+<Tarea8/burnin3.png, id=73, 578.16pt x 397.485pt>
+File: Tarea8/burnin3.png Graphic file (type png)
+<use Tarea8/burnin3.png>
+Package pdftex.def Info: Tarea8/burnin3.png  used on input line 272.
+(pdftex.def)             Requested size: 370.2541pt x 254.54723pt.
+ [7 <./Tarea8/hist22.png> <./Tarea8/burnin3.png>] [8]
+<Tarea8/hist0.png, id=90, 578.16pt x 397.485pt>
+File: Tarea8/hist0.png Graphic file (type png)
+<use Tarea8/hist0.png>
+Package pdftex.def Info: Tarea8/hist0.png  used on input line 396.
+(pdftex.def)             Requested size: 423.151pt x 290.91371pt.
+<Tarea8/hist1.png, id=91, 578.16pt x 397.485pt>
+File: Tarea8/hist1.png Graphic file (type png)
+<use Tarea8/hist1.png>
+Package pdftex.def Info: Tarea8/hist1.png  used on input line 397.
+(pdftex.def)             Requested size: 423.151pt x 290.91371pt.
+<Tarea8/hist2.png, id=92, 578.16pt x 397.485pt>
+File: Tarea8/hist2.png Graphic file (type png)
+<use Tarea8/hist2.png>
+Package pdftex.def Info: Tarea8/hist2.png  used on input line 398.
+(pdftex.def)             Requested size: 423.151pt x 290.91371pt.
+<Tarea8/hist3.png, id=93, 578.16pt x 397.485pt>
+File: Tarea8/hist3.png Graphic file (type png)
+<use Tarea8/hist3.png>
+Package pdftex.def Info: Tarea8/hist3.png  used on input line 399.
+(pdftex.def)             Requested size: 423.151pt x 290.91371pt.
+<Tarea8/hist4.png, id=94, 578.16pt x 397.485pt>
+File: Tarea8/hist4.png Graphic file (type png)
+<use Tarea8/hist4.png>
+Package pdftex.def Info: Tarea8/hist4.png  used on input line 400.
+(pdftex.def)             Requested size: 423.151pt x 290.91371pt.
+<Tarea8/hist5.png, id=95, 578.16pt x 397.485pt>
+File: Tarea8/hist5.png Graphic file (type png)
+<use Tarea8/hist5.png>
+Package pdftex.def Info: Tarea8/hist5.png  used on input line 401.
+(pdftex.def)             Requested size: 423.151pt x 290.91371pt.
+<Tarea8/hist6.png, id=96, 578.16pt x 397.485pt>
+File: Tarea8/hist6.png Graphic file (type png)
+<use Tarea8/hist6.png>
+Package pdftex.def Info: Tarea8/hist6.png  used on input line 402.
+(pdftex.def)             Requested size: 423.151pt x 290.91371pt.
+<Tarea8/hist7.png, id=97, 578.16pt x 397.485pt>
+File: Tarea8/hist7.png Graphic file (type png)
+<use Tarea8/hist7.png>
+Package pdftex.def Info: Tarea8/hist7.png  used on input line 403.
+(pdftex.def)             Requested size: 423.151pt x 290.91371pt.
+<Tarea8/hist8.png, id=98, 578.16pt x 397.485pt>
+File: Tarea8/hist8.png Graphic file (type png)
+<use Tarea8/hist8.png>
+Package pdftex.def Info: Tarea8/hist8.png  used on input line 404.
+(pdftex.def)             Requested size: 423.151pt x 290.91371pt.
+<Tarea8/hist9.png, id=99, 578.16pt x 397.485pt>
+File: Tarea8/hist9.png Graphic file (type png)
+<use Tarea8/hist9.png>
+Package pdftex.def Info: Tarea8/hist9.png  used on input line 405.
+(pdftex.def)             Requested size: 423.151pt x 290.91371pt.
+<Tarea8/hist10.png, id=100, 578.16pt x 397.485pt>
+File: Tarea8/hist10.png Graphic file (type png)
+<use Tarea8/hist10.png>
+Package pdftex.def Info: Tarea8/hist10.png  used on input line 406.
+(pdftex.def)             Requested size: 423.151pt x 290.91371pt.
+ [9 <./Tarea8/hist0.png>] [10 <./Tarea8/hist1.png> <./Tarea8/hist2.png>] [11 <./Tarea8/hist3.png> <./Tarea8/hist4.png>] [12 <./Tarea8/hist5.png> <./Tarea8/hist6.png>] [13 <./Tarea8/hist7.png> <./Tarea8/hist8.png>] [14 <./Tarea8/hist9.png> <./Tarea8/hist10.png>] [15] (Tarea8.aux
 LaTeX Info: Redefining \. on input line 22.
 LaTeX Info: Redefining \% on input line 22.
 )
@@ -625,17 +732,17 @@ Package rerunfilecheck Info: File `Tarea8.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 16869 strings out of 476411
- 269588 string characters out of 5798949
- 1869845 words of memory out of 5000000
- 36870 multiletter control sequences out of 15000+600000
- 570831 words of font info for 118 fonts, out of 8000000 for 9000
+ 17065 strings out of 476411
+ 273329 string characters out of 5798949
+ 1873845 words of memory out of 5000000
+ 37012 multiletter control sequences out of 15000+600000
+ 571897 words of font info for 128 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 80i,9n,79p,1123b,590s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <C:\Users\Esaul\AppData\Local\MiKTeX\fonts/pk/ljfour/public/doublestroke/dpi600\dsrom10.pk><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmex10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmmi10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmmi5.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmmi7.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmr12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmr17.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmr5.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmr6.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmr7.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmr8.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmri10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmri8.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmsy5.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmsy7.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmtt8.pfb>
-Output written on Tarea8.pdf (2 pages, 299673 bytes).
+ 80i,10n,79p,1123b,733s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ <C:\Users\Esaul\AppData\Local\MiKTeX\fonts/pk/ljfour/public/doublestroke/dpi600\dsrom10.pk><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmex10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmmi10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmmi5.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmmi7.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmr12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmr17.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmr5.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmr6.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmr7.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmr8.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmri10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmri8.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmsy5.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmsy7.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmtt10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmtt8.pfb>
+Output written on Tarea8.pdf (15 pages, 901239 bytes).
 PDF statistics:
- 131 PDF objects out of 1000 (max. 8388607)
- 10 named destinations out of 1000 (max. 500000)
- 31233 words of extra memory for PDF output out of 35830 (max. 10000000)
+ 234 PDF objects out of 1000 (max. 8388607)
+ 23 named destinations out of 1000 (max. 500000)
+ 31845 words of extra memory for PDF output out of 35830 (max. 10000000)
 
