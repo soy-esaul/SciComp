@@ -46,7 +46,7 @@ def MHeco(iterations=100):
             W  = beta_var.logpdf(current_p,a=alpha,b=beta)
             Wp = beta_var.logpdf(proposal_p,a=alpha,b=beta)
             unif = np.random.random()
-            if log(unif) < Vp - V - Wp + W:
+            if log(unif) < Vp - V - Wp + W and proposal_N < Nmax:
                 current_p = proposal_p
                 current_N = proposal_N
         elif unif >= 0.4 and unif < 0.6:
@@ -57,7 +57,7 @@ def MHeco(iterations=100):
             W  = hypergeom.logpmf(current_N,Nmax,500,int(proposal_N))
             Wp = hypergeom.logpmf(proposal_N,Nmax,500,int(current_N))
             unif = np.random.random()
-            if log(unif) < Vp - V + W - Wp:
+            if log(unif) < Vp - V + W - Wp and proposal_N < Nmax:
                 current_N = proposal_N
         elif unif >= 0.6 and unif < 0.8:
             rate = int(current_N)
@@ -68,7 +68,16 @@ def MHeco(iterations=100):
             W  = poisson.logpmf(current_N,mu=rate)
             Wp = poisson.logpmf(proposal_N,mu=rate_p)
             unif = np.random.random()
-            if log(unif) < Vp - V + W - Wp:
+            if log(unif) < Vp - V + W - Wp and proposal_N < Nmax:
+                current_N = proposal_N
+        elif unif >= 0.8 and unif < 0.825:
+            proposal_N = binom.rvs(n=Nmax,p=current_p)
+            V  = ecologpdf(x,current_N,current_p)
+            Vp = ecologpdf(x,proposal_N,current_p)
+            W  = binom.logpmf(current_N,n=Nmax,p=current_p)
+            Wp = binom.logpmf(proposal_N,n=Nmax,p=current_p)
+            unif = np.random.random()
+            if log(unif) < Vp - V + W - Wp and proposal_N < Nmax:
                 current_N = proposal_N
         else:
             rule = np.random.random()
@@ -77,7 +86,7 @@ def MHeco(iterations=100):
             V  = ecologpdf(x,current_N,current_p)
             Vp = ecologpdf(x,proposal_N,current_p)
             unif = np.random.random()
-            if log(unif) < Vp - V:
+            if log(unif) < Vp - V and proposal_N < Nmax:
                 current_N = proposal_N
         p.append(current_p)
         N.append(current_N)
@@ -154,13 +163,66 @@ if __name__ == "__main__":
     from scipy.stats import hypergeom
     from scipy.stats import poisson
     from scipy.stats import gamma as gamma_var
+    from scipy.stats import binom 
     from scipy.special import gamma 
     from numpy import pi
     from numpy import log
     from numpy import exp
     from scipy.special  import factorial
 
+    import matplotlib
+    import matplotlib.pyplot as plt
+    matplotlib.style.use("seaborn-v0_8")
+
+    np.random.seed(57)
+
     # Ejercicio 1
+
+    eco = MHeco(iterations=10000)
+    p, N = eco
+    plt.plot(p)
+    plt.title("Trayectoria para el muestreo de p")
+    plt.xlabel("Iteraciones")
+    plt.ylabel(r"$p$")
+    plt.savefig("Tarea9/trajp.png")
+    plt.show()
+
+    plt.plot(N)
+    plt.title("Trayectoria para el muestreo de N")
+    plt.xlabel("Iteraciones")
+    plt.ylabel(r"$N$")
+    plt.savefig("Tarea9/trajN.png")
+    plt.show()
+
+    plt.plot(p,N)
+    plt.title("Trayectoria de la cadena para el muestreo poblacional")
+    plt.xlabel(r"$N$")
+    plt.ylabel(r"$p$")
+    plt.savefig("Tarea9/trajpN.png")
+    plt.show()
+
+    # Histogramas
+    plt.hist(p[100:],density=True,alpha=0.8,bins=20)
+    plt.title(r"Histograma para el muestreo de $p$")
+    plt.savefig("Tarea9/histp.png")
+    plt.show()
+    plt.hist(N,density=True,alpha=0.8,bins=20)
+    plt.title(r"Histograma para el muestreo de $N$")
+    plt.savefig("Tarea9/histN.png")
+    plt.show()
+
+    # Burn-in
+    logobj = []
+    for i in range(np.shape(p)[0]):
+        logobj.append(ecologpdf(x,N[i],p[i]))
+
+    plt.plot(logobj)
+    plt.title("Gráfica de burn-in para el ejercicio 1")
+    plt.xlabel("Iteraciones")
+    plt.ylabel(r"$\log(f(X_t))"$)
+    plt.savefig("Tarea9/burnin1.png")
+    plt.show() 
+    
 
 
 
@@ -176,3 +238,40 @@ if __name__ == "__main__":
     0, 0, 0, 0, 0, 87, 7, 37, 0, 15, 5, 6, 35, 0, 158, 0, 0, 1349, 0, 35, 0, 0, 12, 0, 0, 2, 0, 1117, 0,
     79, 0, 13, 0, 0, 0, 1334, 56, 0, 81, 0, 0, 1480, 177, 0, 29, 0, 0, 551, 0, 1338, 196, 0, 9, 104, 0,
     0, 3, 1430, 0, 2, 492, 0, 0, 0, 0, 0, 0, 0, 0, 1057, 0, 0, 0, 68, 0, 87, 1362, 0])
+
+    # Muestrear los datos
+    mercado = MHmerc(iterations=10000)
+
+    # Figuras de la cadena
+    plt.plot(mercado[:,0])
+    plt.xlabel("Iteraciones")
+    plt.ylabel("Edad (años)")
+    plt.title("Trayectoria para el muestreo de la edad en años")
+    plt.savefig("Tarea9/traja.png")
+    plt.show()
+    plt.plot(mercado[:,1])
+    plt.xlabel("Iteraciones")
+    plt.ylabel("Amplitud del segmento (años)")
+    plt.title("Trayectoria para el muestreo de la amplitud en años")
+    plt.savefig("Tarea9/trajb.png")
+    plt.show()
+    plt.plot(mercado[:,2])
+    plt.xlabel("Iteraciones")
+    plt.ylabel("Gasto promedio")
+    plt.title("Trayectoria para el muestreo del gasto promedio")
+    plt.savefig("Tarea9/trajc.png")
+    plt.show()
+
+    # Histogramas
+    plt.hist(mercado[:,0],density=True,alpha=0.8,bins=50)
+    plt.title("Histograma para el muestreo de la edad en años")
+    plt.savefig("Tarea9/hista.png")
+    plt.show()
+    plt.hist(mercado[:,1],density=True,alpha=0.8,bins=50)
+    plt.title("Histograma para el muestreo de la amplitud en años")
+    plt.savefig("Tarea9/histb.png")
+    plt.show()
+    plt.hist(mercado[:,2],density=True,alpha=0.8,bins=50)
+    plt.title("Histograma para el muestreo del gasto promedio")
+    plt.savefig("Tarea9/histc.png")
+    plt.show()

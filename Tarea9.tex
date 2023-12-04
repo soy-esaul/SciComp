@@ -86,7 +86,48 @@ Y = array([1275, 325, 517, 0, 86, 0, 101, 0, 0, 89, 78, 83, 0, 1074, 508, 5, 0, 
 0, 3, 1430, 0, 2, 492, 0, 0, 0, 0, 0, 0, 0, 0, 1057, 0, 0, 0, 68, 0, 87, 1362, 0]) \end{verbatim}
 
 
-    \item Investiga y describe muy brevemente los softwares OpenBugs, Nimble, JAGS, DRAM, Rtwalk, Mcee Hammer, PyMCMC.
+    \begin{proof}[Solución]
+        
+    \end{proof}
+
+    \item Investiga y describe muy brevemente los softwares OpenBugs, Nimble, 
+    JAGS, DRAM, Rtwalk, Mcee Hammer, PyMCMC.
+
+    En la página oficial de OpenBUGS se menciona que es un programa de código 
+    abierto para la modelación Bayesiana desarrollado sobre WinBUGS. Se menciona
+    tabién que el desarrollo de OpenBUGS ya no está activo y actualmente BUGS se
+    enfoca en mantener el software MultiBUGS. Más concretamente, en 
+    \textit{The BUGS project: Evolution, critique and future directions} se indica 
+    que el proyecto BUGS (Bayesian inference Using Gibbs Sampling) surge en la 
+    unidad de bioestadística del consejo de investigación médica de la Universidad
+    de Cambridge en 1989.  
+    
+    Fundamentalmente, OpenBUGS (o WinBUGS o MultiBUGS) se basa en la modelación 
+    gráfica de las dependencias entre parámetros. Mediante una gráfica dirigida
+    acícilca (DAP) se puede expresar cuáles son los componentes del modelo y cómo
+    se relacionan entre ellos, mediante dependencias estocásticas y funcionales.
+    Las ventajas de utilizar esta representación de los modelos en OpenBUGS es que
+    se permite expresar relaciones de manera sencilla mediante el lenguaje propio que
+    incorpora el software, y que el tener la gráfica de relaciones permite que
+    WinBUGS sepa exactamente qué cálculos son los mínimos que se necesitan realizar
+    para encontrar un condicionamiento total, logrando de esta manera ahorrar recursos
+    como tiempo o almacenamiento.
+
+    Los softwares de BUGS son bastante populares, y esta popularidad se debe a que
+    son muy flexibles y por lo tanto resultan útiles en una gran diversidad de 
+    contextos. La desventaja de la flexibilidad que presenta OpenBUGS es que al
+    ser usado en tantas situaciones distintas, pueden aparecer nuevos problemas
+    derivados de casos específicos de aplicación quen no se habían considerado
+    previamente.
+
+    Según su página oficial, Nimble es una adopción de OpenBUGS a R que permite
+    manipular modelos y objetos para usarlos dentro de R, a comparación de otras
+    interfaces de OpenBUGS para R que únicamente permiten usar simulaciones MCMC
+    dentro de R. Entre las ventajas que Nimble provee están el permitir distantas 
+    parametrizaciones de las distribuciones y usar distribuciones definidas por
+    el usuario.
+
+
 
 
    
